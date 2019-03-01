@@ -9,6 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".MultiGameoverActivity" />
+        <activity android:name=".SingleGameoverActivity" />
+        <activity android:name=".GameContinueActivity" />
+        <activity android:name=".GameActivity" />
+        <activity android:name=".MultiNumberActivity" />
+        <activity android:name=".MultiplayerActivity" />
+        <activity android:name=".SingleNumberActivity" />
+        <activity android:name=".InstructionActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
