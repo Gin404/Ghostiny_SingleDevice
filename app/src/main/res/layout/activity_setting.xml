@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".SettingActivity">
 
-    <ImageView
-        android:id="@+id/imageView3"
+    <ImageButton
+        android:id="@+id/imagebutton3"
         android:layout_width="43dp"
         android:layout_height="46dp"
         android:layout_marginStart="8dp"
@@ -30,7 +30,7 @@
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/imagebutton3" />
 
     <TextView
         android:id="@+id/textView7"
