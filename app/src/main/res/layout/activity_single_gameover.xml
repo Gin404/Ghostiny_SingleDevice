@@ -7,7 +7,7 @@
     tools:context=".SingleGameoverActivity">
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/backgroundview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/icon_picture"
@@ -17,11 +17,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button13"
+        android:id="@+id/overbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="568dp"
+        android:layout_marginTop="480dp"
         android:layout_marginEnd="8dp"
         android:text="Game Over"
         app:layout_constraintEnd_toEndOf="parent"

@@ -41,12 +41,11 @@
         android:layout_width="189dp"
         android:layout_height="55dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="96dp"
         android:layout_marginEnd="8dp"
         android:text="Multiplayer"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

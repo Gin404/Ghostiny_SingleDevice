@@ -30,11 +30,11 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
 
 
-        switch1=(Switch)findViewById(R.id.switch1);
-        switch2=(Switch)findViewById(R.id.switch2);
+        switch1=(Switch)findViewById(R.id.soundswitch);
+        switch2=(Switch)findViewById(R.id.vibrationswitch);
         audioManager=(AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
         vibrator = (Vibrator)this.getSystemService(this.VIBRATOR_SERVICE);
-        back=(ImageButton) findViewById(R.id.imagebutton3);
+        back=(ImageButton) findViewById(R.id.returnbutton);
 
         /*public void onSwitchClicked(View view) {
             int id=view.getId();
@@ -89,7 +89,7 @@ public class SettingActivity extends AppCompatActivity {
 
 
 
-        mail = (ImageView) findViewById(R.id.imageView4);
+        mail = (ImageView) findViewById(R.id.feedbackimage);
         mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -7,20 +7,19 @@
     tools:context=".GameContinueActivity">
 
     <Button
-        android:id="@+id/buttoncontinue"
+        android:id="@+id/continuebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="568dp"
+        android:layout_marginTop="444dp"
         android:layout_marginEnd="8dp"
         android:text="Game Continue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/view2"
+        android:id="@+id/backgroundview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/design_default_color_primary"

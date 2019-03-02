@@ -7,7 +7,7 @@
     tools:context=".SettingActivity">
 
     <ImageButton
-        android:id="@+id/imagebutton3"
+        android:id="@+id/returnbutton"
         android:layout_width="43dp"
         android:layout_height="46dp"
         android:layout_marginStart="8dp"
@@ -24,13 +24,13 @@
         android:layout_width="159dp"
         android:layout_height="64dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:text="Settings"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagebutton3" />
+        app:layout_constraintTop_toBottomOf="@+id/returnbutton" />
 
     <TextView
         android:id="@+id/textView7"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/soundswitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Switch
-        android:id="@+id/switch2"
+        android:id="@+id/vibrationswitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -87,10 +87,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.752"
         app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/switch1" />
+        app:layout_constraintTop_toBottomOf="@+id/soundswitch" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/feedbackimage"
         android:layout_width="40dp"
         android:layout_height="25dp"
         android:layout_marginStart="8dp"
@@ -99,7 +99,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/switch2"
+        app:layout_constraintTop_toBottomOf="@+id/vibrationswitch"
         app:srcCompat="@drawable/icon_feedback" />
 
 </android.support.constraint.ConstraintLayout>
