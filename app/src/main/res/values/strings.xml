@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Ghostiny_SingleDevice</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="ten">10</string>
+    <string name="eleven">11</string>
+    <string name="twelve">12</string>
+
+    <string name="start">Start</string>
+    <string name="instruction">Select the maximum number of players in the room.</string>
+
+    <string name="selectcolor">Please take photos with the above colors</string>
 </resources>
