@@ -7,7 +7,7 @@
     tools:context=".GameContinueActivity">
 
     <Button
-        android:id="@+id/continuebutton"
+        android:id="@+id/button_continue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
