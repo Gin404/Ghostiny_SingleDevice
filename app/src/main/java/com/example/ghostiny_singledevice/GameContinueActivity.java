@@ -13,7 +13,7 @@ public class GameContinueActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_continue);
 
-        continuebutton = (Button)findViewById(R.id.continuebutton);
+        continuebutton = (Button)findViewById(R.id.button_continue);
 
         continuebutton.setOnClickListener(new View.OnClickListener() {
             @Override
