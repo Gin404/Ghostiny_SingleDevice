@@ -1,5 +1,10 @@
 package com.example.ghostiny_singledevice.utils;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 /**
  * 颜色枚举类
  * 颜色与rgb上下限
@@ -11,6 +16,10 @@ public enum Colour {
     BLUE_DARK(0,50,103,203,154,254), BLUE_LIGHT(1,101,131,231,179,255), PURPLE(120,220,52,152,154,254);
 
     private int rh, rl, gh, gl, bh, bl;
+    private static final List<Colour> VALUES =
+            Collections.unmodifiableList(Arrays.asList(values()));
+    private static final int SIZE = VALUES.size();
+    private static final Random RANDOM = new Random();
 
     private Colour(int rh, int rl, int gh, int gl, int bh, int bl){
         this.rh = rh;
@@ -67,5 +76,13 @@ public enum Colour {
 
     public void setBl(int bl) {
         this.bl = bl;
+    }
+
+    /**
+     * 返回随机枚举值
+     * @return
+     */
+    public static Colour randomColour()  {
+        return VALUES.get(RANDOM.nextInt(SIZE));
     }
 }
