@@ -52,7 +52,7 @@ public class ImageTools {
      * @param threshold
      * @return
      */
-    public static boolean colorRecg(Bitmap bitmap, Colour colour, float threshold){
+    public static boolean colorRecg(Bitmap bitmap, Colour colour, double threshold){
         int w = bitmap.getWidth();
         int h = bitmap.getHeight();
         int total = w*h;
@@ -76,7 +76,7 @@ public class ImageTools {
             }
         }
 
-        float ratio = ((float) hits)/total;
+        double ratio = ((double) hits)/total;
 
         if (!(ratio < threshold)){
             return true;
