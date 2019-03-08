@@ -4,174 +4,201 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SingleNumberActivity">
+    tools:context=".MultiNumberActivity">
 
-
-    <Button
-        android:id="@+id/icon_number6"
-        android:layout_width="54dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginRight="56dp"
-        android:text="6"
+    <RadioGroup
+        android:id="@+id/radioGroup1_s"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="176dp"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/icon_number5"
-        android:layout_width="54dp"
-        android:layout_height="44dp"
+        <Button
+            android:id="@+id/icon_number3_s"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/radio_background"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/three" />
+
+        <Button
+            android:id="@+id/icon_number4_s"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/radio_background"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/four" />
+
+        <Button
+            android:id="@+id/icon_number5_s"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/radio_background"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/five" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/radioGroup2_s"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:text="5"
-        app:layout_constraintEnd_toStartOf="@+id/icon_number6"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup1_s">
 
-    <Button
-        android:id="@+id/icon_number4"
-        android:layout_width="54dp"
-        android:layout_height="44dp"
+        <Button
+            android:id="@+id/icon_number6_s"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/radio_background"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:text="@string/six" />
+
+        <Button
+            android:id="@+id/icon_number7_s"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/radio_background"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:text="@string/seven" />
+
+        <Button
+            android:id="@+id/icon_number8_s"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/radio_background"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:text="@string/eight" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/radioGroup3_s"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:text="4"
-        app:layout_constraintEnd_toStartOf="@+id/icon_number5"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2_s">
+
+        <Button
+            android:id="@+id/icon_number9_s"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/radio_background"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:text="@string/nine" />
+
+        <Button
+            android:id="@+id/icon_number10_s"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/radio_background"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:text="@string/ten" />
+
+        <Button
+            android:id="@+id/icon_number11_s"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/radio_background"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:text="@string/eleven" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/radioGroup4_s"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="402dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup3_s"
+        app:layout_constraintVertical_bias="0.0">
+
+        <Button
+            android:id="@+id/icon_number12_s"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/radio_background"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:text="@string/twelve" />
+
+    </RadioGroup>
+
 
     <Button
-        android:id="@+id/icon_start_normal_mode"
+        android:id="@+id/start_s"
         android:layout_width="210dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="156dp"
-        android:layout_marginEnd="8dp"
-        android:text="Start normal mode"
+        android:layout_height="46dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="100dp"
+        android:text="@string/start"
         android:textAllCaps="false"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_number12" />
-
-    <Button
-        android:id="@+id/icon_start_surprise_mode"
-        android:layout_width="210dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:text="Start surprise mode"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_start_normal_mode" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup4_s"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/textView_title5_s"
+        android:layout_width="354dp"
+        android:layout_height="71dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="68dp"
         android:layout_marginEnd="8dp"
-        android:text="Number of Players"
-        android:textSize="30sp"
+        android:text="@string/instruction"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/icon_number3"
-        android:layout_width="54dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="3"
-        app:layout_constraintEnd_toStartOf="@+id/icon_number4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <Button
-        android:id="@+id/icon_number12"
-        android:layout_width="54dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.014"
-        app:layout_constraintStart_toEndOf="@+id/icon_number11"
-        app:layout_constraintTop_toBottomOf="@+id/icon_number8" />
-
-    <Button
-        android:id="@+id/icon_number11"
-        android:layout_width="54dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginTop="8dp"
-        android:text="11"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_number7" />
-
-    <Button
-        android:id="@+id/icon_number10"
-        android:layout_width="54dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginRight="56dp"
-        android:text="10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_number6" />
-
-    <Button
-        android:id="@+id/icon_number9"
-        android:layout_width="54dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:text="9"
-        app:layout_constraintEnd_toStartOf="@+id/icon_number10"
-        app:layout_constraintTop_toBottomOf="@+id/icon_number5" />
-
-    <Button
-        android:id="@+id/icon_number8"
-        android:layout_width="54dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:text="8"
-        app:layout_constraintEnd_toStartOf="@+id/icon_number9"
-        app:layout_constraintTop_toBottomOf="@+id/icon_number4" />
-
-    <Button
-        android:id="@+id/icon_number7"
-        android:layout_width="54dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="7"
-        app:layout_constraintEnd_toStartOf="@+id/icon_number8"
-        app:layout_constraintHorizontal_bias="0.788"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_number3" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView2_s"
         android:layout_width="43dp"
         android:layout_height="46dp"
         android:layout_marginStart="8dp"
