@@ -20,17 +20,17 @@ public class ImageTools {
             return null;
         }
 
-        int w = src.getWidth();
-        int h = src.getHeight();
-        int ww = waterMark.getWidth();
-        int wh = waterMark.getHeight();
+        int w = src.getWidth();//480
+        int h = src.getHeight();//640
+        int ww = waterMark.getWidth();//1856
+        int wh = waterMark.getHeight();//2625
 
-        float scaleW = ((float) w)/ww;
-        float scaleH = ((float)h)/wh;
+        float scaleW = ((float) h)/ww;
+        float scaleH = ((float)w)/wh;
 
         Matrix matrix = new Matrix();
-        matrix.postRotate(90);
         matrix.postScale(scaleW, scaleH);
+        matrix.postRotate(90);
         Bitmap wm = Bitmap.createBitmap(waterMark, 0, 0, ww, wh, matrix, true);
 
         Bitmap newb = Bitmap.createBitmap( w, h, Bitmap.Config.ARGB_8888 );
@@ -39,7 +39,7 @@ public class ImageTools {
 
         cv.drawBitmap( src, 0, 0, null );
 
-        cv.drawBitmap( wm, -200, 200, null );
+        cv.drawBitmap( wm, 0, 0, null );
 
 
         return newb;
@@ -82,6 +82,24 @@ public class ImageTools {
             return true;
         }
         return false;
+    }
+
+    public static Bitmap rotate(Bitmap bitmap, float degree){
+        if (bitmap == null){
+            return null;
+        }
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+
+        Matrix matrix = new Matrix();
+        matrix.setRotate(degree);
+
+        Bitmap newBM = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, false);
+        if (newBM.equals(bitmap)) {
+            return newBM;
+        }
+        bitmap.recycle();
+        return newBM;
     }
 
 
