@@ -23,14 +23,13 @@
         android:id="@+id/camerabutton"
         android:layout_width="186dp"
         android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="20dp"
         android:text="camera"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parentw"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectColor" />
 
     <TextView
         android:id="@+id/selectColor"
@@ -42,29 +41,29 @@
         android:text="@string/selectcolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/colorbutton11" />
+        app:layout_constraintTop_toBottomOf="@+id/blue_light" />
 
     <Button
-        android:id="@+id/colorbutton1"
+        android:id="@+id/red_dark"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="116dp"
         android:background="@android:color/holo_red_dark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/colorbutton2"
+        android:id="@+id/black"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="36dp"
         android:background="@android:color/black"
-        app:layout_constraintStart_toEndOf="@+id/colorbutton1"
-        app:layout_constraintTop_toTopOf="@+id/colorbutton1" />
+        app:layout_constraintStart_toEndOf="@+id/red_dark"
+        app:layout_constraintTop_toTopOf="@+id/red_dark" />
 
     <Button
-        android:id="@+id/colorbutton3"
+        android:id="@+id/green_dark"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="32dp"
@@ -72,30 +71,30 @@
         android:background="@android:color/holo_green_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.866"
-        app:layout_constraintStart_toEndOf="@+id/colorbutton2"
-        app:layout_constraintTop_toTopOf="@+id/colorbutton2" />
+        app:layout_constraintStart_toEndOf="@+id/black"
+        app:layout_constraintTop_toTopOf="@+id/black" />
 
     <Button
-        android:id="@+id/colorbutton4"
+        android:id="@+id/orange_light"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="20dp"
         android:background="@android:color/holo_orange_light"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/colorbutton1" />
+        app:layout_constraintTop_toBottomOf="@+id/red_dark" />
 
     <Button
-        android:id="@+id/colorbutton5"
+        android:id="@+id/orange_dark"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="36dp"
         android:background="@android:color/holo_orange_dark"
-        app:layout_constraintStart_toEndOf="@+id/colorbutton4"
-        app:layout_constraintTop_toTopOf="@+id/colorbutton4" />
+        app:layout_constraintStart_toEndOf="@+id/orange_light"
+        app:layout_constraintTop_toTopOf="@+id/orange_light" />
 
     <Button
-        android:id="@+id/colorbutton6"
+        android:id="@+id/green_light"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="32dp"
@@ -103,30 +102,30 @@
         android:background="@android:color/holo_green_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toEndOf="@+id/colorbutton5"
-        app:layout_constraintTop_toTopOf="@+id/colorbutton5" />
+        app:layout_constraintStart_toEndOf="@+id/orange_dark"
+        app:layout_constraintTop_toTopOf="@+id/orange_dark" />
 
     <Button
-        android:id="@+id/colorbutton7"
+        android:id="@+id/red_light"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="20dp"
         android:background="@android:color/holo_red_light"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/colorbutton4" />
+        app:layout_constraintTop_toBottomOf="@+id/orange_light" />
 
     <Button
-        android:id="@+id/colorbutton8"
+        android:id="@+id/darker_gray"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="36dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintStart_toEndOf="@+id/colorbutton7"
-        app:layout_constraintTop_toTopOf="@+id/colorbutton7" />
+        app:layout_constraintStart_toEndOf="@+id/red_light"
+        app:layout_constraintTop_toTopOf="@+id/red_light" />
 
     <Button
-        android:id="@+id/colorbutton9"
+        android:id="@+id/blue_bright"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="8dp"
@@ -134,30 +133,30 @@
         android:background="@android:color/holo_blue_bright"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.97"
-        app:layout_constraintStart_toEndOf="@+id/colorbutton8"
-        app:layout_constraintTop_toTopOf="@+id/colorbutton8" />
+        app:layout_constraintStart_toEndOf="@+id/darker_gray"
+        app:layout_constraintTop_toTopOf="@+id/darker_gray" />
 
     <Button
-        android:id="@+id/colorbutton10"
+        android:id="@+id/blue_dark"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="20dp"
         android:background="@android:color/holo_blue_dark"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/colorbutton7" />
+        app:layout_constraintTop_toBottomOf="@+id/red_light" />
 
     <Button
-        android:id="@+id/colorbutton11"
+        android:id="@+id/blue_light"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="36dp"
         android:background="@android:color/holo_blue_light"
-        app:layout_constraintStart_toEndOf="@+id/colorbutton10"
-        app:layout_constraintTop_toTopOf="@+id/colorbutton10" />
+        app:layout_constraintStart_toEndOf="@+id/blue_dark"
+        app:layout_constraintTop_toTopOf="@+id/blue_dark" />
 
     <Button
-        android:id="@+id/colorbutton12"
+        android:id="@+id/purple"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="8dp"
@@ -165,8 +164,8 @@
         android:background="@android:color/holo_purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.402"
-        app:layout_constraintStart_toEndOf="@+id/colorbutton11"
-        app:layout_constraintTop_toTopOf="@+id/colorbutton11" />
+        app:layout_constraintStart_toEndOf="@+id/blue_light"
+        app:layout_constraintTop_toTopOf="@+id/blue_light" />
 
 </android.support.constraint.ConstraintLayout>
 
