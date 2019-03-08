@@ -23,7 +23,7 @@ public class SingleNumberActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multi_number);
+        setContentView(R.layout.activity_single_number);
 
         three = (Button) findViewById(R.id.icon_number3_s);
         four = (Button) findViewById(R.id.icon_number4_s);
