@@ -22,6 +22,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textView;
     private boolean selected = false;
     private int colorNum;
+    private Button toBeInvis;
 
     private final Colour[] colours = Colour.values();
 
@@ -39,12 +40,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Log.d("ingame", unluck.toString() + " is unlucky");
 
         takePhoto = (Button) findViewById(R.id.camerabutton);
+        textView = (TextView)findViewById(R.id.selectColor);
 
         //将后12-colourNum个颜色按钮置为隐形
         Resources res = getResources();
         Button temp = null;
         for (int i = colorNum; i < colours.length; i++){
-            temp = findViewById(res.getIdentifier(colours[i].toString(),"id",getPackageName()));
+            temp = findViewById(res.getIdentifier(colours[i].toString().toLowerCase(),"id",getPackageName()));
             temp.setVisibility(View.GONE);
         }
 
@@ -56,9 +58,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(getApplicationContext(), "请选择颜色",Toast.LENGTH_SHORT).show();
                     return;
                 }
+                toBeInvis.setVisibility(View.GONE);
 
                 // 启动相机程序
                 Intent intent = new Intent(GameActivity.this, CustomCameraActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("unluck", unluck);
+                bundle.putSerializable("choice", colour);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
 
@@ -88,7 +95,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             if (id == res.getIdentifier(s,"id",getPackageName())){
                 textView.setText(s);
                 colour = colours[i];
-                v.setVisibility(View.GONE);
+                //v.setVisibility(View.GONE);
+                toBeInvis = (Button) v;
                 selected = true;
             }
         }

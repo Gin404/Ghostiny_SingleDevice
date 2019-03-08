@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
+        <RadioButton
             android:id="@+id/icon_number3_s"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -28,7 +28,7 @@
             android:gravity="center"
             android:text="@string/three" />
 
-        <Button
+        <RadioButton
             android:id="@+id/icon_number4_s"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -38,7 +38,7 @@
             android:gravity="center"
             android:text="@string/four" />
 
-        <Button
+        <RadioButton
             android:id="@+id/icon_number5_s"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -61,7 +61,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup1_s">
 
-        <Button
+        <RadioButton
             android:id="@+id/icon_number6_s"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -71,7 +71,7 @@
             android:layout_margin="20dp"
             android:text="@string/six" />
 
-        <Button
+        <RadioButton
             android:id="@+id/icon_number7_s"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -81,7 +81,7 @@
             android:layout_margin="20dp"
             android:text="@string/seven" />
 
-        <Button
+        <RadioButton
             android:id="@+id/icon_number8_s"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -104,7 +104,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup2_s">
 
-        <Button
+        <RadioButton
             android:id="@+id/icon_number9_s"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -114,7 +114,7 @@
             android:layout_margin="20dp"
             android:text="@string/nine" />
 
-        <Button
+        <RadioButton
             android:id="@+id/icon_number10_s"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -124,14 +124,14 @@
             android:layout_margin="20dp"
             android:text="@string/ten" />
 
-        <Button
+        <RadioButton
             android:id="@+id/icon_number11_s"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_margin="20dp"
             android:background="@drawable/radio_background"
             android:button="@null"
             android:gravity="center"
-            android:layout_margin="20dp"
             android:text="@string/eleven" />
 
     </RadioGroup>
@@ -151,7 +151,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radioGroup3_s"
         app:layout_constraintVertical_bias="0.0">
 
-        <Button
+        <RadioButton
             android:id="@+id/icon_number12_s"
             android:layout_width="50dp"
             android:layout_height="50dp"

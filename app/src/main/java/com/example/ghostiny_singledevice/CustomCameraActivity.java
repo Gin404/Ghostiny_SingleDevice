@@ -92,7 +92,9 @@ public class CustomCameraActivity extends AppCompatActivity {
             public void onClick(View v) {
                 takePicture();
                 Intent intent = new Intent(CustomCameraActivity.this, CustomShowActivity.class);
-                intent.putExtra("photo", imageUri.toString());
+                Bundle bundle = getIntent().getExtras();
+                bundle.putString("photoPath", imageUri.toString());
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -370,12 +372,14 @@ public class CustomCameraActivity extends AppCompatActivity {
         if (cameraDevice != null){
             cameraDevice.close();
         }
-        cameraCaptureSession.close();
-        try {
-            cameraCaptureSession.abortCaptures();
-        } catch (Exception ignore) {
-        } finally {
-            cameraCaptureSession = null;
+        if (cameraCaptureSession != null) {
+            cameraCaptureSession.close();
+            try {
+                cameraCaptureSession.abortCaptures();
+            } catch (Exception ignore) {
+            } finally {
+                cameraCaptureSession = null;
+            }
         }
         stopBackgroundThread();
         super.onPause();

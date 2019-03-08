@@ -30,11 +30,15 @@ public class CustomShowActivity extends AppCompatActivity {
         setContentView(R.layout.activity_custom_show);
 
         photo = (ImageView)findViewById(R.id.custom_photo);
-        Intent intent = getIntent();
-        String imageUri = intent.getStringExtra("photo");
-        Colour choice = (Colour)intent.getSerializableExtra("color");
-        Colour unluck = (Colour)intent.getSerializableExtra("unluck");
+        cont = (Button)findViewById(R.id.cont);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+
+        Colour choice = (Colour)bundle.getSerializable("choice");
+        Colour unluck = (Colour)bundle.getSerializable("unluck");
+        String imageUri = bundle.getString("photoPath");
 
 
         try {
@@ -60,7 +64,7 @@ public class CustomShowActivity extends AppCompatActivity {
                 }
             }
 
-            photo.setImageBitmap(bitmap);
+            photo.setImageBitmap(res);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -88,6 +92,7 @@ public class CustomShowActivity extends AppCompatActivity {
                 }else {
                     intent1 = new Intent(CustomShowActivity.this, MainActivity.class);
                 }
+                startActivity(intent1);
             }
         });
     }

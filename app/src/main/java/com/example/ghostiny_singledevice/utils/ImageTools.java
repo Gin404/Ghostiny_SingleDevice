@@ -61,8 +61,8 @@ public class ImageTools {
 
 
 
-        for (int i = 0; i < h; i++){
-            for (int j = 0; j < w; j++){
+        for (int i = 0; i < w; i++){
+            for (int j = 0; j < h; j++){
                 int pixel = bitmap.getPixel(i, j);
                 r = Color.red(pixel);
                 g = Color.green(pixel);

@@ -3,8 +3,10 @@ package com.example.ghostiny_singledevice;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -25,16 +27,16 @@ public class SingleNumberActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_number);
 
-        three = (Button) findViewById(R.id.icon_number3_s);
-        four = (Button) findViewById(R.id.icon_number4_s);
-        five = (Button) findViewById(R.id.icon_number5_s);
-        six = (Button) findViewById(R.id.icon_number6_s);
-        seven = (Button) findViewById(R.id.icon_number7_s);
-        eight = (Button) findViewById(R.id.icon_number8_s);
-        nine = (Button) findViewById(R.id.icon_number9_s);
-        ten = (Button) findViewById(R.id.icon_number10_s);
-        eleven = (Button) findViewById(R.id.icon_number11_s);
-        twelve = (Button) findViewById(R.id.icon_number12_s);
+        three = (RadioButton) findViewById(R.id.icon_number3_s);
+        four = (RadioButton) findViewById(R.id.icon_number4_s);
+        five = (RadioButton) findViewById(R.id.icon_number5_s);
+        six = (RadioButton) findViewById(R.id.icon_number6_s);
+        seven = (RadioButton) findViewById(R.id.icon_number7_s);
+        eight = (RadioButton) findViewById(R.id.icon_number8_s);
+        nine = (RadioButton) findViewById(R.id.icon_number9_s);
+        ten = (RadioButton) findViewById(R.id.icon_number10_s);
+        eleven = (RadioButton) findViewById(R.id.icon_number11_s);
+        twelve = (RadioButton) findViewById(R.id.icon_number12_s);
 
         start = (Button) findViewById(R.id.start_s);
 
@@ -62,6 +64,7 @@ public class SingleNumberActivity extends AppCompatActivity {
             public void onClick(View v) {
                 num = 3;
                 keepR1();
+                Log.d("checkbox", "3");
             }
         });
 
@@ -70,6 +73,7 @@ public class SingleNumberActivity extends AppCompatActivity {
             public void onClick(View v) {
                 num = 4;
                 keepR1();
+                Log.d("checkbox", "4");
             }
         });
 
@@ -78,6 +82,7 @@ public class SingleNumberActivity extends AppCompatActivity {
             public void onClick(View v) {
                 num = 5;
                 keepR1();
+                Log.d("checkbox", "5");
             }
         });
 
@@ -86,6 +91,7 @@ public class SingleNumberActivity extends AppCompatActivity {
             public void onClick(View v) {
                 num = 6;
                 keepR2();
+                Log.d("checkbox", "6");
             }
         });
 
@@ -126,6 +132,7 @@ public class SingleNumberActivity extends AppCompatActivity {
             public void onClick(View v) {
                 num = 11;
                 keepR3();
+                Log.d("checkbox", "11");
             }
         });
 
