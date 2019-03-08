@@ -11,6 +11,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 多人人数选择
+ */
 public class MultiNumberActivity extends AppCompatActivity {
     private Button three, four, five, six, seven, eight,
                     nine, ten, eleven, twelve;
@@ -25,23 +28,23 @@ public class MultiNumberActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_number);
 
-        three = (Button) findViewById(R.id.icon_number3);
-        four = (Button) findViewById(R.id.icon_number4);
-        five = (Button) findViewById(R.id.icon_number5);
-        six = (Button) findViewById(R.id.icon_number6);
-        seven = (Button) findViewById(R.id.icon_number7);
-        eight = (Button) findViewById(R.id.icon_number8);
-        nine = (Button) findViewById(R.id.icon_number9);
-        ten = (Button) findViewById(R.id.icon_number10);
-        eleven = (Button) findViewById(R.id.icon_number11);
-        twelve = (Button) findViewById(R.id.icon_number12);
+        three = (Button) findViewById(R.id.icon_number3_m);
+        four = (Button) findViewById(R.id.icon_number4_m);
+        five = (Button) findViewById(R.id.icon_number5_m);
+        six = (Button) findViewById(R.id.icon_number6_m);
+        seven = (Button) findViewById(R.id.icon_number7_m);
+        eight = (Button) findViewById(R.id.icon_number8_m);
+        nine = (Button) findViewById(R.id.icon_number9_m);
+        ten = (Button) findViewById(R.id.icon_number10_m);
+        eleven = (Button) findViewById(R.id.icon_number11_m);
+        twelve = (Button) findViewById(R.id.icon_number12_m);
 
         start = (Button) findViewById(R.id.start);
 
-        r1 = (RadioGroup)findViewById(R.id.radioGroup1);
-        r2 = (RadioGroup)findViewById(R.id.radioGroup2);
-        r3 = (RadioGroup)findViewById(R.id.radioGroup3);
-        r4 = (RadioGroup)findViewById(R.id.radioGroup4);
+        r1 = (RadioGroup)findViewById(R.id.radioGroup1_m);
+        r2 = (RadioGroup)findViewById(R.id.radioGroup2_m);
+        r3 = (RadioGroup)findViewById(R.id.radioGroup3_m);
+        r4 = (RadioGroup)findViewById(R.id.radioGroup4_m);
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
