@@ -5,6 +5,11 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.hardware.camera2.full" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:allowBackup="true"
@@ -13,18 +18,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowPictureActivity"></activity>
+        <activity android:name=".CustomShowActivity"></activity>
+        <activity android:name=".CustomCameraActivity" />
+        <activity android:name=".legacy.ShowPictureActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".MultiGameoverActivity" />
         <activity android:name=".SingleGameoverActivity" />
         <activity android:name=".GameContinueActivity" />
-        <activity android:name=".GameActivity"
-            android:launchMode="singleTask"/>
+        <activity
+            android:name=".GameActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".MultiNumberActivity" />
         <activity android:name=".MultiplayerActivity" />
         <activity android:name=".SingleNumberActivity" />
         <activity android:name=".InstructionActivity" />
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
