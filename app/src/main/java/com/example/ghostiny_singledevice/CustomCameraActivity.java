@@ -98,6 +98,8 @@ public class CustomCameraActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Intent intent = new Intent(CustomCameraActivity.this,MusicServer.class);
+        startService(intent);
     }
 
     CameraDevice.StateCallback stateCallBack = new CameraDevice.StateCallback() {
@@ -382,6 +384,12 @@ public class CustomCameraActivity extends AppCompatActivity {
             }
         }
         stopBackgroundThread();
+        Intent intent = new Intent(CustomCameraActivity.this,MusicServer.class);
+        stopService(intent);
+        //super.onStop();
         super.onPause();
+
+
+
     }
 }
