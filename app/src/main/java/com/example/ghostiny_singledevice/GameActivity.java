@@ -1,7 +1,9 @@
 package com.example.ghostiny_singledevice;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -71,6 +73,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
 
         });
+        AssetManager mgr=getAssets();   //设置字体
+        Typeface typeface=Typeface.createFromAsset(mgr,"font/TM.ttf");
+        takePhoto.setTypeface(typeface);
+        textView.setTypeface ( typeface );
     }
 
 
