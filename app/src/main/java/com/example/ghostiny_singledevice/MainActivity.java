@@ -2,15 +2,20 @@ package com.example.ghostiny_singledevice;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button  instructionButton,settingButton,singleButton,multiButton;
+    ImageButton  instructionButton,settingButton,singleButton,multiButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +23,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // TODO: 25/02/2019
 
-        instructionButton=(Button)findViewById(R.id.icon_home_instruction);
-        settingButton=(Button)findViewById(R.id.icon_home_setting);
-        singleButton=(Button)findViewById(R.id.icon_home_SingleGame);
-        multiButton=(Button)findViewById(R.id.icon_home_multiplayer);
+        instructionButton=(ImageButton)findViewById(R.id.icon_home_instruction);
+        settingButton=(ImageButton)findViewById(R.id.icon_home_setting);
+        singleButton=(ImageButton)findViewById(R.id.icon_home_SingleGame);
+        multiButton=(ImageButton)findViewById(R.id.icon_home_multiplayer);
 
         instructionButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){

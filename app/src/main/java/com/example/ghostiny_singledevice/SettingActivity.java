@@ -3,6 +3,8 @@ package com.example.ghostiny_singledevice;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
@@ -15,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -29,6 +32,16 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
+        AssetManager mgr=getAssets();   //设置字体
+        Typeface typeface=Typeface.createFromAsset(mgr,"font/TM.ttf");
+        TextView test1=(TextView)findViewById(R.id.textView5);
+        test1.setTypeface(typeface);
+        TextView test2=(TextView)findViewById(R.id.textView7);
+        test2.setTypeface(typeface);
+        TextView test3=(TextView)findViewById(R.id.textView8);
+        test3.setTypeface(typeface);
+        TextView test4=(TextView)findViewById(R.id.textView9);
+        test4.setTypeface(typeface);
 
         switch1=(Switch)findViewById(R.id.soundswitch);
         switch2=(Switch)findViewById(R.id.vibrationswitch);
