@@ -46,6 +46,8 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class CustomCameraActivity extends AppCompatActivity {
 
@@ -75,6 +77,9 @@ public class CustomCameraActivity extends AppCompatActivity {
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
 
+    private Timer timer;
+    private TimerTask task;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,8 +103,16 @@ public class CustomCameraActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Intent intent = new Intent(CustomCameraActivity.this,MusicServer.class);
-        startService(intent);
+
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                takePicture();
+            }
+        };
+
+        timer = new Timer();
+        timer.schedule(task, 10000);
     }
 
     CameraDevice.StateCallback stateCallBack = new CameraDevice.StateCallback() {
@@ -237,7 +250,7 @@ public class CustomCameraActivity extends AppCompatActivity {
     }
 
 
-    private void takePicture(){
+    private synchronized void takePicture(){
         if (cameraDevice == null){
             Log.e(TAG, "cameraDevice is null");
             return;
@@ -384,12 +397,6 @@ public class CustomCameraActivity extends AppCompatActivity {
             }
         }
         stopBackgroundThread();
-        Intent intent = new Intent(CustomCameraActivity.this,MusicServer.class);
-        stopService(intent);
-        //super.onStop();
         super.onPause();
-
-
-
     }
 }

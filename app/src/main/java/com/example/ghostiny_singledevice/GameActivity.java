@@ -95,7 +95,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             if (id == res.getIdentifier(s,"id",getPackageName())){
                 textView.setText(s);
                 colour = colours[i];
-                //v.setVisibility(View.GONE);
                 toBeInvis = (Button) v;
                 selected = true;
             }

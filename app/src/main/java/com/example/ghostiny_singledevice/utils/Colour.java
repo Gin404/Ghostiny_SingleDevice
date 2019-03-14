@@ -21,7 +21,7 @@ public enum Colour {
     private static final int SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
 
-    private Colour(int rh, int rl, int gh, int gl, int bh, int bl){
+    Colour(int rh, int rl, int gh, int gl, int bh, int bl){
         this.rh = rh;
         this.rl = rl;
         this.gh = gh;
