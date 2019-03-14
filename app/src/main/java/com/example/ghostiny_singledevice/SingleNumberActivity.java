@@ -1,6 +1,8 @@
 package com.example.ghostiny_singledevice;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -17,6 +20,8 @@ public class SingleNumberActivity extends AppCompatActivity {
     private Button three, four, five, six, seven, eight,
             nine, ten, eleven, twelve;
     private Button start;
+
+    private TextView intro;
 
     private int num = 0;
 
@@ -39,11 +44,30 @@ public class SingleNumberActivity extends AppCompatActivity {
         twelve = (RadioButton) findViewById(R.id.icon_number12_s);
 
         start = (Button) findViewById(R.id.start_s);
+        intro = (TextView) findViewById ( R.id.textView_title5_s );
 
         r1 = (RadioGroup)findViewById(R.id.radioGroup1_s);
         r2 = (RadioGroup)findViewById(R.id.radioGroup2_s);
         r3 = (RadioGroup)findViewById(R.id.radioGroup3_s);
         r4 = (RadioGroup)findViewById(R.id.radioGroup4_s);
+
+
+        AssetManager mgr=getAssets();        //設置字體
+        Typeface typeface=Typeface.createFromAsset(mgr,"font/TM.ttf");
+        three.setTypeface(typeface);
+        four.setTypeface(typeface);
+        five.setTypeface(typeface);
+        six.setTypeface(typeface);
+        seven.setTypeface(typeface);
+        eight.setTypeface(typeface);
+        nine.setTypeface(typeface);
+        ten.setTypeface(typeface);
+        eleven.setTypeface(typeface);
+        twelve.setTypeface(typeface);
+        start.setTypeface ( typeface );
+        intro.setTypeface ( typeface );
+
+
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override

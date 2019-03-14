@@ -26,6 +26,7 @@
             android:background="@drawable/radio_background"
             android:button="@null"
             android:gravity="center"
+            android:textColor="#000000"
             android:text="@string/three" />
 
         <Button
@@ -36,6 +37,7 @@
             android:background="@drawable/radio_background"
             android:button="@null"
             android:gravity="center"
+            android:textColor="#000000"
             android:text="@string/four" />
 
         <Button
@@ -46,6 +48,7 @@
             android:background="@drawable/radio_background"
             android:button="@null"
             android:gravity="center"
+            android:textColor="#000000"
             android:text="@string/five" />
 
     </RadioGroup>
@@ -55,8 +58,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:orientation="horizontal"
         android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup1_m">
@@ -65,31 +68,34 @@
             android:id="@+id/icon_number6_m"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_margin="20dp"
             android:background="@drawable/radio_background"
             android:button="@null"
             android:gravity="center"
-            android:layout_margin="20dp"
-            android:text="@string/six" />
+            android:text="@string/six"
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/icon_number7_m"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_margin="20dp"
             android:background="@drawable/radio_background"
             android:button="@null"
             android:gravity="center"
-            android:layout_margin="20dp"
-            android:text="@string/seven" />
+            android:text="@string/seven"
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/icon_number8_m"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_margin="20dp"
             android:background="@drawable/radio_background"
             android:button="@null"
             android:gravity="center"
-            android:layout_margin="20dp"
-            android:text="@string/eight" />
+            android:text="@string/eight"
+            android:textColor="#000000" />
 
     </RadioGroup>
 
@@ -112,6 +118,7 @@
             android:button="@null"
             android:gravity="center"
             android:layout_margin="20dp"
+            android:textColor="#000000"
             android:text="@string/nine" />
 
         <Button
@@ -122,6 +129,7 @@
             android:button="@null"
             android:gravity="center"
             android:layout_margin="20dp"
+            android:textColor="#000000"
             android:text="@string/ten" />
 
         <Button
@@ -132,6 +140,7 @@
             android:button="@null"
             android:gravity="center"
             android:layout_margin="20dp"
+            android:textColor="#000000"
             android:text="@string/eleven" />
 
     </RadioGroup>
@@ -159,6 +168,7 @@
             android:button="@null"
             android:gravity="center"
             android:layout_margin="20dp"
+            android:textColor="#000000"
             android:text="@string/twelve" />
 
     </RadioGroup>
@@ -184,11 +194,12 @@
 
     <TextView
         android:id="@+id/textView_title5_m"
-        android:layout_width="354dp"
-        android:layout_height="71dp"
+        android:layout_width="171dp"
+        android:layout_height="72dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="88dp"
         android:layout_marginEnd="8dp"
+        android:gravity="center"
         android:text="@string/instruction"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -199,17 +210,19 @@
 
     <ImageView
         android:id="@+id/imageView2_m"
-        android:layout_width="43dp"
-        android:layout_height="46dp"
+        android:layout_width="101dp"
+        android:layout_height="57dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
+        android:background="#00000000"
+        android:scaleType="fitXY"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_return1" />
+        app:srcCompat="@drawable/button_return" />
 
 </android.support.constraint.ConstraintLayout>

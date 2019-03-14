@@ -11,8 +11,7 @@
     <string name="eleven">11</string>
     <string name="twelve">12</string>
 
-    <string name="start">Start</string>
-    <string name="instruction">Select the maximum number of players in the room.</string>
-
-    <string name="selectcolor">Please take photos with the above colors</string>
+    <string name="start">開始遊戲</string>
+    <string name="instruction">請選擇遊戲人數</string>
+    <string name="selectcolor">請以選定的顏色作為主色進行拍攝</string>
 </resources>
