@@ -47,7 +47,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Button temp = null;
         for (int i = colorNum; i < colours.length; i++){
             temp = findViewById(res.getIdentifier(colours[i].toString().toLowerCase(),"id",getPackageName()));
-            temp.setVisibility(View.GONE);
+            temp.setVisibility(View.INVISIBLE);  //View.INVISIBLE  Not visible but still in position
         }
 
 
@@ -58,7 +58,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(getApplicationContext(), "请选择颜色",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                toBeInvis.setVisibility(View.GONE);
+                toBeInvis.setVisibility(View.INVISIBLE); //View.INVISIBLE  Not visible but still in position
 
                 // 启动相机程序
                 Intent intent = new Intent(GameActivity.this, CustomCameraActivity.class);
