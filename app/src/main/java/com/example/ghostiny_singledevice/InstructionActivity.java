@@ -26,7 +26,7 @@ public class InstructionActivity extends AppCompatActivity {
 
         singleButton1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent intent=new Intent(InstructionActivity.this,GameActivity.class);
+                Intent intent=new Intent(InstructionActivity.this,SingleNumberActivity.class);
                 startActivity(intent);
             }
         });
