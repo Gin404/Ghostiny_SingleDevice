@@ -5,4 +5,18 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorblood">#A41515</color>
     <color name="colorblack">#000</color>
+    
+    <color name="紅色">#FF0000</color>
+    <color name="黑色">#000000</color>
+    <color name="綠色">#227700</color>
+    <color name="黃色">#FFFF00</color>
+    <color name="橙色">#FF8800</color>
+    <color name="青色">#00FFCC</color>
+    <color name="粉色">#FFB3FF</color>
+    <color name="灰色">#888888</color>
+    <color name="藍色">#00BBFF</color>
+    <color name="棕色">#BB5500</color>
+    <color name="白色">#FFFFFF</color>
+    <color name="紫色">#A500CC</color>
 </resources>
+

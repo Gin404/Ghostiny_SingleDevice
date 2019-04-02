@@ -14,4 +14,5 @@
     <string name="start">開始遊戲</string>
     <string name="instruction">請選擇遊戲人數</string>
     <string name="selectcolor">請以選定的顏色作為主色進行拍攝</string>
+
 </resources>

@@ -10,17 +10,17 @@ import java.util.Random;
  * 颜色与rgb上下限
  */
 public enum Colour {
-    RED_DARK(255,170,88,0,88,0),//red
-    DARK(50,0,50,0,50,0),//black
-    GREEN_DARK(100,0,255,10,100,0),//green
-    ORANGE_LIGHT(255,140,255,140,117,0),//yellow
-    ORANGE_DARK(255,150,180,75,110,0), //orange
-    GREEN_LIGHT(200,0,255,100,255,100),//qing
-    RED_LIGHT(255,190,160,0,210,96),//pink
-    DARKER_GRAY(215,54,215,54,215,54),//gray
-    BLUE_BRIGHT(70,0,70,0,255,70),//blue
-    BLUE_DARK(235,40,107,20,40,0),//brown
-    BLUE_LIGHT(255,150,255,150,255,150), //white
+    RED(255,170,88,0,88,0),//red
+    BLACK(50,0,50,0,50,0),//black
+    GREEN(100,0,255,10,100,0),//green
+    YELLOW(255,140,255,140,117,0),//yellow
+    ORANGE(255,150,180,75,110,0), //orange
+    CYAN(200,0,255,100,255,100),//qing
+    PINK(255,190,160,0,210,96),//pink
+    GRAY(215,54,215,54,215,54),//gray
+    BLUE(70,0,70,0,255,70),//blue
+    BROWN(235,40,107,20,80,0),//brown
+    WHITE(255,150,255,150,255,150), //white
     PURPLE(255,70,120,0,255,70);//purple
 
     private int rh, rl, gh, gl, bh, bl;

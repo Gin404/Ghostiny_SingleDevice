@@ -47,7 +47,7 @@ public class ShowPictureActivity extends AppCompatActivity {
                 con = false;
                 cont.setText("Menu");
             }else {
-                hit = ImageTools.colorRecg(bitmap, choice, 0.5);
+                hit = ImageTools.colorRecg(bitmap, choice, 0.1);
                 if (hit){
                     res = bitmap;
                     con = true;
