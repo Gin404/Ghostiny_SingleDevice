@@ -62,7 +62,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_return1" />
+        app:srcCompat="@drawable/button_return" />
 
 
 </android.support.constraint.ConstraintLayout>

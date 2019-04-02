@@ -1,7 +1,9 @@
 package com.example.ghostiny_singledevice;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,7 +49,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Button temp = null;
         for (int i = colorNum; i < colours.length; i++){
             temp = findViewById(res.getIdentifier(colours[i].toString().toLowerCase(),"id",getPackageName()));
-            temp.setVisibility(View.GONE);
+            temp.setVisibility(View.INVISIBLE);  //View.INVISIBLE  Not visible but still in position
         }
 
 
@@ -58,7 +60,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(getApplicationContext(), "请选择颜色",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                toBeInvis.setVisibility(View.GONE);
+                toBeInvis.setVisibility(View.INVISIBLE); //View.INVISIBLE  Not visible but still in position
 
                 // 启动相机程序
                 Intent intent = new Intent(GameActivity.this, CustomCameraActivity.class);
@@ -71,6 +73,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
 
         });
+        AssetManager mgr=getAssets();   //设置字体
+        Typeface typeface=Typeface.createFromAsset(mgr,"font/TM.ttf");
+        takePhoto.setTypeface(typeface);
+        textView.setTypeface ( typeface );
     }
 
 

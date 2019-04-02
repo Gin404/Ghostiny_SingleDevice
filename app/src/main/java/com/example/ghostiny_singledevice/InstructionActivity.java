@@ -2,12 +2,15 @@ package com.example.ghostiny_singledevice;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class InstructionActivity extends AppCompatActivity {
 
@@ -19,6 +22,17 @@ public class InstructionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instruction);
 
+        AssetManager mgr=getAssets();  //设置字体
+        Typeface typeface=Typeface.createFromAsset(mgr,"font/TM.ttf");
+        TextView test1=(TextView)findViewById(R.id.textView2);
+        test1.setTypeface(typeface);
+        TextView test2=(TextView)findViewById(R.id.textView3);
+        test2.setTypeface(typeface);
+        TextView test3=(TextView)findViewById(R.id.textView4);
+        test3.setTypeface(typeface);
+        TextView test4=(TextView)findViewById(R.id.textView_instruction);
+        test4.setTypeface(typeface);
+
         singleButton1=(Button)findViewById(R.id.icon_instruction_SingleGame);
         multiButton1=(Button)findViewById(R.id.icon_instruction_Multiplayer);
         back1=(ImageButton) findViewById(R.id.imagebutton2);
@@ -26,7 +40,7 @@ public class InstructionActivity extends AppCompatActivity {
 
         singleButton1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent intent=new Intent(InstructionActivity.this,GameActivity.class);
+                Intent intent=new Intent(InstructionActivity.this,SingleNumberActivity.class);
                 startActivity(intent);
             }
         });

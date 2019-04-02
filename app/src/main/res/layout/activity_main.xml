@@ -4,91 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_main"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/title_Ghostiny"
-        android:layout_width="139dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="48dp"
-        android:text="Ghostiny"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="0.481"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
-
-    <Button
+    <ImageButton
         android:id="@+id/icon_home_instruction"
-        android:layout_width="150dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="131dp"
+        android:layout_height="83dp"
+        android:layout_marginLeft="148dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
-        android:text="Game instruction"
-        android:textAllCaps="false"
+        android:background="#00000000"
+        android:scaleType="fitXY"
+        android:src="@drawable/button_intro"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_Ghostiny" />
-
-    <Button
-        android:id="@+id/icon_home_multiplayer"
-        android:layout_width="150dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="multiplayer"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_home_instruction" />
-
-    <Button
-        android:id="@+id/icon_home_SingleGame"
-        android:layout_width="150dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Single Game"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_home_multiplayer"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/icon_home_setting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:text="setting"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/icon_home_setting"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="279dp"
-        android:layout_height="205dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:id="@+id/icon_home_multiplayer"
+        android:layout_width="170dp"
+        android:layout_height="147dp"
+        android:layout_below="@+id/icon_home_instruction"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="444dp"
+        android:background="#00000000"
+        android:scaleType="fitXY"
+        android:src="@drawable/button_multiplay"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toRightOf="@id/icon_home_SingleGame"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_home_setting"
-        app:srcCompat="@drawable/icon_picture" />
+        app:layout_constraintTop_toBottomOf="@id/icon_home_instruction" />
+
+    <ImageButton
+        android:id="@+id/icon_home_SingleGame"
+        android:layout_width="160dp"
+        android:layout_height="130dp"
+        android:layout_below="@+id/icon_home_instruction"
+        android:layout_marginTop="472dp"
+        android:background="#00000000"
+        android:scaleType="fitXY"
+        android:src="@drawable/button_singleplay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintRight_toLeftOf="@id/icon_home_multiplayer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/icon_home_setting" />
+
+    <ImageButton
+        android:id="@+id/icon_home_setting"
+        android:layout_width="114dp"
+        android:layout_height="72dp"
+        android:layout_below="@+id/icon_home_instruction"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:background="#00000000"
+        android:scaleType="fitXY"
+        android:src="@drawable/button_setting"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>
