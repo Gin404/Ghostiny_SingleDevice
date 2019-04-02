@@ -28,7 +28,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private final Colour[] colours = Colour.values();
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +43,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         //倒霉色
         unluck = Colour.randomColour();
-        Log.d("ingame", unluck.toString() + " is unlucky");
+        Log.d("gameactivy", unluck.toString() + " is unlucky");
 
         takePhoto = (Button) findViewById(R.id.camerabutton);
         textView = (TextView)findViewById(R.id.selectColor);

@@ -108,6 +108,11 @@ public class CustomCameraActivity extends AppCompatActivity {
             @Override
             public void run() {
                 takePicture();
+                Intent intent = new Intent(CustomCameraActivity.this, CustomShowActivity.class);
+                Bundle bundle = getIntent().getExtras();
+                bundle.putString("photoPath", imageUri.toString());
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         };
 
