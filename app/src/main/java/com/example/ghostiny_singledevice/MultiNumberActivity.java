@@ -19,31 +19,6 @@ import java.util.List;
  */
 public class MultiNumberActivity extends AppCompatActivity {
 
-    private ActivityChangeService.CommandBinder commandBinder;
-
-    private ServiceConnection serviceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            commandBinder = (ActivityChangeService.CommandBinder)service;
-            ActivityChangeService myService = commandBinder.getService();
-
-            myService.setLeaveRoomCallBack(new ActivityChangeService.LeaveRoomCallBack() {
-                @Override
-                public void leaveRoom() {
-                    Intent intent=new Intent(MultiNumberActivity.this, MultiplayerActivity.class);
-                    startActivity(intent);
-
-
-                }
-            });
-
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-
-        }
-    };
 
 
 
@@ -60,9 +35,7 @@ public class MultiNumberActivity extends AppCompatActivity {
         setContentView(R.layout.activity_multi_number);
 
 
-        Intent startIntent = new Intent(this, ActivityChangeService.class);
-        startService(startIntent);
-        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
+
 
         three = (Button) findViewById(R.id.icon_number3_m);
         four = (Button) findViewById(R.id.icon_number4_m);

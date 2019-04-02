@@ -17,7 +17,7 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
     protected Integer doInBackground(Void... voids) {
         try {
             //host请自行更改
-            Socket client = new Socket("144.214.111.216", 444);
+            Socket client = new Socket("192.168.0.148", 888);
 
             InputStream inputStream = client.getInputStream();
             byte[] buf = new byte[1024];
@@ -50,6 +50,10 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
             listener.onCreateRoom();
         }else if (command.equals("-joinRoom")) {
             listener.onJoinRoom();
+        } else if (command.equals("-joinInput")) {
+            listener.onJoinInput();
+        } else if (command.equals("-input")) {
+                listener.onInput();
         }else if (command.equals("-leaveRoom")) {
             listener.onLeaveRoom();
         }

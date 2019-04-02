@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class SimpleServer {
     public static void main(String[] args) throws IOException {
-        try(ServerSocket serverSocket = new ServerSocket(444)){
+        try(ServerSocket serverSocket = new ServerSocket(888)){
             System.out.println("Listening on "+serverSocket.getLocalSocketAddress());
             Socket clientSocket = serverSocket.accept();
             System.out.println("Incoming connection from " + clientSocket.getRemoteSocketAddress());
