@@ -33,6 +33,7 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.ghostiny_singledevice.R;
@@ -52,7 +53,7 @@ import java.util.TimerTask;
 public class CustomCameraActivity extends AppCompatActivity {
 
     private static final String TAG = "AndroidCameraApi";
-    private Button btnTake;
+    private ImageButton btnTake;
     private TextureView textureView;
     private Uri imageUri;
 
@@ -87,7 +88,7 @@ public class CustomCameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_custom_camera);
 
         textureView = (TextureView)findViewById(R.id.texture_view);
-        btnTake = (Button)findViewById(R.id.take_btn);
+        btnTake = (ImageButton)findViewById(R.id.take_btn);
         assert textureView != null;
 
         textureView.setSurfaceTextureListener(textureViewListener);
@@ -96,6 +97,7 @@ public class CustomCameraActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 takePicture();
+                timer.cancel ();
                 Intent intent = new Intent(CustomCameraActivity.this, CustomShowActivity.class);
                 Bundle bundle = getIntent().getExtras();
                 bundle.putString("photoPath", imageUri.toString());

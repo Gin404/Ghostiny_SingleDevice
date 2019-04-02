@@ -61,7 +61,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 if (selected == false){
-                    Toast.makeText(getApplicationContext(), "请选择颜色",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 toBeInvis.setVisibility(View.INVISIBLE); //View.INVISIBLE  Not visible but still in position
