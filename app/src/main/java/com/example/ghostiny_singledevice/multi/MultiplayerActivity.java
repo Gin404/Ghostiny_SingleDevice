@@ -39,24 +39,7 @@ public class MultiplayerActivity extends AppCompatActivity {
                 }
             });
 
-           /* myService.setJoinRoomCallBack(new ActivityChangeService.JoinRoomCallBack() {
-                @Override
-                public void joinRoom() {
-                    Intent intent = new Intent(MultiplayerActivity.this, MultiRoomOwnerActivity.class);
-                    startActivity(intent);
 
-                }
-            });
-*/
-
-            myService.setJoinInputCallBack(new ActivityChangeService.JoinInputCallBack() {
-                @Override
-                public void joinInput() {
-                    Intent intent = new Intent(MultiplayerActivity.this, MultiRoomJoinActivity.class);
-                    startActivity(intent);
-
-                }
-            });
 
         }
 
@@ -86,9 +69,8 @@ public class MultiplayerActivity extends AppCompatActivity {
         join_room.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myService.getCommandTask().send("joinInput");
-               /* Intent intent=new Intent(MultiplayerActivity.this,MultiRoomOwnerActivity.class);
-                startActivity(intent);*/
+           Intent intent=new Intent(MultiplayerActivity.this,MultiRoomJoinActivity.class);
+               startActivity(intent);
             }
         });
 

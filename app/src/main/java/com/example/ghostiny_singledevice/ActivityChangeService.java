@@ -14,8 +14,7 @@ public class ActivityChangeService extends Service {
     private NewGameCallBack newGameCallBack;
     private CreateRoomCallBack createRoomCallBack;
     private JoinRoomCallBack joinRoomCallBack;
-    private JoinInputCallBack  joinInputCallBack;
-    private InputCallBack inputCallBack;
+
     private LeaveRoomCallBack leaveRoomCallBack;
 
     public void setStartCallBack(StartCallBack startCallBack){
@@ -45,13 +44,6 @@ public class ActivityChangeService extends Service {
         this.joinRoomCallBack=joinRoomCallBack;
     }
 
-    public void setJoinInputCallBack(JoinInputCallBack joinInputCallBack){
-        this.joinInputCallBack=joinInputCallBack;
-    }
-
-    public void setInputCallBack(InputCallBack inputCallBack){
-        this.inputCallBack=inputCallBack;
-    }
 
     public void setLeaveRoomCallBack(LeaveRoomCallBack leaveRoomCallBack){
         this.leaveRoomCallBack=leaveRoomCallBack;
@@ -69,10 +61,6 @@ public class ActivityChangeService extends Service {
         public void onGameStart() {
             startCallBack.skipToGame();
         }
-
-
-
-
 
         @Override
         public void onGameEnd() {
@@ -94,21 +82,13 @@ public class ActivityChangeService extends Service {
             joinRoomCallBack.joinRoom();
         }
 
-        @Override
-        public void onJoinInput(){
-            joinInputCallBack.joinInput();
-        }
-
 
         @Override
         public void onLeaveRoom(){
             leaveRoomCallBack.leaveRoom();
         }
 
-        @Override
-        public void onInput(){
-            inputCallBack.input();
-        }
+
 
     };
 
@@ -151,13 +131,6 @@ public class ActivityChangeService extends Service {
         void joinRoom();
     }
 
-    public interface JoinInputCallBack{
-        void joinInput();
-    }
-
-    public interface InputCallBack{
-        void input();
-    }
 
     public interface LeaveRoomCallBack{
         void leaveRoom();

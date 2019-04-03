@@ -43,7 +43,7 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
     @Override
     protected void onProgressUpdate(String... values) {
         String command = values[0];
-        if (command.equals("-start")){
+        if (command.equals("-startGame")){
             listener.onGameStart();
         }else if (command.equals("-end")){
             listener.onGameEnd();
@@ -53,10 +53,6 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
             listener.onCreateRoom();
         }else if (command.equals("-joinRoom")) {
             listener.onJoinRoom();
-        } else if (command.equals("-joinInput")) {
-            listener.onJoinInput();
-        } else if (command.equals("-input")) {
-                listener.onInput();
         }else if (command.equals("-leaveRoom")) {
             listener.onLeaveRoom();
         }

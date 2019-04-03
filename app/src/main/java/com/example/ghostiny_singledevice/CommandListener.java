@@ -11,10 +11,7 @@ public interface CommandListener {
     void onCreateRoom();
     //加入房间
     void onJoinRoom();
-    //进入输入房间号界面
-    void onJoinInput();
-    //输入房间号
-    void onInput();
+
     //退出房间
     void onLeaveRoom();
 }

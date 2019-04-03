@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.ghostiny_singledevice.ActivityChangeService;
 import com.example.ghostiny_singledevice.MainActivity;
@@ -17,6 +18,8 @@ import com.example.ghostiny_singledevice.R;
 public class MultiRoomOwnerActivity extends AppCompatActivity {
 
     Button startbtn;
+    TextView roomnumber;
+    ActivityChangeService myService;
 
     private ActivityChangeService.CommandBinder commandBinder;
 
@@ -24,7 +27,7 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             commandBinder = (ActivityChangeService.CommandBinder)service;
-            ActivityChangeService myService = commandBinder.getService();
+            myService = commandBinder.getService();
 
             myService.setStartCallBack(new ActivityChangeService.StartCallBack() {
                 @Override
@@ -46,20 +49,21 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_room_owner);
-        Intent startIntent = new Intent(this, ActivityChangeService.class);
-        startService(startIntent);
-        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
         startbtn=(Button)findViewById(R.id.multistartbtn);
         startbtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent intent=new Intent(MultiRoomOwnerActivity.this,MultiGameActivity.class);
-                startActivity(intent);
+                myService.getCommandTask().send("startgame");
             }
         });
 
-        EditText roomnumber=(EditText)findViewById(R.id.roomnumowners);
+        roomnumber=(TextView)findViewById(R.id.roomnumber);
         roomnumber.setText("1234");
+
+
+        Intent startIntent = new Intent(this, ActivityChangeService.class);
+        //startService(startIntent);
+        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
     }
 }
