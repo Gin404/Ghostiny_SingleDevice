@@ -10,6 +10,6 @@ public class MultiGameoverActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_single_gameover);
+        setContentView(R.layout.activity_multi_gameover);
     }
 }

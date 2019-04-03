@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.ghostiny_singledevice.ActivityChangeService;
 import com.example.ghostiny_singledevice.MainActivity;
@@ -28,7 +29,7 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
             myService.setStartCallBack(new ActivityChangeService.StartCallBack() {
                 @Override
                 public void skipToGame() {
-                    Intent intent=new Intent(MultiRoomOwnerActivity.this, MultiplayerActivity.class);
+                    Intent intent=new Intent(MultiRoomOwnerActivity.this, MultiGameActivity.class);
                     startActivity(intent);
 
                 }
@@ -56,6 +57,9 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        EditText roomnumber=(EditText)findViewById(R.id.roomnumowners);
+        roomnumber.setText("1234");
 
     }
 }
