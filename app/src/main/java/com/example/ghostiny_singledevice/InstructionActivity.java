@@ -1,6 +1,5 @@
 package com.example.ghostiny_singledevice;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
@@ -9,8 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.ghostiny_singledevice.multi.MultiplayerActivity;
+import com.example.ghostiny_singledevice.single.SingleNumberActivity;
 
 public class InstructionActivity extends AppCompatActivity {
 
@@ -40,14 +41,14 @@ public class InstructionActivity extends AppCompatActivity {
 
         singleButton1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent intent=new Intent(InstructionActivity.this,SingleNumberActivity.class);
+                Intent intent=new Intent(InstructionActivity.this, SingleNumberActivity.class);
                 startActivity(intent);
             }
         });
 
         multiButton1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent intent=new Intent(InstructionActivity.this,MultiplayerActivity.class);
+                Intent intent=new Intent(InstructionActivity.this, MultiplayerActivity.class);
                 startActivity(intent);
             }
         });

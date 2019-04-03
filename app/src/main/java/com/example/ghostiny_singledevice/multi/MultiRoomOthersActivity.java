@@ -1,4 +1,4 @@
-package com.example.ghostiny_singledevice;
+package com.example.ghostiny_singledevice.multi;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -7,9 +7,10 @@ import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.ghostiny_singledevice.ActivityChangeService;
 import com.example.ghostiny_singledevice.R;
 
-public class MultiRoomJoinActivity extends AppCompatActivity {
+public class MultiRoomOthersActivity extends AppCompatActivity {
 
     private ActivityChangeService.CommandBinder commandBinder;
 
@@ -19,10 +20,10 @@ public class MultiRoomJoinActivity extends AppCompatActivity {
             commandBinder = (ActivityChangeService.CommandBinder)service;
             ActivityChangeService myService = commandBinder.getService();
 
-            myService.setInputCallBack(new ActivityChangeService.InputCallBack() {
+            myService.setLeaveRoomCallBack(new ActivityChangeService.LeaveRoomCallBack() {
                 @Override
-                public void input() {
-                    Intent intent = new Intent(MultiRoomJoinActivity.this, MultiRoomOthersActivity.class);
+                public void leaveRoom() {
+                    Intent intent=new Intent(MultiRoomOthersActivity.this, MultiplayerActivity.class);
                     startActivity(intent);
 
                 }
@@ -35,13 +36,10 @@ public class MultiRoomJoinActivity extends AppCompatActivity {
 
         }
     };
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multi_room_join);
+        setContentView(R.layout.activity_multi_room_others);
         Intent startIntent = new Intent(this, ActivityChangeService.class);
         startService(startIntent);
         bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
