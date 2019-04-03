@@ -19,7 +19,7 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
     protected Integer doInBackground(Void... voids) {
         try {
             //host请自行更改
-            client = new Socket("175.159.89.111", 245);
+            client = new Socket("175.159.88.9", 345);
 
             InputStream inputStream = client.getInputStream();
             byte[] buf = new byte[1024];
@@ -45,9 +45,6 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
         String command = values[0];
         if (command.equals("-start")){
             listener.onGameStart();
-        }else if (command.startsWith("-color")){
-            String color = command.substring(7);
-            listener.onColorChange(color);
         }else if (command.equals("-end")){
             listener.onGameEnd();
         }else if (command.equals("-newGame")){

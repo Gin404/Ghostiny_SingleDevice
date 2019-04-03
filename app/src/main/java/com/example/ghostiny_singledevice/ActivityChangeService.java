@@ -9,7 +9,7 @@ public class ActivityChangeService extends Service {
     private CommandBinder commandBinder = new CommandBinder();
     private CommandTask commandTask;
     private StartCallBack startCallBack;
-    private ColorRemoveCallBack colorRemoveCallBack;
+
     private EndCallBack endCallBack;
     private NewGameCallBack newGameCallBack;
     private CreateRoomCallBack createRoomCallBack;
@@ -23,9 +23,7 @@ public class ActivityChangeService extends Service {
     }
 
 
-    public void setColorRemoveCallBack(ColorRemoveCallBack colorRemoveCallBack){
-        this.colorRemoveCallBack = colorRemoveCallBack;
-    }
+
 
     public void setEndCallBack(EndCallBack endCallBack){
         this.endCallBack = endCallBack;
@@ -72,10 +70,7 @@ public class ActivityChangeService extends Service {
             startCallBack.skipToGame();
         }
 
-        @Override
-        public void onColorChange(String color) {
-            colorRemoveCallBack.removeColor(color);
-        }
+
 
 
 
@@ -138,9 +133,7 @@ public class ActivityChangeService extends Service {
         void skipToGame();
     }
 
-    public interface ColorRemoveCallBack{
-        void removeColor(String color);
-    }
+
 
     public interface EndCallBack{
         void endGame();

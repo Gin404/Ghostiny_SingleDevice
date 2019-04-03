@@ -26,13 +26,13 @@ public class MultiplayerActivity extends AppCompatActivity {
             myService.setCreateRoomCallBack(new ActivityChangeService.CreateRoomCallBack() {
                 @Override
                 public void createRoom() {
-                    roomDialog();
-                    /*Intent intent = new Intent(MultiplayerActivity.this, MultiRoomJoinActivity.class);
-                    startActivity(intent);*/
+                    //roomDialog();
+                    Intent intent = new Intent(MultiplayerActivity.this, MultiRoomOwnerActivity.class);
+                    startActivity(intent);
                 }
             });
 
-            myService.setJoinRoomCallBack(new ActivityChangeService.JoinRoomCallBack() {
+           /* myService.setJoinRoomCallBack(new ActivityChangeService.JoinRoomCallBack() {
                 @Override
                 public void joinRoom() {
                     Intent intent = new Intent(MultiplayerActivity.this, MultiRoomOwnerActivity.class);
@@ -40,7 +40,7 @@ public class MultiplayerActivity extends AppCompatActivity {
 
                 }
             });
-
+*/
 
             myService.setJoinInputCallBack(new ActivityChangeService.JoinInputCallBack() {
                 @Override
@@ -80,7 +80,7 @@ public class MultiplayerActivity extends AppCompatActivity {
 
     }
 
-    public void roomDialog() {
+   /* public void roomDialog() {
         new AlertDialog.Builder(MultiplayerActivity.this)
                 .setTitle("Your room number")
                 .setMessage("1234")
@@ -88,9 +88,9 @@ public class MultiplayerActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(
                                     DialogInterface dialoginterface, int i) {
-                                /*Intent intent = new Intent(MultiplayerActivity.this,MultiRoomJoinActivity.class);
-                                startActivity(intent);*/
+                                Intent intent = new Intent(MultiplayerActivity.this,MultiRoomOwnerActivity.class);
+                                startActivity(intent);
                             }
                         }).show();
-    }
+    }*/
 }

@@ -20,9 +20,9 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
             commandBinder = (ActivityChangeService.CommandBinder)service;
             ActivityChangeService myService = commandBinder.getService();
 
-            myService.setLeaveRoomCallBack(new ActivityChangeService.LeaveRoomCallBack() {
+            myService.setStartCallBack(new ActivityChangeService.StartCallBack() {
                 @Override
-                public void leaveRoom() {
+                public void skipToGame() {
                     Intent intent=new Intent(MultiRoomOwnerActivity.this, MultiplayerActivity.class);
                     startActivity(intent);
 
