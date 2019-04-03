@@ -78,20 +78,6 @@ public class MultiplayerActivity extends AppCompatActivity {
         //startService(startIntent);
         bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
-
     }
 
-    public void roomDialog() {
-        new AlertDialog.Builder(MultiplayerActivity.this)
-                .setTitle("Your room number")
-                .setMessage("1234")
-                .setPositiveButton("ok",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(
-                                    DialogInterface dialoginterface, int i) {
-                                Intent intent = new Intent(MultiplayerActivity.this,MultiRoomOwnerActivity.class);
-                                startActivity(intent);
-                            }
-                        }).show();
-    }
 }

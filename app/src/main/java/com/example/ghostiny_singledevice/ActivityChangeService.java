@@ -21,9 +21,6 @@ public class ActivityChangeService extends Service {
         this.startCallBack = startCallBack;
     }
 
-
-
-
     public void setEndCallBack(EndCallBack endCallBack){
         this.endCallBack = endCallBack;
     }
@@ -88,8 +85,6 @@ public class ActivityChangeService extends Service {
             leaveRoomCallBack.leaveRoom();
         }
 
-
-
     };
 
     public ActivityChangeService() {
@@ -113,8 +108,6 @@ public class ActivityChangeService extends Service {
         void skipToGame();
     }
 
-
-
     public interface EndCallBack{
         void endGame();
     }
@@ -130,7 +123,6 @@ public class ActivityChangeService extends Service {
     public interface JoinRoomCallBack{
         void joinRoom();
     }
-
 
     public interface LeaveRoomCallBack{
         void leaveRoom();

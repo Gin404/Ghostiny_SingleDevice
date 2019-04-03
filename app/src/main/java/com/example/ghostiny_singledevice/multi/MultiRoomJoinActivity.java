@@ -26,6 +26,7 @@ public class MultiRoomJoinActivity extends AppCompatActivity {
             commandBinder = (ActivityChangeService.CommandBinder)service;
             myService = commandBinder.getService();
 
+
             myService.setJoinRoomCallBack(new ActivityChangeService.JoinRoomCallBack() {
                 @Override
                 public void joinRoom() {
@@ -34,6 +35,8 @@ public class MultiRoomJoinActivity extends AppCompatActivity {
 
                 }
             });
+
+
 
         }
 

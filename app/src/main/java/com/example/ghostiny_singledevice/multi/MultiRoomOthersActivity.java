@@ -23,7 +23,7 @@ public class MultiRoomOthersActivity extends AppCompatActivity {
             myService.setStartCallBack(new ActivityChangeService.StartCallBack() {
                 @Override
                 public void skipToGame() {
-                    Intent intent=new Intent(MultiRoomOthersActivity.this, MultiplayerActivity.class);
+                    Intent intent=new Intent(MultiRoomOthersActivity.this, MultiGameActivity.class);
                     startActivity(intent);
 
                 }

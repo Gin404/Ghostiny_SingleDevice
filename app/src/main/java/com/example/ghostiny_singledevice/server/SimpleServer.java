@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class SimpleServer {
     public static void main(String[] args) throws IOException {
-        try(ServerSocket serverSocket = new ServerSocket(567)){
+        try(ServerSocket serverSocket = new ServerSocket(101)){
             System.out.println("Listening on "+serverSocket.getLocalSocketAddress());
             Socket clientSocket = serverSocket.accept();
             new Thread(new ClientHandler(clientSocket)).start();
