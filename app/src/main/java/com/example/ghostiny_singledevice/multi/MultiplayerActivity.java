@@ -1,4 +1,4 @@
-package com.example.ghostiny_singledevice;
+package com.example.ghostiny_singledevice.multi;
 
 import android.content.ComponentName;
 import android.content.DialogInterface;
@@ -10,6 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.ghostiny_singledevice.ActivityChangeService;
+import com.example.ghostiny_singledevice.MainActivity;
+import com.example.ghostiny_singledevice.R;
 
 public class MultiplayerActivity extends AppCompatActivity {
 
@@ -70,6 +74,8 @@ public class MultiplayerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 myService.getCommandTask().send("createRoom");
+                Intent intent=new Intent(MultiplayerActivity.this,MultiRoomOwnerActivity.class);
+                startActivity(intent);
             }
         });
 

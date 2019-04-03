@@ -1,20 +1,16 @@
 package com.example.ghostiny_singledevice;
 
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.res.AssetManager;
-import android.graphics.Typeface;
-import android.media.Image;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
+
+import com.example.ghostiny_singledevice.multi.MultiplayerActivity;
+import com.example.ghostiny_singledevice.single.SingleNumberActivity;
 
 public class MainActivity extends AppCompatActivity {
 

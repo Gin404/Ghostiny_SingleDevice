@@ -1,4 +1,4 @@
-package com.example.ghostiny_singledevice;
+package com.example.ghostiny_singledevice.multi;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -7,10 +7,10 @@ import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.ghostiny_singledevice.ActivityChangeService;
 import com.example.ghostiny_singledevice.R;
 
-public class MultiRoomOwnerActivity extends AppCompatActivity {
-
+public class MultiRoomOthersActivity extends AppCompatActivity {
 
     private ActivityChangeService.CommandBinder commandBinder;
 
@@ -23,7 +23,7 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
             myService.setStartCallBack(new ActivityChangeService.StartCallBack() {
                 @Override
                 public void skipToGame() {
-                    Intent intent=new Intent(MultiRoomOwnerActivity.this, MultiplayerActivity.class);
+                    Intent intent=new Intent(MultiRoomOthersActivity.this, MultiplayerActivity.class);
                     startActivity(intent);
 
                 }
@@ -39,7 +39,7 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multi_room_owner);
+        setContentView(R.layout.activity_multi_room_others);
         Intent startIntent = new Intent(this, ActivityChangeService.class);
         startService(startIntent);
         bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);

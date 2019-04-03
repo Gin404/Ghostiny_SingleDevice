@@ -1,4 +1,4 @@
-package com.example.ghostiny_singledevice;
+package com.example.ghostiny_singledevice.single;
 
 import android.Manifest;
 import android.content.Context;
@@ -32,7 +32,6 @@ import android.util.SparseIntArray;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 

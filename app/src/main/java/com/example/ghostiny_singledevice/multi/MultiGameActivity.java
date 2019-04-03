@@ -1,22 +1,24 @@
-package com.example.ghostiny_singledevice;
+package com.example.ghostiny_singledevice.multi;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ghostiny_singledevice.R;
+import com.example.ghostiny_singledevice.single.CustomCameraActivity;
+import com.example.ghostiny_singledevice.single.GameActivity;
 import com.example.ghostiny_singledevice.utils.Colour;
 
 
-public class GameActivity extends AppCompatActivity implements View.OnClickListener {
+public class MultiGameActivity extends AppCompatActivity implements View.OnClickListener {
     public static final int TAKE_PHOTO = 1;
 
     private Colour colour, unluck;
@@ -37,7 +39,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_multi_game);
         Intent pIntent = getIntent();
         colorNum = pIntent.getIntExtra("num", 12);
 
@@ -67,7 +69,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 toBeInvis.setVisibility(View.INVISIBLE); //View.INVISIBLE  Not visible but still in position
 
                 // 启动相机程序
-                Intent intent = new Intent(GameActivity.this, CustomCameraActivity.class);
+                Intent intent = new Intent(MultiGameActivity.this, MultiCustomCameraActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("unluck", unluck);
                 bundle.putSerializable("choice", colour);

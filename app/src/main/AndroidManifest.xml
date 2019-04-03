@@ -25,23 +25,23 @@
             android:enabled="true"
             android:exported="true"></service>
 
-        <activity android:name=".CustomShowActivity"></activity>
-        <activity android:name=".CustomCameraActivity" />
+        <activity android:name=".single.CustomShowActivity"></activity>
+        <activity android:name=".single.CustomCameraActivity" />
         <activity android:name=".legacy.ShowPictureActivity" />
         <activity android:name=".SettingActivity" />
-        <activity android:name=".MultiGameoverActivity" />
-        <activity android:name=".SingleGameoverActivity" />
-        <activity android:name=".GameContinueActivity" />
+        <activity android:name=".multi.MultiGameoverActivity" />
+        <activity android:name=".single.SingleGameoverActivity" />
+        <activity android:name=".single.GameContinueActivity" />
         <activity
-            android:name=".GameActivity"
+            android:name=".single.GameActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".MultiNumberActivity" />
-        <activity android:name=".MultiplayerActivity" />
-        <activity android:name=".MultiRoomJoinActivity" />
-        <activity android:name=".SingleNumberActivity" />
+        <activity android:name=".multi.MultiNumberActivity" />
+        <activity android:name=".multi.MultiplayerActivity" />
+        <activity android:name=".multi.MultiRoomJoinActivity" />
+        <activity android:name=".single.SingleNumberActivity" />
         <activity android:name=".InstructionActivity" />
-        <activity android:name=".MultiRoomOthersActivity" />
-        <activity android:name=".MultiRoomOwnerActivity" />
+        <activity android:name=".multi.MultiRoomOthersActivity" />
+        <activity android:name=".multi.MultiRoomOwnerActivity" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask">
@@ -51,7 +51,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".multi.MultiCustomCameraActivity"/>
+        <activity android:name=".multi.MultiGameActivity"/>
+        <activity android:name=".multi.MultiCustomShowActivity"/>
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.ghostiny_singledevice.fileprovider"
