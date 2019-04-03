@@ -22,6 +22,7 @@ public class ActivityChangeService extends Service {
         this.startCallBack = startCallBack;
     }
 
+
     public void setColorRemoveCallBack(ColorRemoveCallBack colorRemoveCallBack){
         this.colorRemoveCallBack = colorRemoveCallBack;
     }
@@ -36,6 +37,10 @@ public class ActivityChangeService extends Service {
 
     public void setCreateRoomCallBack(CreateRoomCallBack createRoomCallBack){
         this.createRoomCallBack=createRoomCallBack;
+    }
+
+    public CommandTask getCommandTask() {
+        return commandTask;
     }
 
     public void setJoinRoomCallBack(JoinRoomCallBack joinRoomCallBack){
@@ -71,6 +76,8 @@ public class ActivityChangeService extends Service {
         public void onColorChange(String color) {
             colorRemoveCallBack.removeColor(color);
         }
+
+
 
         @Override
         public void onGameEnd() {

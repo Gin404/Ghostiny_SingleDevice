@@ -4,10 +4,12 @@ import android.os.AsyncTask;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 
 public class CommandTask extends AsyncTask<Void, String, Integer> {
     private CommandListener listener;
+    Socket client ;
 
     public CommandTask(CommandListener listener){
         this.listener = listener;
@@ -17,7 +19,7 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
     protected Integer doInBackground(Void... voids) {
         try {
             //host请自行更改
-            Socket client = new Socket("192.168.0.148", 888);
+            client = new Socket("175.159.89.111", 245);
 
             InputStream inputStream = client.getInputStream();
             byte[] buf = new byte[1024];
@@ -28,8 +30,12 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
                 System.out.println(s);
                 //buf = new byte[1024];
             }
+            inputStream.close();
+            client.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+
         }
         return null;
     }
@@ -62,6 +68,35 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
     @Override
     protected void onPostExecute(Integer status) {
         // TODO: 02/03/2019
+    }
+
+    public void send(final String s){
+        if (client == null){
+            return;
+        }
+        new Thread(new SendService(s)).start();
+
+
+    }
+
+    private class SendService implements Runnable {
+        private String msg;
+
+        SendService(String msg) {
+            this.msg = msg;
+        }
+
+        @Override
+        public void run() {
+            OutputStream os = null;
+            try {
+                os = client.getOutputStream();
+                os.write(msg.getBytes());
+                //os.close();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
     }
 
 }

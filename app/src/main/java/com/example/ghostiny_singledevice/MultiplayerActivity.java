@@ -8,16 +8,20 @@ import android.os.IBinder;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class MultiplayerActivity extends AppCompatActivity {
 
+    Button create_room;
+    ActivityChangeService myService;
     private ActivityChangeService.CommandBinder commandBinder;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             commandBinder = (ActivityChangeService.CommandBinder)service;
-            ActivityChangeService myService = commandBinder.getService();
+            myService = commandBinder.getService();
 
             myService.setCreateRoomCallBack(new ActivityChangeService.CreateRoomCallBack() {
                 @Override
@@ -59,9 +63,20 @@ public class MultiplayerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiplayer);
+
+
+        create_room=(Button)findViewById(R.id.icon_create_room);
+        create_room.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myService.getCommandTask().send("createRoom");
+            }
+        });
+
         Intent startIntent = new Intent(this, ActivityChangeService.class);
-        startService(startIntent);
+        //startService(startIntent);
         bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
+
 
     }
 
