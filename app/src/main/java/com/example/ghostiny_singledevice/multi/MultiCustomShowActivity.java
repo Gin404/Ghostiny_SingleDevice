@@ -1,16 +1,20 @@
 package com.example.ghostiny_singledevice.multi;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.ghostiny_singledevice.ActivityChangeService;
 import com.example.ghostiny_singledevice.MainActivity;
 import com.example.ghostiny_singledevice.R;
 import com.example.ghostiny_singledevice.single.CustomShowActivity;
@@ -98,5 +102,7 @@ public class MultiCustomShowActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+
     }
 }

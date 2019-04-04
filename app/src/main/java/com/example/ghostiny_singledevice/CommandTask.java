@@ -19,7 +19,7 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
     protected Integer doInBackground(Void... voids) {
         try {
             //host请自行更改
-            client = new Socket("192.168.3.43", 101);
+            client = new Socket("144.214.109.136", 105);
 
             InputStream inputStream = client.getInputStream();
             byte[] buf = new byte[1024];

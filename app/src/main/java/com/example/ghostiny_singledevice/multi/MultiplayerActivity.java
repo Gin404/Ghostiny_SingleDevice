@@ -75,7 +75,7 @@ public class MultiplayerActivity extends AppCompatActivity {
         });
 
         Intent startIntent = new Intent(this, ActivityChangeService.class);
-        //startService(startIntent);
+        startService(startIntent);
         bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
     }
