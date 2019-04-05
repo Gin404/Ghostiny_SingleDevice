@@ -1,7 +1,9 @@
-package com.example.ghostiny_singledevice;
+package com.example.ghostiny_singledevice.multi;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.example.ghostiny_singledevice.R;
 
 public class MultiGameoverActivity extends AppCompatActivity {
 

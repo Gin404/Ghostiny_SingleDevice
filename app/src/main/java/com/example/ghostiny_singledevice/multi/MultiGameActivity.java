@@ -1,22 +1,28 @@
-package com.example.ghostiny_singledevice;
+package com.example.ghostiny_singledevice.multi;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Typeface;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ghostiny_singledevice.ActivityChangeService;
+import com.example.ghostiny_singledevice.R;
+import com.example.ghostiny_singledevice.single.CustomCameraActivity;
+import com.example.ghostiny_singledevice.single.GameActivity;
 import com.example.ghostiny_singledevice.utils.Colour;
 
 
-public class GameActivity extends AppCompatActivity implements View.OnClickListener {
+public class MultiGameActivity extends AppCompatActivity implements View.OnClickListener {
     public static final int TAKE_PHOTO = 1;
 
     private Colour colour, unluck;
@@ -26,7 +32,29 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int colorNum;
     private Button toBeInvis;
 
+    String select;
+
+
+
     private final Colour[] colours = Colour.values();
+
+    ActivityChangeService myService;
+    private ActivityChangeService.CommandBinder commandBinder;
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            commandBinder = (ActivityChangeService.CommandBinder)service;
+            myService = commandBinder.getService();
+
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
+
 
     @Override
     protected void onResume() {
@@ -37,7 +65,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_multi_game);
         Intent pIntent = getIntent();
         colorNum = pIntent.getIntExtra("num", 12);
 
@@ -52,6 +80,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Resources res = getResources();
         Button temp = null;
         for (int i = colorNum; i < colours.length; i++){
+
             temp = findViewById(res.getIdentifier(colours[i].toString().toLowerCase(),"id",getPackageName()));
             temp.setVisibility(View.INVISIBLE);  //View.INVISIBLE  Not visible but still in position
         }
@@ -61,13 +90,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 if (selected == false){
-                    Toast.makeText(getApplicationContext(), "请选择颜色",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                toBeInvis.setVisibility(View.INVISIBLE); //View.INVISIBLE  Not visible but still in position
+                toBeInvis.setVisibility(View.INVISIBLE);
+
+                //View.INVISIBLE  Not visible but still in position
+                myService.getCommandTask().send(select);
 
                 // 启动相机程序
-                Intent intent = new Intent(GameActivity.this, CustomCameraActivity.class);
+                Intent intent = new Intent(MultiGameActivity.this, MultiCustomCameraActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("unluck", unluck);
                 bundle.putSerializable("choice", colour);
@@ -81,6 +113,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Typeface typeface=Typeface.createFromAsset(mgr,"font/TM.ttf");
         takePhoto.setTypeface(typeface);
         textView.setTypeface ( typeface );
+
+        Intent startIntent = new Intent(this, ActivityChangeService.class);
+        //startService(startIntent);
+        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
     }
 
 
@@ -96,11 +132,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
      * @param v
      */
     @Override
+
     public void onClick(View v) {
         Resources res = getResources();
         final int id = v.getId();
 
         for (int i = 0; i < colorNum; i++){
+            select = colours[i].toString().toLowerCase();
             String s = colours[i].toString().toLowerCase();
             if (id == res.getIdentifier(s,"id",getPackageName())){
                 textView.setText(s);

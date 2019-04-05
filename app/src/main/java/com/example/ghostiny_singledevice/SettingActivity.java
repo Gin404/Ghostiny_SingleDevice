@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -25,6 +28,7 @@ public class SettingActivity extends AppCompatActivity {
     ImageView mail;
     ImageButton back;
     SharedPreferences spre,vpre;
+    TextView setting, sou, vib, feed;
     final boolean falg = true,f=true;
 
     @Override
@@ -38,6 +42,17 @@ public class SettingActivity extends AppCompatActivity {
         audioManager=(AudioManager)this.getSystemService(Context.AUDIO_SERVICE);
         vibrator = (Vibrator)this.getSystemService(this.VIBRATOR_SERVICE);
         back=(ImageButton) findViewById(R.id.returnbutton);
+
+        setting = (TextView) findViewById ( R.id.textView5 );
+        sou = (TextView) findViewById ( R.id.textView7 );
+        vib = (TextView) findViewById ( R.id.textView8 );
+        feed = (TextView) findViewById ( R.id.textView9 );
+        AssetManager mgr=getAssets();  //设置字体
+        Typeface typeface=Typeface.createFromAsset(mgr,"font/TM.ttf");
+        setting.setTypeface(typeface);
+        sou.setTypeface(typeface);
+        vib.setTypeface ( typeface );
+        feed.setTypeface(typeface);
 
         /*public void onSwitchClicked(View view) {
             int id=view.getId();

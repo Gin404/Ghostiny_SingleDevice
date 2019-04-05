@@ -9,19 +9,16 @@ public class ActivityChangeService extends Service {
     private CommandBinder commandBinder = new CommandBinder();
     private CommandTask commandTask;
     private StartCallBack startCallBack;
-    private ColorRemoveCallBack colorRemoveCallBack;
+
     private EndCallBack endCallBack;
     private NewGameCallBack newGameCallBack;
     private CreateRoomCallBack createRoomCallBack;
     private JoinRoomCallBack joinRoomCallBack;
+
     private LeaveRoomCallBack leaveRoomCallBack;
 
     public void setStartCallBack(StartCallBack startCallBack){
         this.startCallBack = startCallBack;
-    }
-
-    public void setColorRemoveCallBack(ColorRemoveCallBack colorRemoveCallBack){
-        this.colorRemoveCallBack = colorRemoveCallBack;
     }
 
     public void setEndCallBack(EndCallBack endCallBack){
@@ -36,9 +33,14 @@ public class ActivityChangeService extends Service {
         this.createRoomCallBack=createRoomCallBack;
     }
 
+    public CommandTask getCommandTask() {
+        return commandTask;
+    }
+
     public void setJoinRoomCallBack(JoinRoomCallBack joinRoomCallBack){
         this.joinRoomCallBack=joinRoomCallBack;
     }
+
 
     public void setLeaveRoomCallBack(LeaveRoomCallBack leaveRoomCallBack){
         this.leaveRoomCallBack=leaveRoomCallBack;
@@ -55,11 +57,6 @@ public class ActivityChangeService extends Service {
         @Override
         public void onGameStart() {
             startCallBack.skipToGame();
-        }
-
-        @Override
-        public void onColorChange(String color) {
-            colorRemoveCallBack.removeColor(color);
         }
 
         @Override
@@ -82,11 +79,11 @@ public class ActivityChangeService extends Service {
             joinRoomCallBack.joinRoom();
         }
 
+
         @Override
         public void onLeaveRoom(){
             leaveRoomCallBack.leaveRoom();
         }
-
 
     };
 
@@ -109,10 +106,6 @@ public class ActivityChangeService extends Service {
 
     public interface StartCallBack{
         void skipToGame();
-    }
-
-    public interface ColorRemoveCallBack{
-        void removeColor(String color);
     }
 
     public interface EndCallBack{
