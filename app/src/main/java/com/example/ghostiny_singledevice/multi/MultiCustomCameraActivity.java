@@ -1,9 +1,12 @@
 package com.example.ghostiny_singledevice.multi;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.ImageFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
@@ -22,6 +25,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
@@ -35,9 +39,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.ghostiny_singledevice.ActivityChangeService;
 import com.example.ghostiny_singledevice.R;
 import com.example.ghostiny_singledevice.single.CustomCameraActivity;
 import com.example.ghostiny_singledevice.single.CustomShowActivity;
+import com.example.ghostiny_singledevice.utils.Colour;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -82,11 +88,36 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
     private Timer timer;
     private TimerTask task;
 
+    private ActivityChangeService myService;
+    private ActivityChangeService.CommandBinder commandBinder;
+    private ArrayList<Integer> rmCol = new ArrayList<>();
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            commandBinder = (ActivityChangeService.CommandBinder)service;
+            myService = commandBinder.getService();
+
+            //成员离开，随机消失一个非倒霉颜色，累计，传递到下一个活动
+            myService.setMemberLeaveCallBack2(new ActivityChangeService.MemberLeaveCallBack2() {
+                @Override
+                public void memberLeave2(int rmColor) {
+                    rmCol.add(rmColor);
+                }
+            });
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_custom_camera);
+        setContentView(R.layout.activity_multi_custom_camera);
 
         textureView = (TextureView)findViewById(R.id.texture_view);
         btnTake = (ImageButton)findViewById(R.id.take_btn);
@@ -101,7 +132,9 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
                 timer.cancel ();
                 Intent intent = new Intent(MultiCustomCameraActivity.this, MultiCustomShowActivity.class);
                 Bundle bundle = getIntent().getExtras();
+                assert bundle != null;
                 bundle.putString("photoPath", imageUri.toString());
+                bundle.putSerializable("rmColor", rmCol);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
