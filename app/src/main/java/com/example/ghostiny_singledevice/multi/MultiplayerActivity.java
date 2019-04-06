@@ -16,11 +16,13 @@ import com.example.ghostiny_singledevice.ActivityChangeService;
 import com.example.ghostiny_singledevice.MainActivity;
 import com.example.ghostiny_singledevice.R;
 
+/**
+ * 联机模式：创建/加入房间
+ */
 public class MultiplayerActivity extends AppCompatActivity {
-
-
     Button create_room,join_room;
     ActivityChangeService myService;
+    private int roomId = -1;
     private ActivityChangeService.CommandBinder commandBinder;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
@@ -29,17 +31,18 @@ public class MultiplayerActivity extends AppCompatActivity {
             commandBinder = (ActivityChangeService.CommandBinder)service;
             myService = commandBinder.getService();
 
-            myService.setCreateRoomCallBack(new ActivityChangeService.CreateRoomCallBack() {
+            myService.setShowRmIdCallBack(new ActivityChangeService.ShowRmIdCallBack() {
                 @Override
-                public void createRoom() {
-                    //roomDialog();
-
-                    Intent intent = new Intent(MultiplayerActivity.this, MultiRoomOwnerActivity.class);
-                    startActivity(intent);
+                public void showRmId(int id) {
+                    roomId = id;
+                    if (roomId > -1){
+                        //收到roomId并将roomId传给下一个activity展示
+                        Intent intent = new Intent(MultiplayerActivity.this, MultiRoomOwnerActivity.class);
+                        intent.putExtra("roomId", "" + roomId);
+                        startActivity(intent);
+                    }
                 }
             });
-
-
 
         }
 
@@ -54,14 +57,16 @@ public class MultiplayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiplayer);
 
+        //启动并绑定服务
+        Intent startIntent = new Intent(this, ActivityChangeService.class);
+        startService(startIntent);
+        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
         create_room=(Button)findViewById(R.id.icon_create_room);
         create_room.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myService.getCommandTask().send("createRoom");
-               /* Intent intent=new Intent(MultiplayerActivity.this,MultiRoomOwnerActivity.class);
-                startActivity(intent);*/
+                myService.getCommandTask().send("-command create");
             }
         });
 
@@ -69,15 +74,10 @@ public class MultiplayerActivity extends AppCompatActivity {
         join_room.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-           Intent intent=new Intent(MultiplayerActivity.this,MultiRoomJoinActivity.class);
-               startActivity(intent);
+                Intent intent=new Intent(MultiplayerActivity.this,MultiRoomJoinActivity.class);
+                startActivity(intent);
             }
         });
-
-        Intent startIntent = new Intent(this, ActivityChangeService.class);
-        startService(startIntent);
-        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
-
     }
 
 }

@@ -1,9 +1,6 @@
 package com.example.ghostiny_singledevice;
 
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,32 +9,10 @@ import android.widget.ImageButton;
 import com.example.ghostiny_singledevice.multi.MultiplayerActivity;
 import com.example.ghostiny_singledevice.single.SingleNumberActivity;
 
+/**
+ * 游戏主界面
+ */
 public class MainActivity extends AppCompatActivity {
-
-    private ActivityChangeService.CommandBinder commandBinder;
-
-    private ServiceConnection serviceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            commandBinder = (ActivityChangeService.CommandBinder)service;
-            ActivityChangeService myService = commandBinder.getService();
-
-            myService.setStartCallBack(new ActivityChangeService.StartCallBack() {
-                @Override
-                public void skipToGame() {
-                    Intent intent = new Intent(MainActivity.this, MultiplayerActivity.class);
-                    startActivity(intent);
-                }
-            });
-
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-
-        }
-    };
-
 
     ImageButton  instructionButton,settingButton,singleButton,multiButton;
 
@@ -54,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent startIntent = new Intent(this, ActivityChangeService.class);
         startService(startIntent);
-        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
         instructionButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){

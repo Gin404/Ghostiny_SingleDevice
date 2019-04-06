@@ -17,9 +17,12 @@ import com.example.ghostiny_singledevice.R;
 
 public class MultiRoomOwnerActivity extends AppCompatActivity {
 
-    Button startbtn;
-    TextView roomnumber;
-    ActivityChangeService myService;
+    private Button startBtn;
+    private TextView roomId;
+    private TextView currentNum;
+    private int curNum;
+
+    private ActivityChangeService myService;
 
     private ActivityChangeService.CommandBinder commandBinder;
 
@@ -29,12 +32,34 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
             commandBinder = (ActivityChangeService.CommandBinder)service;
             myService = commandBinder.getService();
 
+            myService.setMemberJoinCallBack(new ActivityChangeService.MemberJoinCallBack() {
+                @Override
+                public void memberJoin(int capacity) {
+                    //如果新成员加入成功，更新当前人数
+                    if (currentNum != null){
+                        currentNum.setText(capacity);
+                        curNum = capacity;
+                    }
+                }
+            });
+
+            myService.setMemberLeaveCallBack(new ActivityChangeService.MemberLeaveCallBack() {
+                @Override
+                public void memberLeave(int capacity) {
+                    //如果成员离开，更新当前人数
+                    if (currentNum != null){
+                        currentNum.setText(capacity);
+                        curNum = capacity;
+                    }
+                }
+            });
+
             myService.setStartCallBack(new ActivityChangeService.StartCallBack() {
                 @Override
                 public void skipToGame() {
-                    Intent intent=new Intent(MultiRoomOwnerActivity.this, MultiGameActivity.class);
+                    Intent intent = new Intent(MultiRoomOwnerActivity.this, MultiGameActivity.class);
+                    intent.putExtra("currentNum", curNum);
                     startActivity(intent);
-
                 }
             });
 
@@ -45,25 +70,36 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
 
         }
     };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_room_owner);
+        Intent startIntent = new Intent(this, ActivityChangeService.class);
+        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
-        startbtn=(Button)findViewById(R.id.multistartbtn);
-        startbtn.setOnClickListener(new View.OnClickListener(){
+        Intent intent = getIntent();
+
+        roomId=(TextView)findViewById(R.id.room_id);
+        currentNum = (TextView)findViewById(R.id.current_num);
+
+        roomId.setText(intent.getStringExtra("roomId"));
+
+        startBtn=(Button)findViewById(R.id.multistart_btn);
+        startBtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                myService.getCommandTask().send("startgame");
+                myService.getCommandTask().send("-command start");
             }
         });
 
-        roomnumber=(TextView)findViewById(R.id.roomnumber);
-        roomnumber.setText("1234");
+    }
 
-
-        Intent startIntent = new Intent(this, ActivityChangeService.class);
-        //startService(startIntent);
-        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
-
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        Bundle bundle = intent.getExtras();
+        currentNum.setText(bundle.getString("curNum"));
     }
 }
