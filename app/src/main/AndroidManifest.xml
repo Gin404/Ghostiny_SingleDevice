@@ -44,7 +44,8 @@
         <activity android:name=".multi.MultiRoomOwnerActivity" />
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -64,12 +65,13 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <service
-            android:name=".MusicServer"
-            android:exported="true"
-            android:process=":remote">
-
+        <service android:name=".MusicServer">  
+        <intent-filter>  
+            <action android:name="com.angel.Android.MUSIC"/>  
+            <category android:name="android.intent.category.default"/>  
+        </intent-filter>  
         </service>
+          
     </application>
 
 
