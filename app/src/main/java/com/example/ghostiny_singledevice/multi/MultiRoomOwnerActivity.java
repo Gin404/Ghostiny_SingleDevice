@@ -8,11 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ghostiny_singledevice.ActivityChangeService;
-import com.example.ghostiny_singledevice.MainActivity;
 import com.example.ghostiny_singledevice.R;
 
 public class MultiRoomOwnerActivity extends AppCompatActivity {
@@ -34,22 +33,22 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
 
             myService.setMemberJoinCallBack(new ActivityChangeService.MemberJoinCallBack() {
                 @Override
-                public void memberJoin(int capacity) {
+                public void memberJoin(int currNum) {
                     //如果新成员加入成功，更新当前人数
                     if (currentNum != null){
-                        currentNum.setText(capacity);
-                        curNum = capacity;
+                        currentNum.setText("" + currNum);
+                        curNum = currNum;
                     }
                 }
             });
 
             myService.setMemberLeaveCallBack(new ActivityChangeService.MemberLeaveCallBack() {
                 @Override
-                public void memberLeave(int capacity) {
+                public void memberLeave(int currNum) {
                     //如果成员离开，更新当前人数
                     if (currentNum != null){
-                        currentNum.setText(capacity);
-                        curNum = capacity;
+                        currentNum.setText("" + currNum);
+                        curNum = currNum;
                     }
                 }
             });
@@ -83,12 +82,17 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
 
         roomId=(TextView)findViewById(R.id.room_id);
         currentNum = (TextView)findViewById(R.id.current_num);
+        currentNum.setText("1");
 
-        roomId.setText(intent.getStringExtra("roomId"));
+        roomId.setText(String.format("%04d",intent.getIntExtra("roomId", 0)));
 
         startBtn=(Button)findViewById(R.id.multistart_btn);
         startBtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+                if (curNum < 2){
+                    Toast.makeText(getApplicationContext(), "The number of players should larger than 3",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 myService.getCommandTask().send("-command start");
             }
         });
@@ -102,4 +106,19 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         currentNum.setText(bundle.getString("curNum"));
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(serviceConnection);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent stopIntent = new Intent(this, ActivityChangeService.class);
+        stopService(stopIntent);
+    }
+
+    // TODO: 06/04/2019 这个activity请加一个返回键
 }

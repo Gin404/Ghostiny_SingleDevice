@@ -1,41 +1,50 @@
 package com.example.ghostiny_singledevice;
 
 import android.os.AsyncTask;
+import android.util.Log;
+
+import com.example.ghostiny_singledevice.core.IoContext;
+import com.example.ghostiny_singledevice.impl.IoSelectorProvider;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Socket;
 
 public class CommandTask extends AsyncTask<Void, String, Integer> {
     private CommandListener listener;
-    Socket client ;
+    private TCPClient tcpClient;
+    private TCPClient.CommandReceiveCallBack commandReceiveCallBack = new TCPClient.CommandReceiveCallBack() {
+        @Override
+        public void publish(String str) {
+            publishProgress(str);
+        }
+    };
 
     public CommandTask(CommandListener listener){
         this.listener = listener;
     }
 
     @Override
-    protected Integer doInBackground(Void... voids) {
+    protected Integer doInBackground(Void... voids){
         try {
-            //host请自行更改
-            client = new Socket("175.159.82.117", 105);
+            IoContext.setup()
+                    .ioProvider(new IoSelectorProvider())
+                    .start();
 
-            InputStream inputStream = client.getInputStream();
-            byte[] buf = new byte[1024];
-            int len = 0;
-            while ((len = inputStream.read(buf)) != -1) {
-                String s = new String(buf, 0, len);
-                publishProgress(s);
-                System.out.println(s);
-                //buf = new byte[1024];
+            tcpClient = null;
+
+            try {
+                tcpClient = TCPClient.start();
+                assert tcpClient != null;
+                tcpClient.setCommandReceiveCallBack(commandReceiveCallBack);
+                if (tcpClient == null){
+                    return null;
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            inputStream.close();
-            client.close();
+
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-
         }
         return null;
     }
@@ -63,6 +72,7 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
     @Override
     protected void onProgressUpdate(String... values) {
         String command = values[0].substring(0,2);
+        Log.d("command: ", values[0]);
 
         switch (command){
             case "10":
@@ -108,7 +118,7 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
                 listener.onGameCont();
                 break;
             case "62":
-                String[] data = values[0].substring(2).split(" ");
+                String[] data = values[0].substring(3).split(" ");
                 int playerType = Integer.parseInt(data[0]);
                 int curNum = Integer.parseInt(data[1]);
                 listener.onGameEnd(playerType, curNum);
@@ -126,31 +136,21 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
     }
 
     public void send(final String s){
-        if (client == null){
+        if (tcpClient == null){
             return;
         }
-        new Thread(new SendService(s)).start();
 
-
+        tcpClient.send(s);
     }
 
-    private class SendService implements Runnable {
-        private String msg;
-
-        SendService(String msg) {
-            this.msg = msg;
+    public void closeChannel(){
+        if (tcpClient != null){
+            tcpClient.exit();
         }
-
-        @Override
-        public void run() {
-            OutputStream os = null;
-            try {
-                os = client.getOutputStream();
-                os.write(msg.getBytes());
-                //os.close();
-            }catch (IOException e){
-                e.printStackTrace();
-            }
+        try {
+            IoContext.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

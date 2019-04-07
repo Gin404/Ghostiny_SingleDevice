@@ -40,6 +40,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.ghostiny_singledevice.ActivityChangeService;
+import com.example.ghostiny_singledevice.MainActivity;
 import com.example.ghostiny_singledevice.R;
 import com.example.ghostiny_singledevice.single.CustomCameraActivity;
 import com.example.ghostiny_singledevice.single.CustomShowActivity;
@@ -119,6 +120,9 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_custom_camera);
 
+        Intent startIntent = new Intent(MultiCustomCameraActivity.this, ActivityChangeService.class);
+        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
+
         textureView = (TextureView)findViewById(R.id.texture_view);
         btnTake = (ImageButton)findViewById(R.id.take_btn);
         assert textureView != null;
@@ -147,6 +151,7 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
                 Intent intent = new Intent(MultiCustomCameraActivity.this, MultiCustomShowActivity.class);
                 Bundle bundle = getIntent().getExtras();
                 bundle.putString("photoPath", imageUri.toString());
+                bundle.putSerializable("rmColor", rmCol);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -439,5 +444,20 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
         }
         stopBackgroundThread();
         super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(serviceConnection);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent stopIntent = new Intent(this, ActivityChangeService.class);
+        unbindService(serviceConnection);
+        stopService(stopIntent);
+        startActivity(new Intent(MultiCustomCameraActivity.this, MainActivity.class));
     }
 }

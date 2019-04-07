@@ -74,9 +74,11 @@ public class MultiRoomOthersActivity extends AppCompatActivity {
         bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
         currentNum = (TextView)findViewById(R.id.current_num);
+        roomId = (TextView)findViewById(R.id.room_id);
+
         curNum = pIntent.getIntExtra("capacity", 0);
         roomId.setText(pIntent.getStringExtra("roomId"));
-        currentNum.setText(curNum);
+        currentNum.setText("" + curNum);
 
     }
 
@@ -85,6 +87,22 @@ public class MultiRoomOthersActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         setIntent(intent);
         Bundle bundle = intent.getExtras();
-        currentNum.setText(bundle.getString("curNum"));
+        assert bundle != null;
+        int curNum = bundle.getInt("curNum");
+        currentNum.setText("" + curNum);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent stopIntent = new Intent(this, ActivityChangeService.class);
+        stopService(stopIntent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(serviceConnection);
+    }
+    // TODO: 06/04/2019 这里请加一个返回键
 }

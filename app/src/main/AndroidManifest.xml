@@ -54,7 +54,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".multi.MultiCustomCameraActivity" />
-        <activity android:name=".multi.MultiGameActivity" />
+        <activity android:name=".multi.MultiGameActivity"
+            android:launchMode="singleTask"/>
         <activity android:name=".multi.MultiCustomShowActivity" />
 
         <provider

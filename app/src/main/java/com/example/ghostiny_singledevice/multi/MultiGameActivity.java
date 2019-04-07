@@ -10,15 +10,16 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ghostiny_singledevice.ActivityChangeService;
+import com.example.ghostiny_singledevice.MainActivity;
 import com.example.ghostiny_singledevice.R;
-import com.example.ghostiny_singledevice.single.CustomCameraActivity;
-import com.example.ghostiny_singledevice.single.GameActivity;
 import com.example.ghostiny_singledevice.utils.Colour;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
     private Colour colour;
     private Button takePhoto;
     private TextView textView;
+    private ImageView back;
     private boolean selected = false;
     private int colorNum;
     private Button toBeInvis;
@@ -135,7 +137,7 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_game);
 
-        Intent startIntent = new Intent(this, ActivityChangeService.class);
+        final Intent startIntent = new Intent(this, ActivityChangeService.class);
         bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
         Intent pIntent = getIntent();
@@ -143,6 +145,7 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
 
         takePhoto = (Button) findViewById(R.id.camerabutton);
         textView = (TextView)findViewById(R.id.selectColor);
+        back = (ImageView) findViewById(R.id.imageView2_m);
 
         //将后(12-colourNum)个颜色按钮置为隐形
         Resources res = getResources();
@@ -169,11 +172,20 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
                 toBeInvis.setVisibility(View.INVISIBLE);
 
                 //View.INVISIBLE  Not visible but still in position
-                myService.getCommandTask().send("" + colour.getCode());
+                myService.getCommandTask().send("-command choice " + colour.getCode());
             }
 
 
         });
+
+        back.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                onBackPressed();
+                return false;
+            }
+        });
+
         AssetManager mgr=getAssets();   //设置字体
         Typeface typeface=Typeface.createFromAsset(mgr,"font/TM.ttf");
         takePhoto.setTypeface(typeface);
@@ -203,7 +215,6 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
      * @param v
      */
     @Override
-
     public void onClick(View v) {
         Resources res = getResources();
         final int id = v.getId();
@@ -217,5 +228,19 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
                 selected = true;
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(serviceConnection);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent stopIntent = new Intent(this, ActivityChangeService.class);
+        stopService(stopIntent);
+        startActivity(new Intent(MultiGameActivity.this, MainActivity.class));
     }
 }

@@ -68,7 +68,6 @@ public class MultiRoomJoinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_room_join);
         Intent startIntent = new Intent(this, ActivityChangeService.class);
-        startService(startIntent);
         bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
         join=(Button)findViewById(R.id.join_btn);
@@ -78,9 +77,24 @@ public class MultiRoomJoinActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 rId = roomId.getText().toString();
-                myService.getCommandTask().send("-command join" + rId);
+                myService.getCommandTask().send("-command join " + rId);
             }
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent stopIntent = new Intent(this, ActivityChangeService.class);
+        stopService(stopIntent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(serviceConnection);
+    }
+
+    // TODO: 06/04/2019 这里请加一个返回键
 }

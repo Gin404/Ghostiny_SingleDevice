@@ -171,6 +171,12 @@ public class ActivityChangeService extends Service {
         return commandBinder;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        commandTask.closeChannel();
+    }
+
     public interface ShowRmIdCallBack{
         void showRmId(int id);
     }

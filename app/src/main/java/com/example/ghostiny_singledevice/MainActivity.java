@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
         singleButton=(ImageButton)findViewById(R.id.icon_home_SingleGame);
         multiButton=(ImageButton)findViewById(R.id.icon_home_multiplayer);
 
-        Intent startIntent = new Intent(this, ActivityChangeService.class);
-        startService(startIntent);
 
         instructionButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){

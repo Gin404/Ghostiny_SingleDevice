@@ -162,4 +162,19 @@ public class MultiCustomShowActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(serviceConnection);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent stopIntent = new Intent(this, ActivityChangeService.class);
+        unbindService(serviceConnection);
+        stopService(stopIntent);
+        startActivity(new Intent(MultiCustomShowActivity.this, MainActivity.class));
+    }
 }
