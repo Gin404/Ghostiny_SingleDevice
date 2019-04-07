@@ -50,6 +50,7 @@ public class MultiCustomShowActivity extends AppCompatActivity {
                     Intent intent = new Intent(MultiCustomShowActivity.this, MultiGameActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("rmColor", rmCol);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
             });
@@ -108,7 +109,7 @@ public class MultiCustomShowActivity extends AppCompatActivity {
         Colour choice = (Colour)bundle.getSerializable("choice");
         boolean unluck = bundle.getBoolean("luck");
         String imageUri = bundle.getString("photoPath");
-        rmCol = (ArrayList<Integer>)bundle.getSerializable("rmColor");
+        rmCol = bundle.getIntegerArrayList("rmColor");
 
 
         try {
@@ -122,15 +123,14 @@ public class MultiCustomShowActivity extends AppCompatActivity {
                 con = false;
                 cont.setText("Menu");
             }else {
+                cont.setText("Continue");
                 hit = ImageTools.colorRecg(bitmap, choice, 0.5);
                 if (hit){
                     res = bitmap;
                     con = true;
-                    //cont.setText("Continue");
                 }else {
                     res = ImageTools.merge(bitmap, icon);
                     con = false;
-                    cont.setText("Menu");
                 }
             }
 

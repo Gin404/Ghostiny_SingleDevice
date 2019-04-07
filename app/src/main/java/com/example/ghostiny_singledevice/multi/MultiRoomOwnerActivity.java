@@ -104,7 +104,7 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         setIntent(intent);
         Bundle bundle = intent.getExtras();
-        currentNum.setText(bundle.getString("curNum"));
+        currentNum.setText(" " + bundle.getInt("curNum"));
     }
 
     @Override

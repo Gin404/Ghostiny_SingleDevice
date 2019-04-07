@@ -53,15 +53,13 @@ public class CustomShowActivity extends AppCompatActivity {
                 con = false;
                 cont.setText("Menu");
             }else {
+                cont.setText("Continue");
+                con = true;
                 hit = ImageTools.colorRecg(bitmap, choice, 0.5);
                 if (hit){
                     res = bitmap;
-                    con = true;
-                    //cont.setText("Continue");
                 }else {
                     res = ImageTools.merge(bitmap, icon);
-                    con = false;
-                    cont.setText("Menu");
                 }
             }
 

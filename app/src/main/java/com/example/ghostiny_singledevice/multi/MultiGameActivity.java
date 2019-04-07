@@ -199,7 +199,8 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
         super.onNewIntent(intent);
         setIntent(intent);
         Log.d("newIntent", "游戏继续");
-        ArrayList<Integer> invs = intent.getExtras().getIntegerArrayList("rmColor");
+        Bundle newBundle = getIntent().getExtras();
+        ArrayList<Integer> invs = newBundle.getIntegerArrayList("rmColor");
         Resources res = getResources();
         Colour clr;
         for (int i : invs){

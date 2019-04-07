@@ -380,6 +380,7 @@ public class CustomCameraActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d("camera", "camera resume");
         startBackgroundThread();
         if (textureView.isAvailable()){
             openCamera();
@@ -390,6 +391,7 @@ public class CustomCameraActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
+        Log.d("camera", "camera pause");
         if (cameraDevice != null){
             cameraDevice.close();
         }
@@ -404,5 +406,17 @@ public class CustomCameraActivity extends AppCompatActivity {
         }
         stopBackgroundThread();
         super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        timer.cancel ();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        timer.cancel ();
     }
 }

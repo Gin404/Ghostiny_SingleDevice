@@ -99,8 +99,8 @@ public enum Colour {
      * 返回随机枚举值
      * @return
      */
-    public static Colour randomColour()  {
-        return VALUES.get(RANDOM.nextInt(SIZE));
+    public static Colour randomColour(int size)  {
+        return VALUES.get(RANDOM.nextInt(size));
     }
 
     public static Colour getNameByCode(int code){

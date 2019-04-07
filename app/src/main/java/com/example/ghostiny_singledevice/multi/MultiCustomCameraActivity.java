@@ -150,6 +150,7 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
                 takePicture();
                 Intent intent = new Intent(MultiCustomCameraActivity.this, MultiCustomShowActivity.class);
                 Bundle bundle = getIntent().getExtras();
+                assert bundle != null;
                 bundle.putString("photoPath", imageUri.toString());
                 bundle.putSerializable("rmColor", rmCol);
                 intent.putExtras(bundle);
@@ -449,12 +450,14 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        timer.cancel ();
         unbindService(serviceConnection);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        timer.cancel ();
         Intent stopIntent = new Intent(this, ActivityChangeService.class);
         unbindService(serviceConnection);
         stopService(stopIntent);

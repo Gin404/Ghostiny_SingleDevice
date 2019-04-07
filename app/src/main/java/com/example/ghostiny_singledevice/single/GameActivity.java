@@ -42,7 +42,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         colorNum = pIntent.getIntExtra("num", 12);
 
         //倒霉色
-        unluck = Colour.randomColour();
+        unluck = Colour.randomColour(colorNum);
         Log.d("gameactivy", unluck.toString() + " is unlucky");
 
         takePhoto = (Button) findViewById(R.id.camerabutton);
