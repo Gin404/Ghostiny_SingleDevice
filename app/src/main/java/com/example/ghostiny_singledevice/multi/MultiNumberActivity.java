@@ -1,6 +1,8 @@
 package com.example.ghostiny_singledevice.multi;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,9 +32,6 @@ public class MultiNumberActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_number);
-
-
-
 
         three = (Button) findViewById(R.id.icon_number3_m);
         four = (Button) findViewById(R.id.icon_number4_m);
@@ -64,6 +63,11 @@ public class MultiNumberActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //set font
+        AssetManager mgr=getAssets();
+        Typeface typeface=Typeface.createFromAsset(mgr,"font/TM.ttf");
+        start.setTypeface(typeface);
 
         three.setOnClickListener(new View.OnClickListener() {
             @Override

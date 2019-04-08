@@ -3,12 +3,15 @@ package com.example.ghostiny_singledevice.multi;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ghostiny_singledevice.ActivityChangeService;
@@ -21,6 +24,7 @@ public class MultiRoomJoinActivity extends AppCompatActivity {
     private String rId;
     private ActivityChangeService myService;
     private ActivityChangeService.CommandBinder commandBinder;
+    private TextView tv1, tv2;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -80,6 +84,14 @@ public class MultiRoomJoinActivity extends AppCompatActivity {
                 myService.getCommandTask().send("-command join " + rId);
             }
         });
+
+        //set font
+        tv1=(TextView)findViewById ( R.id.textView10 );
+        tv2=(TextView)findViewById ( R.id.textView11 );
+        AssetManager mgr=getAssets();
+        Typeface typeface=Typeface.createFromAsset(mgr,"font/TM.ttf");
+        tv1.setTypeface(typeface);
+        tv2.setTypeface(typeface);
 
     }
 

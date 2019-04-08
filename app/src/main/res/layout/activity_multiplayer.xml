@@ -45,7 +45,7 @@
         android:layout_marginBottom="112dp"
         android:ems="1"
         android:text="加入房間"
-        android:textColor="#515151"
+        android:textColor="#2c2c2c"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

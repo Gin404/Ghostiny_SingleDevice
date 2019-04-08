@@ -43,7 +43,7 @@
         android:layout_marginTop="60dp"
         android:text="聲音"
         android:textSize="25sp"
-        android:textColor="#000000"
+        android:textColor="#2c2c2c"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -55,7 +55,7 @@
         android:layout_marginTop="32dp"
         android:text="震動"
         android:textSize="25sp"
-        android:textColor="#000000"
+        android:textColor="#2c2c2c"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -67,7 +67,7 @@
         android:layout_marginTop="32dp"
         android:text="評價反饋"
         android:textSize="25sp"
-        android:textColor="#000000"
+        android:textColor="#2c2c2c"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
