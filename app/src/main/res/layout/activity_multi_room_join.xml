@@ -13,7 +13,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="96dp"
         android:layout_marginEnd="8dp"
-        android:text="Join the room"
+        android:text="加入房間"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,18 +25,22 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Enter the room number"
+        android:text="請輸入房間號"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <EditText
         android:id="@+id/room_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="272dp"
+        android:layout_height="83dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="116dp"
         android:layout_marginEnd="8dp"
+        android:ems="4"
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -47,7 +51,7 @@
         android:layout_marginStart="162dp"
         android:layout_marginEnd="161dp"
         android:layout_marginBottom="304dp"
-        android:text="JOIN"
+        android:text="加入"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
