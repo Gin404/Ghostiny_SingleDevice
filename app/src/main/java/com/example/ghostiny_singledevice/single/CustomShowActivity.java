@@ -56,11 +56,11 @@ public class CustomShowActivity extends AppCompatActivity {
             if (choice.equals(unluck)){
                 res = ImageTools.merge(bitmap, icon);
                 con = false;
-                cont.setText("Menu");
+                cont.setText("退出遊戲");
                 stopService(intentBgm);
                 startService(intentScream);
             }else {
-                cont.setText("Continue");
+                cont.setText("繼續遊戲");
                 con = true;
                 hit = ImageTools.colorRecg(bitmap, choice, 0.25);
                 if (hit){
