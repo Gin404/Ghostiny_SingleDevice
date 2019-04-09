@@ -12,7 +12,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.ghostiny_singledevice.MainActivity;
+import com.example.ghostiny_singledevice.MusicServer;
 import com.example.ghostiny_singledevice.R;
+import com.example.ghostiny_singledevice.ScreamMusicServer;
 import com.example.ghostiny_singledevice.utils.Colour;
 import com.example.ghostiny_singledevice.utils.ImageTools;
 
@@ -25,7 +27,7 @@ public class CustomShowActivity extends AppCompatActivity {
     private Button cont;
     private boolean con = false;
 
-    Intent intent2;
+    Intent intentBgm,intentScream;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,8 @@ public class CustomShowActivity extends AppCompatActivity {
         Colour unluck = (Colour)bundle.getSerializable("unluck");
         String imageUri = bundle.getString("photoPath");
 
+        intentBgm=new Intent(this, MusicServer.class);
+        intentScream=new Intent(this, ScreamMusicServer.class);
 
         try {
             Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(Uri.parse(imageUri)));
@@ -53,7 +57,8 @@ public class CustomShowActivity extends AppCompatActivity {
                 res = ImageTools.merge(bitmap, icon);
                 con = false;
                 cont.setText("Menu");
-                //startService(intent2);
+                stopService(intentBgm);
+                startService(intentScream);
             }else {
                 cont.setText("Continue");
                 con = true;
@@ -63,10 +68,10 @@ public class CustomShowActivity extends AppCompatActivity {
                 }else {
                     res = ImageTools.merge(bitmap, icon);
                 }
+                //startService(intentScream);
             }
 
             photo.setImageBitmap(res);
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -97,10 +102,5 @@ public class CustomShowActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-    }
-
-    public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(CustomShowActivity.this, MainActivity.class));
     }
 }
