@@ -18,7 +18,9 @@ import android.widget.ImageView;
 
 import com.example.ghostiny_singledevice.ActivityChangeService;
 import com.example.ghostiny_singledevice.MainActivity;
+import com.example.ghostiny_singledevice.MusicServer;
 import com.example.ghostiny_singledevice.R;
+import com.example.ghostiny_singledevice.ScreamMusicServer;
 import com.example.ghostiny_singledevice.single.CustomShowActivity;
 import com.example.ghostiny_singledevice.single.GameActivity;
 import com.example.ghostiny_singledevice.utils.Colour;
@@ -37,11 +39,14 @@ public class MultiCustomShowActivity extends AppCompatActivity {
     private Button cont;
     private boolean con = false;
 
+    Intent intentBgm,intentScream;
+
     private ActivityChangeService myService;
     private ActivityChangeService.CommandBinder commandBinder;
 
     private ArrayList<Integer> rmCol;//可能会消失的颜色
     private SharedPreferences sharedPreferences;
+
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -111,6 +116,8 @@ public class MultiCustomShowActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
+        intentBgm=new Intent(this, MusicServer.class);
+        intentScream=new Intent(this, ScreamMusicServer.class);
 
         Colour choice = (Colour)bundle.getSerializable("choice");
         boolean unluck = bundle.getBoolean("luck");
@@ -120,17 +127,19 @@ public class MultiCustomShowActivity extends AppCompatActivity {
 
         try {
             Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(Uri.parse(imageUri)));
-            Bitmap icon = BitmapFactory.decodeResource(getResources(),R.drawable.screamicon120);
+            Bitmap icon = BitmapFactory.decodeResource(getResources(),R.drawable.screamicon1);
 
             bitmap = ImageTools.rotate(bitmap, 90);
 
             if (unluck){
                 res = ImageTools.merge(bitmap, icon);
                 con = false;
-                cont.setText("Menu");
+                cont.setText("退出遊戲u");
+                stopService(intentBgm);
+                startService(intentScream);
             }else {
-                cont.setText("Continue");
-                hit = ImageTools.colorRecg(bitmap, choice, 0.1);
+                cont.setText("繼續遊戲");
+                hit = ImageTools.colorRecg(bitmap, choice, 0.5);
                 if (hit){
                     res = bitmap;
                     con = true;

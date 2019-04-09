@@ -12,7 +12,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.ghostiny_singledevice.MainActivity;
+import com.example.ghostiny_singledevice.MusicServer;
 import com.example.ghostiny_singledevice.R;
+import com.example.ghostiny_singledevice.ScreamMusicServer;
 import com.example.ghostiny_singledevice.utils.Colour;
 import com.example.ghostiny_singledevice.utils.ImageTools;
 
@@ -25,7 +27,7 @@ public class CustomShowActivity extends AppCompatActivity {
     private Button cont;
     private boolean con = false;
 
-    Intent intent2;
+    Intent intentBgm,intentScream;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,31 +44,34 @@ public class CustomShowActivity extends AppCompatActivity {
         Colour unluck = (Colour)bundle.getSerializable("unluck");
         String imageUri = bundle.getString("photoPath");
 
+        intentBgm=new Intent(this, MusicServer.class);
+        intentScream=new Intent(this, ScreamMusicServer.class);
 
         try {
             Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(Uri.parse(imageUri)));
-            Bitmap icon = BitmapFactory.decodeResource(getResources(),R.drawable.streamicon80);
+            Bitmap icon = BitmapFactory.decodeResource(getResources(),R.drawable.screamicon1);
 
             bitmap = ImageTools.rotate(bitmap, 90);
 
             if (choice.equals(unluck)){
                 res = ImageTools.merge(bitmap, icon);
                 con = false;
-                cont.setText("Menu");
-                //startService(intent2)
+                cont.setText("退出遊戲");
+                stopService(intentBgm);
+                startService(intentScream);
             }else {
-                cont.setText("Continue");
+                cont.setText("繼續遊戲");
                 con = true;
-                hit = ImageTools.colorRecg(bitmap, choice, 0.1);
+                hit = ImageTools.colorRecg(bitmap, choice, 0.25);
                 if (hit){
                     res = bitmap;
                 }else {
                     res = ImageTools.merge(bitmap, icon);
                 }
+                //startService(intentScream);
             }
 
             photo.setImageBitmap(res);
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -97,10 +102,5 @@ public class CustomShowActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-    }
-
-    public void onBackPressed() {
-        super.onBackPressed();
-        startActivity(new Intent(CustomShowActivity.this, MainActivity.class));
     }
 }

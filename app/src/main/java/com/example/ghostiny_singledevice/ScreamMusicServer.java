@@ -7,8 +7,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-public class MusicServer extends Service {
-    MediaPlayer mediaPlayer;
+public class ScreamMusicServer extends Service {
+    MediaPlayer scream;
     //必须要实现此方法，IBinder对象用于交换数据，此处暂时不实现
     @Nullable
     @Override
@@ -19,9 +19,8 @@ public class MusicServer extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        mediaPlayer =MediaPlayer.create(this,R.raw.sound);
+        scream=MediaPlayer.create(this,R.raw.ahhhh);
         Log.e("TAG","create");
-
 
     }
     @Override
@@ -33,16 +32,14 @@ public class MusicServer extends Service {
 
     //封装播放
     private void play() {
-        mediaPlayer.start();
-
+        scream.start();
     }
 
     //service被关闭之前调用
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mediaPlayer.stop();
+        scream.stop();
         Log.e("TAG","destoryed");
-
     }
 }
