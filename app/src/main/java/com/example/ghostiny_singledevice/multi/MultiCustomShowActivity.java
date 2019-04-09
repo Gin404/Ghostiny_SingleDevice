@@ -31,6 +31,7 @@ import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class MultiCustomShowActivity extends AppCompatActivity {
     private ImageView photo;
@@ -81,6 +82,13 @@ public class MultiCustomShowActivity extends AppCompatActivity {
             myService.setMemberLeaveCallBack2(new ActivityChangeService.MemberLeaveCallBack2() {
                 @Override
                 public void memberLeave2(int rmColor, String nickName) {
+                    Set<String> names = sharedPreferences.getStringSet("nameSet", null);
+                    assert names != null;
+                    names.remove(nickName);
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putStringSet("nameSet", names);
+                    editor.apply();
                     rmCol.add(rmColor);
                 }
             });
