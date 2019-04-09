@@ -115,7 +115,7 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
                 public void memberLeave2(int rmColor, String nickName) {
                     Set<String> names = sharedPreferences.getStringSet("nameSet", null);
                     assert names != null;
-                    names.add(nickName);
+                    names.remove(nickName);
                     refreshNames(names);
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
