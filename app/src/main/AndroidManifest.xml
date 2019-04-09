@@ -40,7 +40,7 @@
             android:launchMode="singleTask" />
         <activity android:name=".multi.MultiNumberActivity" />
         <activity android:name=".multi.MultiplayerActivity" />
-        <activity android:name=".multi.MultiRoomJoinActivity" />
+        <activity android:name=".multi.MultiRoomJoinActivity"/>
         <activity android:name=".single.SingleNumberActivity"
             android:launchMode="singleTask" />
         <activity android:name=".InstructionActivity" />

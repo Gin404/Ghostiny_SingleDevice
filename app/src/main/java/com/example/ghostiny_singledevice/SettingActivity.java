@@ -168,9 +168,9 @@ public class SettingActivity extends AppCompatActivity {
         final AlertDialog.Builder normalDialog =
                 new AlertDialog.Builder(SettingActivity.this);
         /*normalDialog.setIcon(R.drawable.icon_dialog);*/
-        normalDialog.setTitle("FEEDBACK");
-        normalDialog.setMessage("You can send email to us.E-mail:Ghostiny@gmail.com.");
-        normalDialog.setPositiveButton("send",
+        normalDialog.setTitle("我們期待得到您的體驗反饋");
+        normalDialog.setMessage("請發送郵件以聯繫我們。 郵箱地址: Ghostiny@gmail.com ");
+        normalDialog.setPositiveButton("發送郵件",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -180,7 +180,7 @@ public class SettingActivity extends AppCompatActivity {
                         startActivity(it);
                     }
                 });
-        normalDialog.setNegativeButton("cancel",
+        normalDialog.setNegativeButton("取消",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

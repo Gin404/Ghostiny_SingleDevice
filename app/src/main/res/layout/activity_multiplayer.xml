@@ -10,7 +10,7 @@
         android:id="@+id/multibg"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:layout_marginBottom="240dp"
+        android:layout_marginBottom="220dp"
         android:background="#00000000"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,43 +22,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="180dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:ems="1"
         android:text="創建房間"
         android:textColor="#2c2c2c"
         android:textSize="35sp"
-        app:layout_constraintBottom_toBottomOf="@+id/multibg"
         app:layout_constraintEnd_toStartOf="@+id/icon_create_room"
-        app:layout_constraintHorizontal_bias="0.784"
+        app:layout_constraintHorizontal_bias="0.765"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/TVjoin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="156dp"
+        android:layout_marginBottom="128dp"
         android:ems="1"
         android:text="加入房間"
         android:textColor="#2c2c2c"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/icon_join_room"
-        app:layout_constraintTop_toTopOf="@+id/multibg"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="0.344"
+        app:layout_constraintStart_toEndOf="@+id/icon_join_room" />
 
     <ImageButton
         android:id="@+id/icon_create_room"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="48dp"
@@ -67,16 +61,16 @@
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="@+id/multibg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.822"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.122"
+        app:layout_constraintVertical_bias="0.333"
         app:srcCompat="@drawable/button_create" />
 
     <ImageButton
         android:id="@+id/icon_join_room"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -90,19 +84,6 @@
         app:layout_constraintTop_toTopOf="@+id/multibg"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/button_join" />
-
-<!--    <TextView
-        android:id="@+id/textView"
-        android:layout_width="189dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="8dp"
-        android:text="Multiplayer"
-        android:textSize="36sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
 
     <ImageButton
         android:id="@+id/back_btn"

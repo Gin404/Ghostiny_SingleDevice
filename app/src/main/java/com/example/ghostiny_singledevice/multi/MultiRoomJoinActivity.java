@@ -4,12 +4,15 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ghostiny_singledevice.ActivityChangeService;
@@ -26,6 +29,7 @@ import java.util.Set;
 public class MultiRoomJoinActivity extends AppCompatActivity {
 
     private Button join;
+    private TextView enter;
     private EditText roomId;
     private String rId;
     private ActivityChangeService myService;
@@ -93,8 +97,16 @@ public class MultiRoomJoinActivity extends AppCompatActivity {
         Intent startIntent = new Intent(this, ActivityChangeService.class);
         bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
+
         join=(Button)findViewById(R.id.join_btn);
-        roomId =findViewById(R.id.room_id);
+        roomId=(EditText) findViewById(R.id.room_id);
+        enter=(TextView)findViewById ( R.id.textView11 );
+
+        AssetManager mgr=getAssets();  //设置字体
+        Typeface typeface=Typeface.createFromAsset(mgr,"font/TM.ttf");
+        join.setTypeface(typeface);
+        roomId.setTypeface(typeface);
+        enter.setTypeface(typeface);
 
         sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
 

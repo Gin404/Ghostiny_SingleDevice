@@ -4,6 +4,8 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,8 +26,7 @@ import java.util.Set;
 
 public class MultiWaitActivity extends AppCompatActivity {
     private Button startBtn;
-    private TextView roomId;
-    private TextView currentNum;
+    private TextView roomId, roomnum, roomcap, currentNum;
     private RecyclerView recyclerView;
     private int curNum;
 
@@ -123,9 +124,20 @@ public class MultiWaitActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         roomId=(TextView)findViewById(R.id.room_id);
+        roomnum=(TextView)findViewById(R.id.title_rid);
+        roomcap=(TextView)findViewById ( R.id.title_capacity );
         currentNum = (TextView)findViewById(R.id.current_num_wait);
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         startBtn=(Button)findViewById(R.id.multistart_btn);
+
+        //set font
+        AssetManager mgr=getAssets();  //设置字体
+        Typeface typeface=Typeface.createFromAsset(mgr,"font/TM.ttf");
+        roomId.setTypeface(typeface);
+        roomcap.setTypeface(typeface);
+        roomnum.setTypeface(typeface);
+        currentNum.setTypeface(typeface);
+        startBtn.setTypeface(typeface);
 
         Set<String> names = sharedPreferences.getStringSet("nameSet", null);
         refreshNames(names);
