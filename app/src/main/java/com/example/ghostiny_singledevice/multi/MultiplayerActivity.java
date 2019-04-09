@@ -62,21 +62,21 @@ public class MultiplayerActivity extends AppCompatActivity {
 
         create_room=(ImageButton)findViewById(R.id.icon_create_room);
         create_room.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myService.getCommandTask().send("createRoom");
+@Override
+public void onClick(View v) {
+        myService.getCommandTask().send("createRoom");
                /* Intent intent=new Intent(MultiplayerActivity.this,MultiRoomOwnerActivity.class);
                 startActivity(intent);*/
-            }
+        }
         });
 
         join_room=(ImageButton)findViewById(R.id.icon_join_room);
         join_room.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-           Intent intent=new Intent(MultiplayerActivity.this,MultiRoomJoinActivity.class);
-               startActivity(intent);
-            }
+@Override
+public void onClick(View v) {
+        Intent intent=new Intent(MultiplayerActivity.this,MultiRoomJoinActivity.class);
+        startActivity(intent);
+        }
         });
 
         Intent startIntent = new Intent(this, ActivityChangeService.class);
@@ -84,12 +84,12 @@ public class MultiplayerActivity extends AppCompatActivity {
         bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
         //设置字体
-        create_tv = (TextView) findViewById ( R.id.TVcreate );
+        create_tv = (TextView) findViewById (R.id.TVcreate );
         join_tv = (TextView) findViewById ( R.id.TVjoin );
         AssetManager mgr=getAssets();
         Typeface typeface=Typeface.createFromAsset(mgr,"font/TM.ttf");
         create_tv.setTypeface(typeface);
         join_tv.setTypeface ( typeface );
-    }
+        }
 
-}
+        }
