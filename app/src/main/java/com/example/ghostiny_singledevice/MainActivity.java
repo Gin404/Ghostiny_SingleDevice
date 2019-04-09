@@ -15,7 +15,10 @@ import com.example.ghostiny_singledevice.single.SingleNumberActivity;
 public class MainActivity extends AppCompatActivity {
 
     ImageButton  instructionButton,settingButton,singleButton,multiButton;
-
+    private ActivityChangeService.CommandBinder commandBinder;
+    //private Button btn_open;
+    //private boolean status=false;
+    Intent intent1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         settingButton=(ImageButton)findViewById(R.id.icon_home_setting);
         singleButton=(ImageButton)findViewById(R.id.icon_home_SingleGame);
         multiButton=(ImageButton)findViewById(R.id.icon_home_multiplayer);
-
+        intent1=new Intent(this,MusicServer.class);
 
         instructionButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent=new Intent(MainActivity.this, SingleNumberActivity.class);
                 startActivity(intent);
+                startService(intent1);
             }
         });
 
@@ -54,10 +58,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent=new Intent(MainActivity.this,MultiplayerActivity.class);
                 startActivity(intent);
+                startService(intent1);
             }
         });
 
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = new Intent(this,MusicServer.class);
+        stopService(intent);
+    }
+
 
 }
