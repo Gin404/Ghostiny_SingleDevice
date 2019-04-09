@@ -120,7 +120,7 @@ public class MultiCustomShowActivity extends AppCompatActivity {
 
         try {
             Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(Uri.parse(imageUri)));
-            Bitmap icon = BitmapFactory.decodeResource(getResources(),R.drawable.screamicon);
+            Bitmap icon = BitmapFactory.decodeResource(getResources(),R.drawable.screamicon1);
 
             bitmap = ImageTools.rotate(bitmap, 90);
 
