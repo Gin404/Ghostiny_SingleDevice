@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.example.ghostiny_singledevice.multi.MultiplayerActivity;
+import com.example.ghostiny_singledevice.multi.MultiNickNameActivity;
 import com.example.ghostiny_singledevice.single.SingleNumberActivity;
 
 /**
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         multiButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Intent intent=new Intent(MainActivity.this,MultiplayerActivity.class);
+                Intent intent=new Intent(MainActivity.this, MultiNickNameActivity.class);
                 startActivity(intent);
                 startService(intent1);
             }
