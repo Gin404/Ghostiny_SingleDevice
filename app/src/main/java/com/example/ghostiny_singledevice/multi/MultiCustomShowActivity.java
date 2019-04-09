@@ -71,7 +71,7 @@ public class MultiCustomShowActivity extends AppCompatActivity {
                     Bundle bundle = new Bundle();
                     bundle.putInt("curNum", curNum);
                     Intent intent = null;
-                    intent = new Intent(MultiCustomShowActivity.this, MultiRoomOwnerActivity.class);
+                    intent = new Intent(MultiCustomShowActivity.this, MultiWaitActivity.class);
 
                     intent.putExtras(bundle);
                     startActivity(intent);

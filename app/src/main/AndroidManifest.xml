@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".multi.MultiWaitActivity"></activity>
+        <activity android:name=".multi.MultiWaitActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".multi.MultiNickNameActivity" />
 
         <service
@@ -42,9 +43,6 @@
         <activity android:name=".multi.MultiRoomJoinActivity" />
         <activity android:name=".single.SingleNumberActivity" />
         <activity android:name=".InstructionActivity" />
-        <activity
-            android:name=".multi.MultiRoomOwnerActivity"
-            android:launchMode="singleTask" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask">
