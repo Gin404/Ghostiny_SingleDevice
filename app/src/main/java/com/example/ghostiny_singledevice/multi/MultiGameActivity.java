@@ -102,7 +102,7 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
                     bundle.putInt("curNum", curNum);
                     Intent intent = null;
                     //别人倒霉色拍完照点击继续，跳回房间等待
-                    intent = new Intent(MultiGameActivity.this, MultiRoomOwnerActivity.class);
+                    intent = new Intent(MultiGameActivity.this, MultiWaitActivity.class);
 
                     intent.putExtras(bundle);
                     startActivity(intent);
