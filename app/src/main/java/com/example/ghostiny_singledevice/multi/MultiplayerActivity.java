@@ -4,6 +4,8 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.ghostiny_singledevice.ActivityChangeService;
 import com.example.ghostiny_singledevice.R;
@@ -27,6 +30,7 @@ import java.util.Set;
  */
 public class MultiplayerActivity extends AppCompatActivity {
     private ImageButton create_room,join_room;
+    private TextView tv1, tv2;
     private ImageView back;
     private ActivityChangeService myService;
     private int roomId = -1;
@@ -90,6 +94,14 @@ public class MultiplayerActivity extends AppCompatActivity {
             }
 
         });
+
+        //set font
+        tv1 = (TextView)findViewById(R.id.TVcreate);
+        tv2 = (TextView)findViewById ( R.id.TVjoin );
+        AssetManager mgr=getAssets();  //设置字体
+        Typeface typeface=Typeface.createFromAsset(mgr,"font/TM.ttf");
+        tv1.setTypeface(typeface);
+        tv2.setTypeface(typeface);
 
 
 
