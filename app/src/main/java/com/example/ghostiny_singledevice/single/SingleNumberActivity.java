@@ -43,7 +43,7 @@ public class SingleNumberActivity extends AppCompatActivity {
         nine = (RadioButton) findViewById(R.id.icon_number9_s);
         ten = (RadioButton) findViewById(R.id.icon_number10_s);
         eleven = (RadioButton) findViewById(R.id.icon_number11_s);
-        twelve = (RadioButton) findViewById(R.id.icon_number12_s);
+        //twelve = (RadioButton) findViewById(R.id.icon_number12_s);
 
         start = (Button) findViewById(R.id.start_s);
         intro = (TextView) findViewById ( R.id.textView_title5_s );
@@ -65,7 +65,7 @@ public class SingleNumberActivity extends AppCompatActivity {
         nine.setTypeface(typeface);
         ten.setTypeface(typeface);
         eleven.setTypeface(typeface);
-        twelve.setTypeface(typeface);
+        //twelve.setTypeface(typeface);
         start.setTypeface ( typeface );
         intro.setTypeface ( typeface );
 
@@ -162,13 +162,13 @@ public class SingleNumberActivity extends AppCompatActivity {
             }
         });
 
-        twelve.setOnClickListener(new View.OnClickListener() {
+        /*twelve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 num = 12;
                 keepR4();
             }
-        });
+        });*/
     }
 
     private void keepR1(){

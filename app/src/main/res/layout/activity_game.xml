@@ -24,7 +24,6 @@
         android:id="@+id/camerabutton"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
         android:background="@drawable/button_bg"
         android:scaleType="fitXY"
         android:text="拍攝照片"
@@ -32,79 +31,81 @@
         android:textColor="#515151"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectColor"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintTop_toBottomOf="@id/selectColor" />
 
     <TextView
         android:id="@+id/selectColor"
         android:layout_width="wrap_content"
         android:layout_height="29dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
         android:text="@string/selectcolor"
-        android:textSize="18sp"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/white"
-        app:layout_constraintVertical_bias="0.117" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.785" />
 
     <Button
         android:id="@+id/red"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="56dp"
+        android:layout_marginTop="116dp"
         android:background="@color/紅色"
-        android:onClick="onClick"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/black" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="onClick"/>
 
     <Button
         android:id="@+id/black"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="120dp"
-        app:layout_constraintHorizontal_bias="0.5"
         android:background="@color/黑色"
         android:onClick="onClick"
         app:layout_constraintStart_toEndOf="@+id/red"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/red" />
 
     <Button
         android:id="@+id/green"
         android:layout_width="75dp"
         android:layout_height="75dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="56dp"
         android:background="@color/綠色"
-        android:onClick="onClick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.866"
+        app:layout_constraintStart_toEndOf="@+id/black"
         app:layout_constraintTop_toTopOf="@+id/black"
-        tools:layout_editor_absoluteX="280dp" />
+        android:onClick="onClick"/>
 
     <Button
         android:id="@+id/yellow"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="56dp"
+        android:layout_marginTop="20dp"
         android:background="@color/黃色"
-        android:onClick="onClick"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/orange" />
+        app:layout_constraintTop_toBottomOf="@+id/red"
+        android:onClick="onClick"/>
 
     <Button
         android:id="@+id/orange"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="20dp"
         android:background="@color/橙色"
-        android:onClick="onClick"
         app:layout_constraintStart_toEndOf="@+id/yellow"
-        app:layout_constraintTop_toBottomOf="@+id/black" />
+        app:layout_constraintTop_toTopOf="@+id/yellow"
+        android:onClick="onClick"/>
 
     <Button
         android:id="@+id/cyan"
@@ -124,21 +125,21 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="56dp"
+        android:layout_marginTop="20dp"
         android:background="@color/粉色"
-        android:onClick="onClick"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/gray" />
+        app:layout_constraintTop_toBottomOf="@+id/cyan"
+        android:onClick="onClick"/>
 
     <Button
         android:id="@+id/gray"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="20dp"
         android:background="@color/灰色"
-        android:onClick="onClick"
         app:layout_constraintStart_toEndOf="@+id/pink"
-        app:layout_constraintTop_toBottomOf="@+id/orange" />
+        app:layout_constraintTop_toTopOf="@+id/pink"
+        android:onClick="onClick"/>
 
     <Button
         android:id="@+id/blue"
@@ -158,21 +159,21 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="56dp"
+        android:layout_marginTop="20dp"
         android:background="@color/棕色"
-        android:onClick="onClick"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/white" />
+        app:layout_constraintTop_toBottomOf="@+id/pink"
+        android:onClick="onClick"/>
 
     <Button
         android:id="@+id/white"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="20dp"
         android:background="@color/白色"
-        android:onClick="onClick"
         app:layout_constraintStart_toEndOf="@+id/brown"
-        app:layout_constraintTop_toBottomOf="@+id/gray" />
+        app:layout_constraintTop_toTopOf="@+id/brown"
+        android:onClick="onClick"/>
 
     <Button
         android:id="@+id/purple"
