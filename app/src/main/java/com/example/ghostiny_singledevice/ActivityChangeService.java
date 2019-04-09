@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 
+import org.json.JSONArray;
+
 public class ActivityChangeService extends Service {
     private CommandBinder commandBinder = new CommandBinder();
     private CommandTask commandTask;
@@ -13,6 +15,7 @@ public class ActivityChangeService extends Service {
     private MemberJoinCallBack memberJoinCallBack;//新成员加入
     private MemberLeaveCallBack memberLeaveCallBack;//准备时成员离开
     private MemberLeaveCallBack2 memberLeaveCallBack2;//游戏中成员离开
+    private NewOwnerCallBack newOwnerCallBack;//成为新房主
     private JoinRefuseCallBack joinRefuseCallBack;//房间满或者正在游戏
     private RoomNExistCallBack roomNExistCallBack;//房间不存在
     private JoinRoomCallBack joinRoomCallBack;//加入成功
@@ -37,6 +40,10 @@ public class ActivityChangeService extends Service {
 
     public void setMemberLeaveCallBack2(MemberLeaveCallBack2 memberLeaveCallBack2){
         this.memberLeaveCallBack2 = memberLeaveCallBack2;
+    }
+
+    public void setNewOwnerCallBack(NewOwnerCallBack newOwnerCallBack){
+        this.newOwnerCallBack = newOwnerCallBack;
     }
 
     public void setJoinRefuseCallBack(JoinRefuseCallBack joinRefuseCallBack){
@@ -91,18 +98,23 @@ public class ActivityChangeService extends Service {
         }
 
         @Override
-        public void onMemberJoin(int capacity) {
-            memberJoinCallBack.memberJoin(capacity);
+        public void onMemberJoin(int capacity, String nickName) {
+            memberJoinCallBack.memberJoin(capacity, nickName);
         }
 
         @Override
-        public void onMemberLeave(int capacity) {
-            memberLeaveCallBack.memberLeave(capacity);
+        public void onMemberLeave(int capacity, String nickName) {
+            memberLeaveCallBack.memberLeave(capacity, nickName);
         }
 
         @Override
-        public void onMemberLeave2(int rmColor) {
-            memberLeaveCallBack2.memberLeave2(rmColor);
+        public void onMemberLeave2(int rmColor, String nickName) {
+            memberLeaveCallBack2.memberLeave2(rmColor, nickName);
+        }
+
+        @Override
+        public void onNewOwner() {
+            newOwnerCallBack.asNewOwner();
         }
 
         @Override
@@ -116,8 +128,8 @@ public class ActivityChangeService extends Service {
         }
 
         @Override
-        public void onJoinRoom(int capacity) {
-            joinRoomCallBack.joinRoom(capacity);
+        public void onJoinRoom(int capacity, JSONArray nameList) {
+            joinRoomCallBack.joinRoom(capacity, nameList);
         }
 
 
@@ -147,8 +159,8 @@ public class ActivityChangeService extends Service {
         }
 
         @Override
-        public void onGameEnd(int playerType, int curNum) {
-            endCallBack.endGame(playerType, curNum);
+        public void onGameEnd(int curNum) {
+            endCallBack.endGame(curNum);
         }
 
 
@@ -182,15 +194,19 @@ public class ActivityChangeService extends Service {
     }
 
     public interface MemberJoinCallBack{
-        void memberJoin(int capacity);
+        void memberJoin(int capacity, String nickName);
     }
 
     public interface MemberLeaveCallBack{
-        void memberLeave(int capacity);
+        void memberLeave(int capacity, String nickName);
     }
 
     public interface MemberLeaveCallBack2{
-        void memberLeave2(int rmColor);
+        void memberLeave2(int rmColor, String nickName);
+    }
+
+    public interface NewOwnerCallBack{
+        void asNewOwner();
     }
 
     public interface JoinRefuseCallBack{
@@ -202,7 +218,7 @@ public class ActivityChangeService extends Service {
     }
 
     public interface JoinRoomCallBack{
-        void joinRoom(int capacity);
+        void joinRoom(int capacity, JSONArray nameList);
     }
 
     public interface StartCallBack{
@@ -210,7 +226,7 @@ public class ActivityChangeService extends Service {
     }
 
     public interface EndCallBack{
-        void endGame(int playerType, int curNum);
+        void endGame(int curNum);
     }
 
     public interface ContCallBack{

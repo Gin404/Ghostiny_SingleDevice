@@ -3,15 +3,19 @@ package com.example.ghostiny_singledevice.multi;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,7 +26,11 @@ import com.example.ghostiny_singledevice.MainActivity;
 import com.example.ghostiny_singledevice.R;
 import com.example.ghostiny_singledevice.utils.Colour;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Set;
 
 /**
  * 选择颜色界面
@@ -39,7 +47,10 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
     private Button toBeInvis;
     private boolean locked;
 
+    private RecyclerView recyclerView;
+    private MemberAdaptor adaptor;
 
+    private SharedPreferences sharedPreferences;
 
     private final Colour[] colours = Colour.values();
 
@@ -86,21 +97,13 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
 
             myService.setEndCallBack(new ActivityChangeService.EndCallBack() {
                 @Override
-                public void endGame(int playerType, int curNum) {
+                public void endGame(int curNum) {
                     Bundle bundle = new Bundle();
                     bundle.putInt("curNum", curNum);
                     Intent intent = null;
                     //别人倒霉色拍完照点击继续，跳回房间等待
-                    switch (playerType) {
-                        case 0:
-                            intent = new Intent(MultiGameActivity.this, MultiRoomOwnerActivity.class);
-                            break;
-                        case 1:
-                            intent = new Intent(MultiGameActivity.this, MultiRoomOthersActivity.class);
-                            break;
-                        default:
-                            break;
-                    }
+                    intent = new Intent(MultiGameActivity.this, MultiRoomOwnerActivity.class);
+
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }
@@ -109,12 +112,30 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
             //成员离开，随机消失一个非倒霉颜色
             myService.setMemberLeaveCallBack2(new ActivityChangeService.MemberLeaveCallBack2() {
                 @Override
-                public void memberLeave2(int rmColor) {
+                public void memberLeave2(int rmColor, String nickName) {
+                    Set<String> names = sharedPreferences.getStringSet("nameSet", null);
+                    assert names != null;
+                    names.add(nickName);
+                    refreshNames(names);
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putStringSet("nameSet", names);
+                    editor.apply();
+
                     Colour clr = Colour.getNameByCode(rmColor);
                     Resources res = getResources();
                     assert clr != null;
                     int id = res.getIdentifier(clr.toString().toLowerCase(),"id",getPackageName());
                     findViewById(id).setVisibility(View.INVISIBLE);
+                }
+            });
+
+            myService.setNewOwnerCallBack(new ActivityChangeService.NewOwnerCallBack() {
+                @Override
+                public void asNewOwner() {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("isowner", true);
+                    editor.apply();
                 }
             });
         }
@@ -137,6 +158,7 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_game);
 
+        sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
         final Intent startIntent = new Intent(this, ActivityChangeService.class);
         bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
@@ -145,6 +167,11 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
 
         takePhoto = (Button) findViewById(R.id.camerabutton);
         textView = (TextView)findViewById(R.id.selectColor);
+        recyclerView = (RecyclerView)findViewById(R.id.recycler_view_game);
+
+        Set<String> names = sharedPreferences.getStringSet("nameSet", null);
+        refreshNames(names);
+
         back = (ImageView) findViewById(R.id.imageView2_m);
 
         //将后(12-colourNum)个颜色按钮置为隐形
@@ -171,8 +198,14 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
                 }
                 toBeInvis.setVisibility(View.INVISIBLE);
 
-                //View.INVISIBLE  Not visible but still in position
-                myService.getCommandTask().send("-command choice " + colour.getCode());
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("req", 40);
+                    jsonObject.put("color", colour.getCode());
+                    myService.getCommandTask().send(jsonObject.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
 
 
@@ -243,5 +276,13 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
         Intent stopIntent = new Intent(this, ActivityChangeService.class);
         stopService(stopIntent);
         startActivity(new Intent(MultiGameActivity.this, MainActivity.class));
+    }
+
+    protected void refreshNames(Set<String> names){
+        assert names != null;
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
+        recyclerView.setLayoutManager(layoutManager);
+        adaptor = new MemberAdaptor(names);
+        recyclerView.setAdapter(adaptor);
     }
 }

@@ -3,6 +3,7 @@ package com.example.ghostiny_singledevice.multi;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,14 @@ import android.widget.Toast;
 import com.example.ghostiny_singledevice.ActivityChangeService;
 import com.example.ghostiny_singledevice.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class MultiRoomJoinActivity extends AppCompatActivity {
 
     private Button join;
@@ -21,6 +30,7 @@ public class MultiRoomJoinActivity extends AppCompatActivity {
     private String rId;
     private ActivityChangeService myService;
     private ActivityChangeService.CommandBinder commandBinder;
+    private SharedPreferences sharedPreferences;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -31,9 +41,22 @@ public class MultiRoomJoinActivity extends AppCompatActivity {
 
             myService.setJoinRoomCallBack(new ActivityChangeService.JoinRoomCallBack() {
                 @Override
-                public void joinRoom(int capacity) {
-                    Intent intent = new Intent(MultiRoomJoinActivity.this, MultiRoomOthersActivity.class);
-                    intent.putExtra("capacity", capacity);
+                public void joinRoom(int capacity, JSONArray nameList) {
+                    Set<String> nameSet = new HashSet<>();
+                    try {
+                        for (int i = 0; i < nameList.length(); i++){
+                            nameSet.add((String)nameList.get(i));
+                        }
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                    }
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putStringSet("nameSet", nameSet);
+                    editor.apply();
+
+                    Intent intent = new Intent(MultiRoomJoinActivity.this, MultiWaitActivity.class);
+                    intent.putExtra("currNum", capacity);
                     intent.putExtra("roomId", rId);
                     startActivity(intent);
                 }
@@ -73,11 +96,25 @@ public class MultiRoomJoinActivity extends AppCompatActivity {
         join=(Button)findViewById(R.id.join_btn);
         roomId =findViewById(R.id.room_id);
 
+        sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
+
         join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 rId = roomId.getText().toString();
-                myService.getCommandTask().send("-command join " + rId);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isowner", false);
+                editor.apply();
+                JSONObject jsonObject = new JSONObject();
+
+                try {
+                    jsonObject.put("req", 20);
+                    jsonObject.put("roomId", rId);
+                    jsonObject.put("nickName", sharedPreferences.getString("myName", "nobody"));
+                    myService.getCommandTask().send(jsonObject.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

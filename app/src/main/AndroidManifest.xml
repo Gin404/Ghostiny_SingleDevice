@@ -19,6 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".multi.MultiWaitActivity"></activity>
+        <activity android:name=".multi.MultiNickNameActivity" />
 
         <service
             android:name=".ActivityChangeService"
@@ -40,10 +42,9 @@
         <activity android:name=".multi.MultiRoomJoinActivity" />
         <activity android:name=".single.SingleNumberActivity" />
         <activity android:name=".InstructionActivity" />
-        <activity android:name=".multi.MultiRoomOthersActivity"
-            android:launchMode="singleTask"/>
-        <activity android:name=".multi.MultiRoomOwnerActivity"
-            android:launchMode="singleTask"/>
+        <activity
+            android:name=".multi.MultiRoomOwnerActivity"
+            android:launchMode="singleTask" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask">
@@ -54,8 +55,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".multi.MultiCustomCameraActivity" />
-        <activity android:name=".multi.MultiGameActivity"
-            android:launchMode="singleTask"/>
+        <activity
+            android:name=".multi.MultiGameActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".multi.MultiCustomShowActivity" />
 
         <provider
@@ -71,7 +73,7 @@
         <service
             android:name=".MusicServer"
             android:exported="true"
-            android:process=":remote"></service>
+            android:process=":remote" />
     </application>
 
 </manifest>

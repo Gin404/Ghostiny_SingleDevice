@@ -22,8 +22,7 @@ import org.json.JSONObject;
 
 import java.util.Set;
 
-public class MultiRoomOwnerActivity extends AppCompatActivity {
-
+public class MultiWaitActivity extends AppCompatActivity {
     private Button startBtn;
     private TextView roomId;
     private TextView currentNum;
@@ -58,7 +57,7 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
                     editor.apply();
 
                     if (currentNum != null){
-                        currentNum.setText(currNum);
+                        currentNum.setText("" + currNum);
                         curNum = currNum;
                     }
                 }
@@ -87,7 +86,7 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
             myService.setStartCallBack(new ActivityChangeService.StartCallBack() {
                 @Override
                 public void skipToGame() {
-                    Intent intent = new Intent(MultiRoomOwnerActivity.this, MultiGameActivity.class);
+                    Intent intent = new Intent(MultiWaitActivity.this, MultiGameActivity.class);
                     intent.putExtra("currentNum", curNum);
                     startActivity(intent);
                 }
@@ -111,35 +110,34 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
         }
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_multi_room_owner);
-
-        Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
+        setContentView(R.layout.activity_multi_wait);
 
         sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
 
         Intent startIntent = new Intent(this, ActivityChangeService.class);
         bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
+        Intent intent = getIntent();
+
         roomId=(TextView)findViewById(R.id.room_id);
-        currentNum = (TextView)findViewById(R.id.current_num);
+        currentNum = (TextView)findViewById(R.id.current_num_wait);
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         startBtn=(Button)findViewById(R.id.multistart_btn);
 
         Set<String> names = sharedPreferences.getStringSet("nameSet", null);
         refreshNames(names);
 
-        currentNum.setText("" + bundle.getInt("currNum"));
+        curNum = intent.getIntExtra("currNum", 1);
+        currentNum.setText(""+curNum);
 
         if (!sharedPreferences.getBoolean("isowner", false)){
             startBtn.setVisibility(View.INVISIBLE);
         }
 
-        roomId.setText(String.format("%04d",bundle.getInt("roomId")));
+        roomId.setText(intent.getStringExtra("roomId"));
 
 
         startBtn.setOnClickListener(new View.OnClickListener(){
@@ -159,10 +157,11 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
         });
 
     }
-
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        Set<String> names = sharedPreferences.getStringSet("nameSet", null);
+        refreshNames(names);
         setIntent(intent);
         Bundle bundle = intent.getExtras();
         currentNum.setText(" " + bundle.getInt("curNum"));
@@ -191,6 +190,4 @@ public class MultiRoomOwnerActivity extends AppCompatActivity {
         adaptor = new MemberAdaptor(names);
         recyclerView.setAdapter(adaptor);
     }
-
-    // TODO: 06/04/2019 这个activity请加一个返回键
 }

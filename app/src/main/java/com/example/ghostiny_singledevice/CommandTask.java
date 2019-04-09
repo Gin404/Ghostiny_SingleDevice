@@ -6,7 +6,12 @@ import android.util.Log;
 import com.example.ghostiny_singledevice.core.IoContext;
 import com.example.ghostiny_singledevice.impl.IoSelectorProvider;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.List;
 
 public class CommandTask extends AsyncTask<Void, String, Integer> {
     private CommandListener listener;
@@ -55,11 +60,12 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
      * 已创建房间：10 <房间号>
      * 本人加入房间但被拒绝（达到人数上限或在游戏中）：20
      * 本人加入房间但被拒绝（房间不存在）：21
-     * 本人加入成功：22
+     * 本人加入成功：22 <房间人数> <成员昵称列表>
      * 本人离开：23（功能待定）
-     * 其他人加入房间：30 <新人数>
-     * 其他人离开房间：31 <新人数>
-     * 其他人在游戏中离开房间：32 <随机消失的颜色>
+     * 其他人加入房间：30 <新人数> <加入成员名>
+     * 其他人离开房间：31 <新人数> <离开成员名>
+     * 其他人在游戏中离开房间：32 <随机消失的颜色> <离开成员名>
+     * 房主变更为自己：33
      * 游戏开始：40
      * 本人选择颜色：
      *      选中倒霉色：50
@@ -71,61 +77,71 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
      */
     @Override
     protected void onProgressUpdate(String... values) {
-        String command = values[0].substring(0,2);
-        Log.d("command: ", values[0]);
+        try {
+            JSONObject jsonObject = new JSONObject(values[0]);
+            int command = jsonObject.getInt("command");
 
-        switch (command){
-            case "10":
-                int roomId = Integer.parseInt(values[0].substring(3));
-                listener.onShowRoom(roomId);
-                break;
-            case "20":
-                listener.onRefuse();
-                break;
-            case "21":
-                listener.onRoomNExist();
-                break;
-            case "22":
-                int capacity = Integer.parseInt(values[0].substring(3));
-                listener.onJoinRoom(capacity);
-                break;
-            case "30":
-                int capacity1 = Integer.parseInt(values[0].substring(3));
-                listener.onMemberJoin(capacity1);
-                break;
-            case "31":
-                int capacity2 = Integer.parseInt(values[0].substring(3));
-                listener.onMemberLeave(capacity2);
-                break;
-            case "32":
-                int rmColor = Integer.parseInt(values[0].substring(3));
-                listener.onMemberLeave2(rmColor);
-                break;
-            case "40":
-                listener.onGameStart();
-                break;
-            case "50":
-                listener.onUnluck();
-                break;
-            case "51":
-                listener.onLuck();
-                break;
-            case "60":
-                int colour = Integer.parseInt(values[0].substring(3));
-                listener.onLock(colour);
-                break;
-            case "61":
-                listener.onGameCont();
-                break;
-            case "62":
-                String[] data = values[0].substring(3).split(" ");
-                int playerType = Integer.parseInt(data[0]);
-                int curNum = Integer.parseInt(data[1]);
-                listener.onGameEnd(playerType, curNum);
-                break;
-            default:
-                break;
+            Log.d("command ", command + "");
 
+            switch (command){
+                case 10:
+                    int roomId = jsonObject.getInt("roomId");
+                    listener.onShowRoom(roomId);
+                    break;
+                case 20:
+                    listener.onRefuse();
+                    break;
+                case 21:
+                    listener.onRoomNExist();
+                    break;
+                case 22:
+                    int curNum = jsonObject.getInt("curNum");
+                    JSONArray nameList = jsonObject.getJSONArray("names");
+                    listener.onJoinRoom(curNum, nameList);
+                    break;
+                case 30:
+                    int curNum1 = jsonObject.getInt("curNum");
+                    String nickname = jsonObject.getString("nickName");
+                    listener.onMemberJoin(curNum1, nickname);
+                    break;
+                case 31:
+                    int curNum2 = jsonObject.getInt("curNum");
+                    String nickname2 = jsonObject.getString("nickName");
+                    listener.onMemberLeave(curNum2, nickname2);
+                    break;
+                case 32:
+                    int rmColor = jsonObject.getInt("rmColor");
+                    String nickname3 = jsonObject.getString("nickName");
+                    listener.onMemberLeave2(rmColor, nickname3);
+                    break;
+                case 33:
+                    listener.onNewOwner();
+                case 40:
+                    listener.onGameStart();
+                    break;
+                case 50:
+                    listener.onUnluck();
+                    break;
+                case 51:
+                    listener.onLuck();
+                    break;
+                case 60:
+                    int colour = jsonObject.getInt("color");
+                    listener.onLock(colour);
+                    break;
+                case 61:
+                    listener.onGameCont();
+                    break;
+                case 62:
+                    int curNum3 = jsonObject.getInt("curNum");
+                    listener.onGameEnd(curNum3);
+                    break;
+                default:
+                    break;
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
     }
@@ -135,12 +151,26 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
         // TODO: 02/03/2019
     }
 
+    /**
+     * 发送请求
+     * 规则：
+     * 创建房间：10 <昵称>
+     * 加入房间：20 <房间号> <昵称>
+     * 开始游戏：30
+     * 选择颜色：40 <颜色>
+     * 继续：50
+     * @param s
+     */
     public void send(final String s){
         if (tcpClient == null){
             return;
         }
-
-        tcpClient.send(s);
+        new Runnable(){
+            @Override
+            public void run() {
+                tcpClient.send(s);
+            }
+        }.run();
     }
 
     public void closeChannel(){

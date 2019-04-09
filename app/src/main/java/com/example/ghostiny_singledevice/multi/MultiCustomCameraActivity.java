@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.ImageFormat;
@@ -55,6 +56,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -92,6 +94,7 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
     private ActivityChangeService myService;
     private ActivityChangeService.CommandBinder commandBinder;
     private ArrayList<Integer> rmCol = new ArrayList<>();
+    private SharedPreferences sharedPreferences;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -102,8 +105,25 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
             //成员离开，随机消失一个非倒霉颜色，累计，传递到下一个活动
             myService.setMemberLeaveCallBack2(new ActivityChangeService.MemberLeaveCallBack2() {
                 @Override
-                public void memberLeave2(int rmColor) {
+                public void memberLeave2(int rmColor, String nickName) {
+                    Set<String> names = sharedPreferences.getStringSet("nameSet", null);
+                    assert names != null;
+                    names.remove(nickName);
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putStringSet("nameSet", names);
+                    editor.apply();
+
                     rmCol.add(rmColor);
+                }
+            });
+
+            myService.setNewOwnerCallBack(new ActivityChangeService.NewOwnerCallBack() {
+                @Override
+                public void asNewOwner() {
+                    SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
+                    editor.putBoolean("isowner", true);
+                    editor.apply();
                 }
             });
         }
@@ -120,6 +140,7 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_custom_camera);
 
+        sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
         Intent startIntent = new Intent(MultiCustomCameraActivity.this, ActivityChangeService.class);
         bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 

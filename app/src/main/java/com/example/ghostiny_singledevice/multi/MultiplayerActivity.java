@@ -1,22 +1,25 @@
 package com.example.ghostiny_singledevice.multi;
 
 import android.content.ComponentName;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.IBinder;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.ghostiny_singledevice.ActivityChangeService;
-import com.example.ghostiny_singledevice.MainActivity;
 import com.example.ghostiny_singledevice.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 联机模式：创建/加入房间
@@ -27,6 +30,7 @@ public class MultiplayerActivity extends AppCompatActivity {
     private ActivityChangeService myService;
     private int roomId = -1;
     private ActivityChangeService.CommandBinder commandBinder;
+    private SharedPreferences sharedPreferences;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -38,10 +42,20 @@ public class MultiplayerActivity extends AppCompatActivity {
                 @Override
                 public void showRmId(int id) {
                     roomId = id;
+
+                    Set<String> nameSet = new HashSet<>();
+                    nameSet.add(sharedPreferences.getString("myName", "nobody"));
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putStringSet("nameSet", nameSet);
+                    editor.putInt("roomId", id);
+                    editor.putInt("currNum", 1);
+                    editor.apply();
+
                     if (roomId > -1){
                         //收到roomId并将roomId传给下一个activity展示
-                        Intent intent = new Intent(MultiplayerActivity.this, MultiRoomOwnerActivity.class);
-                        intent.putExtra("roomId", roomId);
+                        Intent intent = new Intent(MultiplayerActivity.this, MultiWaitActivity.class);
+                        intent.putExtra("currNum", 1);
+                        intent.putExtra("roomId", id+"");
                         startActivity(intent);
                     }
                 }
@@ -59,6 +73,8 @@ public class MultiplayerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiplayer);
+
+        sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
 
         //启动并绑定服务
         final Intent startIntent = new Intent(this, ActivityChangeService.class);
@@ -80,7 +96,17 @@ public class MultiplayerActivity extends AppCompatActivity {
         create_room.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myService.getCommandTask().send("-command create");
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isowner", true);
+                editor.apply();
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("req", 10);
+                    jsonObject.put("nickName", sharedPreferences.getString("myName", "nobody"));
+                    myService.getCommandTask().send(jsonObject.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
