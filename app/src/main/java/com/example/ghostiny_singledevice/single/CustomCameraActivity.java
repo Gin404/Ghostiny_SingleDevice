@@ -35,6 +35,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.ghostiny_singledevice.MainActivity;
 import com.example.ghostiny_singledevice.R;
 
 import java.io.File;
@@ -418,5 +419,8 @@ public class CustomCameraActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         timer.cancel ();
+        startActivity(new Intent(CustomCameraActivity.this, MainActivity.class));
     }
+
+
 }

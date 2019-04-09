@@ -9,14 +9,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ghostiny_singledevice.ActivityChangeService;
+import com.example.ghostiny_singledevice.MainActivity;
 import com.example.ghostiny_singledevice.R;
+import com.example.ghostiny_singledevice.multi.MultiGameActivity;
 import com.example.ghostiny_singledevice.utils.Colour;
 
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
+
+    ImageView  back1;
     public static final int TAKE_PHOTO = 1;
 
     private Colour colour, unluck;
@@ -38,6 +44,18 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        back1=(ImageView)findViewById(R.id.back1) ;
+        back1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent (GameActivity.this, SingleNumberActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
         Intent pIntent = getIntent();
         colorNum = pIntent.getIntExtra("num", 12);
 
@@ -109,5 +127,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 selected = true;
             }
         }
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(GameActivity.this, MainActivity.class));
     }
 }

@@ -15,7 +15,7 @@ import com.example.ghostiny_singledevice.single.SingleNumberActivity;
 
 public class InstructionActivity extends AppCompatActivity {
 
-    Button singleButton1,multiButton1;
+
     ImageButton back1;
 
     @Override
@@ -34,24 +34,11 @@ public class InstructionActivity extends AppCompatActivity {
         TextView test4=(TextView)findViewById(R.id.textView_instruction);
         test4.setTypeface(typeface);
 
-        singleButton1=(Button)findViewById(R.id.icon_instruction_SingleGame);
-        multiButton1=(Button)findViewById(R.id.icon_instruction_Multiplayer);
+
         back1=(ImageButton) findViewById(R.id.imagebutton2);
 
 
-        singleButton1.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                Intent intent=new Intent(InstructionActivity.this, SingleNumberActivity.class);
-                startActivity(intent);
-            }
-        });
 
-        multiButton1.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                Intent intent=new Intent(InstructionActivity.this, MultiplayerActivity.class);
-                startActivity(intent);
-            }
-        });
 
         back1.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){

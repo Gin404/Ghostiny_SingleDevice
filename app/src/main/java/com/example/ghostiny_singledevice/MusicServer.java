@@ -23,6 +23,7 @@ public class MusicServer extends Service {
         mediaPlayer =MediaPlayer.create(this,R.raw.sound);
         Log.e("TAG","create");
 
+
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -34,6 +35,7 @@ public class MusicServer extends Service {
     //封装播放
     private void play() {
         mediaPlayer.start();
+
     }
 
     //service被关闭之前调用
@@ -42,5 +44,6 @@ public class MusicServer extends Service {
         super.onDestroy();
         mediaPlayer.stop();
         Log.e("TAG","destoryed");
+
     }
 }

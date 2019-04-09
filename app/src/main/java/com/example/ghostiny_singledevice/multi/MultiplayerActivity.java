@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.example.ghostiny_singledevice.ActivityChangeService;
@@ -25,7 +26,7 @@ import java.util.Set;
  * 联机模式：创建/加入房间
  */
 public class MultiplayerActivity extends AppCompatActivity {
-    private Button create_room,join_room;
+    private ImageButton create_room,join_room;
     private ImageView back;
     private ActivityChangeService myService;
     private int roomId = -1;
@@ -92,7 +93,7 @@ public class MultiplayerActivity extends AppCompatActivity {
 
 
 
-        create_room=(Button)findViewById(R.id.icon_create_room);
+        create_room=(ImageButton)findViewById(R.id.icon_create_room);
         create_room.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +111,7 @@ public class MultiplayerActivity extends AppCompatActivity {
             }
         });
 
-        join_room=(Button)findViewById(R.id.icon_join_room);
+        join_room=(ImageButton)findViewById(R.id.icon_join_room);
         join_room.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

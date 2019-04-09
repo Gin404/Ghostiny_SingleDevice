@@ -25,6 +25,7 @@ public class CustomShowActivity extends AppCompatActivity {
     private Button cont;
     private boolean con = false;
 
+    Intent intent2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +45,7 @@ public class CustomShowActivity extends AppCompatActivity {
 
         try {
             Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(Uri.parse(imageUri)));
-            Bitmap icon = BitmapFactory.decodeResource(getResources(),R.drawable.screamicon);
+            Bitmap icon = BitmapFactory.decodeResource(getResources(),R.drawable.screamicon1);
 
             bitmap = ImageTools.rotate(bitmap, 90);
 
@@ -52,6 +53,7 @@ public class CustomShowActivity extends AppCompatActivity {
                 res = ImageTools.merge(bitmap, icon);
                 con = false;
                 cont.setText("Menu");
+                //startService(intent2);
             }else {
                 cont.setText("Continue");
                 con = true;
@@ -64,6 +66,7 @@ public class CustomShowActivity extends AppCompatActivity {
             }
 
             photo.setImageBitmap(res);
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -94,5 +97,10 @@ public class CustomShowActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(CustomShowActivity.this, MainActivity.class));
     }
 }

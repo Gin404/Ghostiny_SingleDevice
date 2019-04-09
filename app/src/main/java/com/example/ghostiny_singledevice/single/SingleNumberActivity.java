@@ -8,11 +8,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ghostiny_singledevice.MainActivity;
 import com.example.ghostiny_singledevice.R;
 
 /**
@@ -28,6 +30,8 @@ public class SingleNumberActivity extends AppCompatActivity {
     private int num = 0;
 
     private RadioGroup r1, r2, r3, r4;
+
+    ImageView back2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +73,15 @@ public class SingleNumberActivity extends AppCompatActivity {
         start.setTypeface ( typeface );
         intro.setTypeface ( typeface );
 
+
+        back2=(ImageView)findViewById(R.id.back2);
+        back2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent (SingleNumberActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         start.setOnClickListener(new View.OnClickListener() {
