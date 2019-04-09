@@ -120,7 +120,7 @@ public class MultiCustomShowActivity extends AppCompatActivity {
 
         try {
             Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(Uri.parse(imageUri)));
-            Bitmap icon = BitmapFactory.decodeResource(getResources(),R.drawable.screamicon1);
+            Bitmap icon = BitmapFactory.decodeResource(getResources(),R.drawable.screamicon120);
 
             bitmap = ImageTools.rotate(bitmap, 90);
 
@@ -130,7 +130,7 @@ public class MultiCustomShowActivity extends AppCompatActivity {
                 cont.setText("Menu");
             }else {
                 cont.setText("Continue");
-                hit = ImageTools.colorRecg(bitmap, choice, 0.5);
+                hit = ImageTools.colorRecg(bitmap, choice, 0.1);
                 if (hit){
                     res = bitmap;
                     con = true;

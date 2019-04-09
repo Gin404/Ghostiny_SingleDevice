@@ -45,7 +45,7 @@ public class CustomShowActivity extends AppCompatActivity {
 
         try {
             Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(Uri.parse(imageUri)));
-            Bitmap icon = BitmapFactory.decodeResource(getResources(),R.drawable.screamicon1);
+            Bitmap icon = BitmapFactory.decodeResource(getResources(),R.drawable.streamicon80);
 
             bitmap = ImageTools.rotate(bitmap, 90);
 
@@ -53,11 +53,11 @@ public class CustomShowActivity extends AppCompatActivity {
                 res = ImageTools.merge(bitmap, icon);
                 con = false;
                 cont.setText("Menu");
-                //startService(intent2);
+                //startService(intent2)
             }else {
                 cont.setText("Continue");
                 con = true;
-                hit = ImageTools.colorRecg(bitmap, choice, 0.25);
+                hit = ImageTools.colorRecg(bitmap, choice, 0.1);
                 if (hit){
                     res = bitmap;
                 }else {

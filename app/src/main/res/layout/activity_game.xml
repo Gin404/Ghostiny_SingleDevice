@@ -24,7 +24,10 @@
         android:id="@+id/camerabutton"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginEnd="131dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/button_bg"
         android:scaleType="fitXY"
         android:text="拍攝照片"
@@ -32,27 +35,24 @@
         android:textColor="#515151"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectColor"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectColor" />
 
     <TextView
         android:id="@+id/selectColor"
         android:layout_width="wrap_content"
         android:layout_height="29dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="10dp"
         android:text="@string/selectcolor"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/camerabutton"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/white" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.750" />
 
     <Button
         android:id="@+id/red"
@@ -113,7 +113,7 @@
         android:layout_marginTop="20dp"
         android:background="@color/橙色"
         android:onClick="onClick"
-        app:layout_constraintEnd_toStartOf="@+id/cyan"
+        app:layout_constraintEnd_toStartOf="@+id/blue"
         app:layout_constraintStart_toEndOf="@+id/yellow"
         app:layout_constraintTop_toBottomOf="@+id/black" />
 
@@ -127,9 +127,8 @@
         android:background="@color/青色"
         android:onClick="onClick"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toEndOf="@+id/orange"
-        app:layout_constraintTop_toBottomOf="@+id/green" />
+        app:layout_constraintStart_toEndOf="@+id/gray"
+        app:layout_constraintTop_toBottomOf="@+id/blue" />
 
     <Button
         android:id="@+id/pink"
@@ -151,7 +150,7 @@
         android:layout_marginTop="20dp"
         android:background="@color/灰色"
         android:onClick="onClick"
-        app:layout_constraintEnd_toStartOf="@+id/blue"
+        app:layout_constraintEnd_toStartOf="@+id/cyan"
         app:layout_constraintStart_toEndOf="@+id/pink"
         app:layout_constraintTop_toBottomOf="@+id/orange" />
 
@@ -165,9 +164,9 @@
         android:background="@color/藍色"
         android:onClick="onClick"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/gray"
-        app:layout_constraintTop_toBottomOf="@+id/cyan" />
+        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintStart_toEndOf="@+id/orange"
+        app:layout_constraintTop_toBottomOf="@+id/green" />
 
     <Button
         android:id="@+id/brown"
@@ -205,7 +204,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toEndOf="@+id/white"
-        app:layout_constraintTop_toBottomOf="@+id/blue" />
-
+        app:layout_constraintTop_toBottomOf="@+id/cyan" />
 </android.support.constraint.ConstraintLayout>
 
