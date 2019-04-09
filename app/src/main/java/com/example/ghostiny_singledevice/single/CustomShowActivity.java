@@ -55,7 +55,7 @@ public class CustomShowActivity extends AppCompatActivity {
             }else {
                 cont.setText("Continue");
                 con = true;
-                hit = ImageTools.colorRecg(bitmap, choice, 0.5);
+                hit = ImageTools.colorRecg(bitmap, choice, 0.05);
                 if (hit){
                     res = bitmap;
                 }else {
