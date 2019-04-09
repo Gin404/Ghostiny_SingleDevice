@@ -14,7 +14,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:text="3.在20秒內未完成拍攝任務的玩家將會直接接受懲罰。"
-        android:textColor="#000000"
+        android:textColor="#2c2c2c"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.567"
@@ -30,12 +30,27 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:text="2.在20秒之內進行拍照，照片需包含第一步所選之主色并且該主色面積需大於50%。"
-        android:textColor="#000000"
+        android:textColor="#2c2c2c"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="313dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="1.玩家可選擇任意一種顏色作為主色進行拍照。"
+        android:textColor="#2c2c2c"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_instruction" />
 
     <TextView
         android:id="@+id/textView_instruction"
@@ -52,20 +67,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="313dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:text="1.玩家可選擇任意一種顏色作為主色進行拍照。"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.568"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_instruction" />
 
     <Button
         android:id="@+id/icon_instruction_Multiplayer"

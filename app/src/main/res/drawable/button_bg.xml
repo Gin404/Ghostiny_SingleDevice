@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">                <!--设置形状为矩形-->
+    <corners android:radius="7dp"/>          <!--四个角度15dp-->
+
+    <stroke android:color="@color/colorblood"
+        android:width="4dp"/>          <!--设置矩形外框颜色为白色/ 外线宽度2dp-->
+
+    <solid android:color="#fff"/>   <!--填充颜色-->
+</shape>

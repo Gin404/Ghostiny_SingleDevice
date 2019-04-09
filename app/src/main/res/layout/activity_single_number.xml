@@ -158,30 +158,14 @@
         android:id="@+id/radioGroup4_s"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="402dp"
-        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/start_s"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup3_s"
-        app:layout_constraintVertical_bias="0.0">
-
-        <RadioButton
-            android:id="@+id/icon_number12_s"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/radio_background"
-            android:button="@null"
-            android:textColor="#fff"
-            android:textSize="22sp"
-            android:gravity="center"
-            android:layout_margin="20dp"
-            android:text="@string/twelve" />
-
-    </RadioGroup>
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup3_s"/>
 
 
     <Button
@@ -190,11 +174,11 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="100dp"
-        android:background="@color/colorblood"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/button_bg"
         android:text="@string/start"
         android:textAllCaps="false"
-        android:textColor="#fff"
+        android:textColor="#2c2c2c"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -212,6 +196,7 @@
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:text="@string/instruction"
+        android:textColor="#2c2c2c"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"

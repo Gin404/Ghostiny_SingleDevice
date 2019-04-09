@@ -20,7 +20,7 @@ public class MusicServer extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        mediaPlayer =MediaPlayer.create(this,R.raw.thatday);
+        mediaPlayer =MediaPlayer.create(this,R.raw.sound);
         Log.e("TAG","create");
 
     }

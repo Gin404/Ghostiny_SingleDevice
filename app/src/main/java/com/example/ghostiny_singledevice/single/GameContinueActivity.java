@@ -1,6 +1,8 @@
 package com.example.ghostiny_singledevice.single;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,9 +28,9 @@ public class GameContinueActivity extends AppCompatActivity {
             }
         });
 
-        /*AssetManager mgr=getAssets();        //設置字體
+        AssetManager mgr=getAssets();        //設置字體
         Typeface typeface=Typeface.createFromAsset(mgr,"font/TM.ttf");
-        continuebutton.setTypeface(typeface);*/
+        continuebutton.setTypeface(typeface);
     }
 
 }
