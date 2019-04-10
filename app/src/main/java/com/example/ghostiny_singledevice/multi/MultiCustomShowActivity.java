@@ -130,7 +130,7 @@ public class MultiCustomShowActivity extends AppCompatActivity {
         intentScream=new Intent(this, ScreamMusicServer.class);
 
         Colour choice = (Colour)bundle.getSerializable("choice");
-        boolean unluck = bundle.getBoolean("luck");
+        boolean luck = bundle.getBoolean("luck");
         String imageUri = bundle.getString("photoPath");
         rmCol = bundle.getIntegerArrayList("rmColor");
 
@@ -141,7 +141,7 @@ public class MultiCustomShowActivity extends AppCompatActivity {
 
             bitmap = ImageTools.rotate(bitmap, 90);
 
-            if (unluck){
+            if (!luck){
                 res = ImageTools.merge(bitmap, icon);
                 con = false;
                 cont.setText("退出遊戲");
