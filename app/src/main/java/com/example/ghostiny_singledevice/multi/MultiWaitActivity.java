@@ -28,7 +28,7 @@ import java.util.Set;
 
 public class MultiWaitActivity extends AppCompatActivity {
     private Button startBtn;
-    private TextView roomId, roomnum, roomcap, currentNum;
+    private TextView roomId, roomnum, roomcap, currentNum, namelist;
     private RecyclerView recyclerView;
     private int curNum;
 
@@ -133,6 +133,7 @@ public class MultiWaitActivity extends AppCompatActivity {
         roomnum=(TextView)findViewById(R.id.title_rid);
         roomcap=(TextView)findViewById ( R.id.title_capacity );
         currentNum = (TextView)findViewById(R.id.current_num_wait);
+        namelist=(TextView)findViewById ( R.id.TVname );
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         startBtn=(Button)findViewById(R.id.multistart_btn);
 
@@ -144,6 +145,7 @@ public class MultiWaitActivity extends AppCompatActivity {
         roomnum.setTypeface(typeface);
         currentNum.setTypeface(typeface);
         startBtn.setTypeface(typeface);
+        namelist.setTypeface ( typeface );
 
         Set<String> names = sharedPreferences.getStringSet("nameSet", null);
         refreshNames(names);
