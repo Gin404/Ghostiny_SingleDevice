@@ -28,7 +28,7 @@ import java.util.Set;
 
 public class MultiWaitActivity extends AppCompatActivity {
     private Button startBtn;
-    private TextView roomId, roomnum, roomcap, currentNum;
+    private TextView roomId, roomnum, roomcap, currentNum, namelist;
     private RecyclerView recyclerView;
     private int curNum;
 
@@ -133,6 +133,7 @@ public class MultiWaitActivity extends AppCompatActivity {
         roomnum=(TextView)findViewById(R.id.title_rid);
         roomcap=(TextView)findViewById ( R.id.title_capacity );
         currentNum = (TextView)findViewById(R.id.current_num_wait);
+        namelist=(TextView)findViewById ( R.id.TVname );
         recyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         startBtn=(Button)findViewById(R.id.multistart_btn);
 
@@ -144,6 +145,7 @@ public class MultiWaitActivity extends AppCompatActivity {
         roomnum.setTypeface(typeface);
         currentNum.setTypeface(typeface);
         startBtn.setTypeface(typeface);
+        namelist.setTypeface ( typeface );
 
         Set<String> names = sharedPreferences.getStringSet("nameSet", null);
         refreshNames(names);
@@ -161,7 +163,7 @@ public class MultiWaitActivity extends AppCompatActivity {
         startBtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 if (curNum < 2){
-                    Toast.makeText(getApplicationContext(), "The number of players should larger than 2",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "房間人數不得低於三人",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 JSONObject jsonObject = new JSONObject();

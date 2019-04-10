@@ -37,8 +37,6 @@ public class InstructionActivity extends Activity {
         TextView test5=(TextView)findViewById(R.id.textView5);
         test5.setTypeface(typeface);
 
-
-
         /*back1=(ImageButton) findViewById(R.id.imagebutton2);
 
 

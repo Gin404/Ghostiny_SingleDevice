@@ -1,5 +1,6 @@
 package com.example.ghostiny_singledevice.multi;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -26,7 +27,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class MultiRoomJoinActivity extends AppCompatActivity {
+public class MultiRoomJoinActivity extends Activity {
 
     private Button join;
     private TextView enter;
@@ -69,14 +70,14 @@ public class MultiRoomJoinActivity extends AppCompatActivity {
             myService.setJoinRefuseCallBack(new ActivityChangeService.JoinRefuseCallBack() {
                 @Override
                 public void joinRefuse() {
-                    Toast.makeText(MultiRoomJoinActivity.this, "Room full or in game", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MultiRoomJoinActivity.this, "該房間已滿人或您已在房間中", Toast.LENGTH_SHORT).show();
                 }
             });
 
             myService.setRoomNExistCallBack(new ActivityChangeService.RoomNExistCallBack() {
                 @Override
                 public void nExist() {
-                    Toast.makeText(MultiRoomJoinActivity.this, "Room not exist", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MultiRoomJoinActivity.this, "該房間不存在", Toast.LENGTH_SHORT).show();
                 }
             });
 

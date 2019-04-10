@@ -14,6 +14,17 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/TVname"
+            android:layout_width="185dp"
+            android:layout_height="135dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="️右拉可查看玩家列表"
+            android:textColor="#515151"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/title_rid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
