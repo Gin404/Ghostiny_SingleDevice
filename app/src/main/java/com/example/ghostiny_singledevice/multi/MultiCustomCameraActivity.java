@@ -84,7 +84,6 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
 
     private File file;
     private static final int REQUEST_CAMERA_PERMISSION = 200;
-    private boolean mFlashSupported;
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
 
@@ -107,7 +106,9 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
                 @Override
                 public void memberLeave2(int rmColor, String nickName) {
                     Set<String> names = sharedPreferences.getStringSet("nameSet", null);
-                    assert names != null;
+                    if (names == null){
+                        throw new NullPointerException("names 为空");
+                    }
                     names.remove(nickName);
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -146,7 +147,9 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
 
         textureView = (TextureView)findViewById(R.id.texture_view);
         btnTake = (ImageButton)findViewById(R.id.take_btn);
-        assert textureView != null;
+        if (textureView == null){
+            throw new NullPointerException("textureView 为空");
+        }
 
         textureView.setSurfaceTextureListener(textureViewListener);
 
@@ -157,7 +160,6 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
                 timer.cancel ();
                 Intent intent = new Intent(MultiCustomCameraActivity.this, MultiCustomShowActivity.class);
                 Bundle bundle = getIntent().getExtras();
-                assert bundle != null;
                 bundle.putString("photoPath", imageUri.toString());
                 bundle.putSerializable("rmColor", rmCol);
                 intent.putExtras(bundle);
@@ -171,7 +173,9 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
                 takePicture();
                 Intent intent = new Intent(MultiCustomCameraActivity.this, MultiCustomShowActivity.class);
                 Bundle bundle = getIntent().getExtras();
-                assert bundle != null;
+                if (bundle == null){
+                    throw new NullPointerException("bundle 为空");
+                }
                 bundle.putString("photoPath", imageUri.toString());
                 bundle.putSerializable("rmColor", rmCol);
                 intent.putExtras(bundle);
@@ -259,7 +263,9 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
             cameraId = manager.getCameraIdList()[0];
             CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraId);
             StreamConfigurationMap configurationMap = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
-            assert configurationMap != null;
+            if (configurationMap == null){
+                throw new NullPointerException("configurationMap 为空");
+            }
             imageDimension = configurationMap.getOutputSizes(SurfaceTexture.class)[0];
 
             //check realtime permission if run higher API 23
@@ -279,7 +285,9 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
     private void createCameraPreview() {
         try{
             SurfaceTexture texture = textureView.getSurfaceTexture();
-            assert texture != null;
+            if (texture == null){
+                throw new NullPointerException("texture 为空");
+            }
             texture.setDefaultBufferSize(imageDimension.getWidth(), imageDimension.getHeight());
             Surface surface = new Surface(texture);
             reqBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);//
@@ -471,7 +479,8 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        timer.cancel ();
+        Log.d("multiCustomCamera", "onDestroy");
+        timer.cancel();
         unbindService(serviceConnection);
     }
 
@@ -480,8 +489,17 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
         super.onBackPressed();
         timer.cancel ();
         Intent stopIntent = new Intent(this, ActivityChangeService.class);
-        unbindService(serviceConnection);
         stopService(stopIntent);
+        clearSharedPre();
         startActivity(new Intent(MultiCustomCameraActivity.this, MainActivity.class));
+    }
+
+    public void clearSharedPre(){
+        Set<String> names = sharedPreferences.getStringSet("nameSet", null);
+        if (names == null){
+            throw new NullPointerException("names 为空");
+        }
+        names.clear();
+        sharedPreferences.edit().clear().putStringSet("nameSet", names).apply();
     }
 }

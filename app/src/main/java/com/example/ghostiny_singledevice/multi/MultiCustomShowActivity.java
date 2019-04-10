@@ -83,7 +83,9 @@ public class MultiCustomShowActivity extends AppCompatActivity {
                 @Override
                 public void memberLeave2(int rmColor, String nickName) {
                     Set<String> names = sharedPreferences.getStringSet("nameSet", null);
-                    assert names != null;
+                    if (names == null){
+                        throw new NullPointerException("names 为空");
+                    }
                     names.remove(nickName);
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -202,8 +204,17 @@ public class MultiCustomShowActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Intent stopIntent = new Intent(this, ActivityChangeService.class);
-        unbindService(serviceConnection);
         stopService(stopIntent);
+        clearSharedPre();
         startActivity(new Intent(MultiCustomShowActivity.this, MainActivity.class));
+    }
+
+    public void clearSharedPre(){
+        Set<String> names = sharedPreferences.getStringSet("nameSet", null);
+        if (names == null){
+            throw new NullPointerException("names 为空");
+        }
+        names.clear();
+        sharedPreferences.edit().clear().putStringSet("nameSet", names).apply();
     }
 }

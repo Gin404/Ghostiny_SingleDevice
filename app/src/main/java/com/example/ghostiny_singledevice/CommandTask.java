@@ -38,7 +38,9 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
 
             try {
                 tcpClient = TCPClient.start();
-                assert tcpClient != null;
+                if (tcpClient == null){
+                    Log.d("tcpClient", "TCPClient is null");
+                }
                 tcpClient.setCommandReceiveCallBack(commandReceiveCallBack);
                 if (tcpClient == null){
                     return null;
@@ -116,6 +118,7 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
                     break;
                 case 33:
                     listener.onNewOwner();
+                    break;
                 case 40:
                     listener.onGameStart();
                     break;
@@ -174,6 +177,7 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
     }
 
     public void closeChannel(){
+        Log.d("tcpClient", "Client closed");
         if (tcpClient != null){
             tcpClient.exit();
         }

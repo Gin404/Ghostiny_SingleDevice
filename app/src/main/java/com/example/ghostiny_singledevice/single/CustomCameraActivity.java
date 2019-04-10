@@ -89,7 +89,9 @@ public class CustomCameraActivity extends AppCompatActivity {
 
         textureView = (TextureView)findViewById(R.id.texture_view);
         btnTake = (ImageButton)findViewById(R.id.take_btn);
-        assert textureView != null;
+        if (textureView == null){
+            throw new NullPointerException("textureView 为空");
+        }
 
         textureView.setSurfaceTextureListener(textureViewListener);
 
@@ -198,7 +200,9 @@ public class CustomCameraActivity extends AppCompatActivity {
             cameraId = manager.getCameraIdList()[0];
             CameraCharacteristics characteristics = manager.getCameraCharacteristics(cameraId);
             StreamConfigurationMap configurationMap = characteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
-            assert configurationMap != null;
+            if (configurationMap == null){
+                throw new NullPointerException("configurationMap 为空");
+            }
             imageDimension = configurationMap.getOutputSizes(SurfaceTexture.class)[0];
 
             //check realtime permission if run higher API 23
@@ -218,7 +222,9 @@ public class CustomCameraActivity extends AppCompatActivity {
     private void createCameraPreview() {
         try{
             SurfaceTexture texture = textureView.getSurfaceTexture();
-            assert texture != null;
+            if (texture == null){
+                throw new NullPointerException("texture 为空");
+            }
             texture.setDefaultBufferSize(imageDimension.getWidth(), imageDimension.getHeight());
             Surface surface = new Surface(texture);
             reqBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);//

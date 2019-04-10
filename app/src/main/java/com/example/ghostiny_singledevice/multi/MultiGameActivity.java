@@ -82,7 +82,9 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
                     locked = true;
                     Colour clr = Colour.getNameByCode(colour);
                     Resources res = getResources();
-                    assert clr != null;
+                    if (clr == null){
+                        throw new NullPointerException("clr 为空");
+                    }
                     int id = res.getIdentifier(clr.toString().toLowerCase(),"id",getPackageName());
                     findViewById(id).setVisibility(View.INVISIBLE);
                 }
@@ -114,7 +116,9 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
                 @Override
                 public void memberLeave2(int rmColor, String nickName) {
                     Set<String> names = sharedPreferences.getStringSet("nameSet", null);
-                    assert names != null;
+                    if (names == null){
+                        throw new NullPointerException("names 为空");
+                    }
                     names.remove(nickName);
                     refreshNames(names);
 
@@ -124,7 +128,9 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
 
                     Colour clr = Colour.getNameByCode(rmColor);
                     Resources res = getResources();
-                    assert clr != null;
+                    if (clr == null){
+                        throw new NullPointerException("clr 为空");
+                    }
                     int id = res.getIdentifier(clr.toString().toLowerCase(),"id",getPackageName());
                     findViewById(id).setVisibility(View.INVISIBLE);
                 }
@@ -159,7 +165,7 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_multi_game);
 
         sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
-        final Intent startIntent = new Intent(this, ActivityChangeService.class);
+        Intent startIntent = new Intent(this, ActivityChangeService.class);
         bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
         Intent pIntent = getIntent();
@@ -230,6 +236,8 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        Intent startIntent = new Intent(this, ActivityChangeService.class);
+        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
         setIntent(intent);
         Log.d("newIntent", "游戏继续");
         Bundle newBundle = getIntent().getExtras();
@@ -238,7 +246,9 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
         Colour clr;
         for (int i : invs){
             clr = Colour.getNameByCode(i);
-            assert clr != null;
+            if (clr == null){
+                throw new NullPointerException("clr 为空");
+            }
             int id = res.getIdentifier(clr.toString().toLowerCase(),"id",getPackageName());
             findViewById(id).setVisibility(View.INVISIBLE);
         }
@@ -267,22 +277,36 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d("multiGameActivity", "onDestroy");
         unbindService(serviceConnection);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Log.d("multiGameActivity", "onBackPressed");
         Intent stopIntent = new Intent(this, ActivityChangeService.class);
         stopService(stopIntent);
+        clearSharedPre();
         startActivity(new Intent(MultiGameActivity.this, MainActivity.class));
     }
 
     protected void refreshNames(Set<String> names){
-        assert names != null;
+        if (names == null){
+            throw new NullPointerException("names 为空");
+        }
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(layoutManager);
         adaptor = new MemberAdaptor(names);
         recyclerView.setAdapter(adaptor);
+    }
+
+    public void clearSharedPre(){
+        Set<String> names = sharedPreferences.getStringSet("nameSet", null);
+        if (names == null){
+            throw new NullPointerException("names 为空");
+        }
+        names.clear();
+        sharedPreferences.edit().clear().putStringSet("nameSet", names).apply();
     }
 }

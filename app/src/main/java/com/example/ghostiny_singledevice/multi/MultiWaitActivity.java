@@ -11,12 +11,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ghostiny_singledevice.ActivityChangeService;
+import com.example.ghostiny_singledevice.MainActivity;
 import com.example.ghostiny_singledevice.R;
 
 import org.json.JSONException;
@@ -49,7 +51,9 @@ public class MultiWaitActivity extends AppCompatActivity {
                 public void memberJoin(int currNum, String nickName) {
                     //如果新成员加入成功，更新当前人数和成员列表
                     Set<String> names = sharedPreferences.getStringSet("nameSet", null);
-                    assert names != null;
+                    if (names == null){
+                        throw new NullPointerException("names 为空");
+                    }
                     names.add(nickName);
                     refreshNames(names);
 
@@ -69,7 +73,9 @@ public class MultiWaitActivity extends AppCompatActivity {
                 public void memberLeave(int currNum, String nickName) {
                     //如果成员离开，更新当前人数和成员列表
                     Set<String> names = sharedPreferences.getStringSet("nameSet", null);
-                    assert names != null;
+                    if (names == null){
+                        throw new NullPointerException("names 为空");
+                    }
                     names.remove(nickName);
                     refreshNames(names);
 
@@ -78,7 +84,7 @@ public class MultiWaitActivity extends AppCompatActivity {
                     editor.apply();
 
                     if (currentNum != null){
-                        currentNum.setText(currNum);
+                        currentNum.setText("" + currNum);
                         curNum = currNum;
                     }
                 }
@@ -96,7 +102,7 @@ public class MultiWaitActivity extends AppCompatActivity {
             myService.setNewOwnerCallBack(new ActivityChangeService.NewOwnerCallBack() {
                 @Override
                 public void asNewOwner() {
-                    SharedPreferences.Editor editor = sharedPreferences .edit();
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("isowner", true);
                     editor.apply();
                     startBtn.setVisibility(View.VISIBLE);
@@ -172,6 +178,8 @@ public class MultiWaitActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        Intent startIntent = new Intent(this, ActivityChangeService.class);
+        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
         Set<String> names = sharedPreferences.getStringSet("nameSet", null);
         refreshNames(names);
         setIntent(intent);
@@ -185,21 +193,36 @@ public class MultiWaitActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d("multiWaitActivity", "onDestroy");
         unbindService(serviceConnection);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Log.d("multiWaitActivity", "onBackPressed");
         Intent stopIntent = new Intent(this, ActivityChangeService.class);
         stopService(stopIntent);
+        clearSharedPre();
+        startActivity(new Intent(MultiWaitActivity.this, MainActivity.class));
     }
 
     protected void refreshNames(Set<String> names){
-        assert names != null;
+        if (names == null){
+            throw new NullPointerException("names 为空");
+        }
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(layoutManager);
         adaptor = new MemberAdaptor(names);
         recyclerView.setAdapter(adaptor);
+    }
+
+    public void clearSharedPre(){
+        Set<String> names = sharedPreferences.getStringSet("nameSet", null);
+        if (names == null){
+            throw new NullPointerException("names 为空");
+        }
+        names.clear();
+        sharedPreferences.edit().clear().putStringSet("nameSet", names).apply();
     }
 }
