@@ -43,7 +43,10 @@
         <activity android:name=".multi.MultiRoomJoinActivity"/>
         <activity android:name=".single.SingleNumberActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".InstructionActivity" />
+        <activity android:name=".InstructionActivity"
+            android:theme="@style/MyDialogStyle"/>
+
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask">

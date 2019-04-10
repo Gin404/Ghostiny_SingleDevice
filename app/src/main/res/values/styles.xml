@@ -12,4 +12,23 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+
+    <style name="MyDialogStyle">
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--//点击空白处时是否销毁Activity-->
+        <item name="android:windowCloseOnTouchOutside">true</item>
+
+    </style>
+
+
+
+
+
 </resources>

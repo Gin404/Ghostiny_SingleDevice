@@ -1,5 +1,6 @@
 package com.example.ghostiny_singledevice;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
@@ -13,10 +14,10 @@ import android.widget.TextView;
 import com.example.ghostiny_singledevice.multi.MultiplayerActivity;
 import com.example.ghostiny_singledevice.single.SingleNumberActivity;
 
-public class InstructionActivity extends AppCompatActivity {
+public class InstructionActivity extends Activity {
 
 
-    ImageButton back1;
+   /* ImageButton back1;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class InstructionActivity extends AppCompatActivity {
 
 
 
-        back1=(ImageButton) findViewById(R.id.imagebutton2);
+        /*back1=(ImageButton) findViewById(R.id.imagebutton2);
 
 
 
@@ -48,6 +49,6 @@ public class InstructionActivity extends AppCompatActivity {
                 Intent intent=new Intent(InstructionActivity.this,MainActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 }
