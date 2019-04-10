@@ -144,11 +144,11 @@ public class MultiCustomShowActivity extends AppCompatActivity {
             if (unluck){
                 res = ImageTools.merge(bitmap, icon);
                 con = false;
-                cont.setText("繼續遊戲");
+                cont.setText("退出遊戲");
                 stopService(intentBgm);
                 startService(intentScream);
             }else {
-                cont.setText("退出遊戲");
+                cont.setText("繼續遊戲");
                 hit = ImageTools.colorRecg(bitmap, choice, 0.5);
                 if (hit){
                     res = bitmap;
