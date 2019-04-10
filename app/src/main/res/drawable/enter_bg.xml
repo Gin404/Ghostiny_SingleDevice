@@ -3,7 +3,7 @@
     android:shape="rectangle">                <!--设置形状为矩形-->
     <corners android:radius="2dp"/>          <!--四个角度15dp-->
 
-    <stroke android:color="#2c2c2c"
+    <stroke android:color="#515151"
         android:width="2dp"/>          <!--设置矩形外框颜色为白色/ 外线宽度2dp-->
 
     <solid android:color="#fff"/>   <!--填充颜色-->

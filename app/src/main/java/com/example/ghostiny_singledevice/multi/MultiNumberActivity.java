@@ -55,7 +55,7 @@ public class MultiNumberActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (num == 0){
-                    Toast.makeText(getApplicationContext(), "请选择人数",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "請選擇人數",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Intent intent = new Intent(MultiNumberActivity.this, GameActivity.class);

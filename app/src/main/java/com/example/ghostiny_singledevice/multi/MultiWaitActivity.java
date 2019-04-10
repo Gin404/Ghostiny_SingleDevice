@@ -161,7 +161,7 @@ public class MultiWaitActivity extends AppCompatActivity {
         startBtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 if (curNum < 2){
-                    Toast.makeText(getApplicationContext(), "The number of players should larger than 3",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "房間人數不得低於三人",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 JSONObject jsonObject = new JSONObject();
