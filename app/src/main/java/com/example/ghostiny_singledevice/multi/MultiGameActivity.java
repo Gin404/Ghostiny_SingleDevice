@@ -194,12 +194,12 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onClick(View v) {
                 if (!selected){
-                    Toast.makeText(getApplicationContext(), "You must pick a color",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "請選擇一種顏色",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (locked){
-                    Toast.makeText(getApplicationContext(), "Someone else is taking photo",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "其他玩家正在拍照",Toast.LENGTH_LONG).show();
                     return;
                 }
                 toBeInvis.setVisibility(View.INVISIBLE);

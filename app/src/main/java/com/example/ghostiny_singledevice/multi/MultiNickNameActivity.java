@@ -41,7 +41,7 @@ public class MultiNickNameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String nickName = nickNameET.getText().toString();
                 if (nickName.length() == 0){
-                    Toast.makeText(getApplicationContext(), "Nick name cannot be null",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "暱稱不能為空",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
