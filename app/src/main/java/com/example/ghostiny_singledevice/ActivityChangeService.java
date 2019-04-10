@@ -139,13 +139,8 @@ public class ActivityChangeService extends Service {
         }
 
         @Override
-        public void onUnluck() {
-            luckCallBack.setLuck(false);
-        }
-
-        @Override
-        public void onLuck() {
-            luckCallBack.setLuck(true);
+        public void onLuck(boolean luck) {
+            luckCallBack.setLuck(luck);
         }
 
         @Override

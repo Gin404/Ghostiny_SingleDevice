@@ -83,7 +83,8 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
             JSONObject jsonObject = new JSONObject(values[0]);
             int command = jsonObject.getInt("command");
 
-            Log.d("command ", command + "");
+            System.out.println("收到指令：" + values[0]);
+            //Log.d("command ", command + "");
 
             switch (command){
                 case 10:
@@ -122,11 +123,9 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
                 case 40:
                     listener.onGameStart();
                     break;
-                case 50:
-                    listener.onUnluck();
-                    break;
                 case 51:
-                    listener.onLuck();
+                    boolean luck = jsonObject.getBoolean("luck");
+                    listener.onLuck(luck);
                     break;
                 case 60:
                     int colour = jsonObject.getInt("color");

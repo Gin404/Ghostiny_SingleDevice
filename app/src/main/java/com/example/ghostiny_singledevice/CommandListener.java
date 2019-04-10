@@ -30,11 +30,8 @@ public interface CommandListener {
     //通知游戏开始
     void onGameStart();
 
-    //通知不走运
-    void onUnluck();
-
     //通知走运
-    void onLuck();
+    void onLuck(boolean luck);
 
     //通知锁屏
     void onLock(int colour);

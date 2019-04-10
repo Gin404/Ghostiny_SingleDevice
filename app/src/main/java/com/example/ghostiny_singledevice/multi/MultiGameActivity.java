@@ -281,6 +281,7 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
         unbindService(serviceConnection);
     }
 
+    //退成员颜色没变少
     @Override
     public void onBackPressed() {
         super.onBackPressed();
