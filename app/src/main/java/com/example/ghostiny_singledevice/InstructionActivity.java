@@ -33,6 +33,9 @@ public class InstructionActivity extends AppCompatActivity {
         test3.setTypeface(typeface);
         TextView test4=(TextView)findViewById(R.id.textView_instruction);
         test4.setTypeface(typeface);
+        TextView test5=(TextView)findViewById(R.id.textView5);
+        test5.setTypeface(typeface);
+
 
 
         back1=(ImageButton) findViewById(R.id.imagebutton2);

@@ -53,6 +53,7 @@ public class CustomShowActivity extends AppCompatActivity {
 
             bitmap = ImageTools.rotate(bitmap, 90);
 
+
             if (choice.equals(unluck)){
                 res = ImageTools.merge(bitmap, icon);
                 con = false;
