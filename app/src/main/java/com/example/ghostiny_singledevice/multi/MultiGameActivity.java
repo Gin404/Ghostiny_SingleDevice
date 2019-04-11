@@ -129,6 +129,10 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
                     editor.putStringSet("nameSet", names);
                     editor.apply();
 
+                    if (rmColor == -1){
+                        locked = false;
+                        return;
+                    }
                     Colour clr = Colour.getNameByCode(rmColor);
                     Resources res = getResources();
                     if (clr == null){
