@@ -425,7 +425,7 @@ public class CustomCameraActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         timer.cancel ();
-        startActivity(new Intent(CustomCameraActivity.this, MainActivity.class));
+        startActivity(new Intent(CustomCameraActivity.this, SingleNumberActivity.class));
     }
 
 
