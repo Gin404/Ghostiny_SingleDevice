@@ -93,16 +93,16 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
                 }
             });
 
-            myService.setContCallBack(new ActivityChangeService.ContCallBack() {
+            myService.setContCallBack2(new ActivityChangeService.ContCallBack2() {
                 @Override
-                public void contGame() {
+                public void contGame2() {
                     locked = false;
                 }
             });
 
-            myService.setEndCallBack(new ActivityChangeService.EndCallBack() {
+            myService.setEndCallBack2(new ActivityChangeService.EndCallBack2() {
                 @Override
-                public void endGame(int curNum) {
+                public void endGame2(int curNum) {
                     Bundle bundle = new Bundle();
                     bundle.putInt("curNum", curNum);
                     Intent intent = null;

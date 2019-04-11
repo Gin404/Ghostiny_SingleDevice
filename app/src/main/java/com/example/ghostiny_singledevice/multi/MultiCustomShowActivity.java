@@ -63,9 +63,6 @@ public class MultiCustomShowActivity extends AppCompatActivity {
                 @Override
                 public void contGame() {
                     Intent intent = new Intent(MultiCustomShowActivity.this, MultiGameActivity.class);
-                    //Bundle bundle = new Bundle();
-                    //bundle.putSerializable("rmColor", rmCol);
-                    //intent.putExtras(bundle);
                     startActivity(intent);
                 }
             });

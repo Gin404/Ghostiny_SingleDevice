@@ -22,9 +22,10 @@ public class ActivityChangeService extends Service {
     private StartCallBack startCallBack;//游戏开始
     private LuckCallBack luckCallBack;//倒霉否
     private LockCallBack lockCallBack;//锁屏
-    private ContCallBack contCallBack;//游戏继续
-    private EndCallBack endCallBack;//游戏结束
-
+    private ContCallBack contCallBack;//游戏继续拍照者
+    private EndCallBack endCallBack;//游戏结束拍照者
+    private ContCallBack2 contCallBack2;//游戏继续
+    private EndCallBack2 endCallBack2;//游戏结束
 
     public void setShowRmIdCallBack(ShowRmIdCallBack showRmIdCallBack){
         this.showRmIdCallBack = showRmIdCallBack;
@@ -72,6 +73,14 @@ public class ActivityChangeService extends Service {
 
     public void setEndCallBack(EndCallBack endCallBack){
         this.endCallBack = endCallBack;
+    }
+
+    public void setContCallBack2(ContCallBack2 contCallBack2){
+        this.contCallBack2 = contCallBack2;
+    }
+
+    public void setEndCallBack2(EndCallBack2 endCallBack2){
+        this.endCallBack2 = endCallBack2;
     }
 
 
@@ -154,8 +163,18 @@ public class ActivityChangeService extends Service {
         }
 
         @Override
+        public void onGameCont2() {
+            contCallBack2.contGame2();
+        }
+
+        @Override
         public void onGameEnd(int curNum) {
             endCallBack.endGame(curNum);
+        }
+
+        @Override
+        public void onGameEnd2(int curNum) {
+            endCallBack2.endGame2(curNum);
         }
 
 
@@ -232,6 +251,14 @@ public class ActivityChangeService extends Service {
 
     public interface ContCallBack{
         void contGame();
+    }
+
+    public interface EndCallBack2{
+        void endGame2(int curNum);
+    }
+
+    public interface ContCallBack2{
+        void contGame2();
     }
 
     public interface LuckCallBack{

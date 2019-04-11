@@ -36,10 +36,16 @@ public interface CommandListener {
     //通知锁屏
     void onLock(int colour);
 
-    //通知游戏继续
+    //通知拍照者游戏继续
     void onGameCont();
 
-    //通知游戏结束
+    //通知其他人游戏继续
+    void onGameCont2();
+
+    //通知拍照者游戏结束
     void onGameEnd(int curNum);
+
+    //通知其他人游戏结束
+    void onGameEnd2(int curNum);
 
 }

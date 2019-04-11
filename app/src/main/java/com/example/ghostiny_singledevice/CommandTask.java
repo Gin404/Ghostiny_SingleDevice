@@ -138,6 +138,12 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
                     int curNum3 = jsonObject.getInt("curNum");
                     listener.onGameEnd(curNum3);
                     break;
+                case 63:
+                    listener.onGameCont2();
+                    break;
+                case 64:
+                    int curNum4 = jsonObject.getInt("curNum");
+                    listener.onGameEnd2(curNum4);
                 default:
                     break;
 
