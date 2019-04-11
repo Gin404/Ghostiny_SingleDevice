@@ -83,9 +83,6 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
             JSONObject jsonObject = new JSONObject(values[0]);
             int command = jsonObject.getInt("command");
 
-            System.out.println("收到指令：" + values[0]);
-            //Log.d("command ", command + "");
-
             switch (command){
                 case 10:
                     int roomId = jsonObject.getInt("roomId");
@@ -173,12 +170,12 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
         if (tcpClient == null){
             return;
         }
-        new Runnable(){
+        new Thread(new Runnable(){
             @Override
             public void run() {
                 tcpClient.send(s);
             }
-        }.run();
+        }).start();
     }
 
     public void closeChannel(){

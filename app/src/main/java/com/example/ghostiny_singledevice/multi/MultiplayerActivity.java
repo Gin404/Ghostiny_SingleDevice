@@ -30,7 +30,7 @@ import java.util.Set;
  * 联机模式：创建/加入房间
  */
 public class MultiplayerActivity extends AppCompatActivity {
-    private ImageButton create_room,join_room;
+    private ImageButton createRoom,joinRoom;
     private TextView tv1, tv2;
     private ImageView back;
     private ActivityChangeService myService;
@@ -107,8 +107,8 @@ public class MultiplayerActivity extends AppCompatActivity {
 
 
 
-        create_room=(ImageButton)findViewById(R.id.icon_create_room);
-        create_room.setOnClickListener(new View.OnClickListener() {
+        createRoom=(ImageButton)findViewById(R.id.icon_create_room);
+        createRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -125,8 +125,8 @@ public class MultiplayerActivity extends AppCompatActivity {
             }
         });
 
-        join_room=(ImageButton)findViewById(R.id.icon_join_room);
-        join_room.setOnClickListener(new View.OnClickListener() {
+        joinRoom=(ImageButton)findViewById(R.id.icon_join_room);
+        joinRoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MultiplayerActivity.this,MultiRoomJoinActivity.class);
