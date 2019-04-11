@@ -243,9 +243,7 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
         //bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
         setIntent(intent);
         Log.d("newIntent", "游戏继续");
-        Bundle newBundle = getIntent().getExtras();
-        ArrayList<Integer> invs = newBundle.getIntegerArrayList("rmColor");
-        Resources res = getResources();
+        /*Resources res = getResources();
         Colour clr;
         for (int i : invs){
             clr = Colour.getNameByCode(i);
@@ -254,7 +252,7 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
             }
             int id = res.getIdentifier(clr.toString().toLowerCase(),"id",getPackageName());
             findViewById(id).setVisibility(View.INVISIBLE);
-        }
+        }*/
     }
 
     /**
