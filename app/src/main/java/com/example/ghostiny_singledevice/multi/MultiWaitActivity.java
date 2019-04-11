@@ -40,9 +40,12 @@ public class MultiWaitActivity extends AppCompatActivity {
 
     private MemberAdaptor adaptor;
 
+    private Intent startIntent;
+
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(final ComponentName name, IBinder service) {
+            Log.d("multiWait", "service 绑定");
             commandBinder = (ActivityChangeService.CommandBinder)service;
             myService = commandBinder.getService();
 
@@ -99,6 +102,7 @@ public class MultiWaitActivity extends AppCompatActivity {
                 }
             });
 
+            //-----------------------------------
             myService.setNewOwnerCallBack(new ActivityChangeService.NewOwnerCallBack() {
                 @Override
                 public void asNewOwner() {
@@ -113,7 +117,7 @@ public class MultiWaitActivity extends AppCompatActivity {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-
+            Log.d("multiWait", "service 解除绑定");
         }
     };
 
@@ -122,10 +126,8 @@ public class MultiWaitActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_wait);
 
+        startIntent = new Intent(this, ActivityChangeService.class);
         sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
-
-        Intent startIntent = new Intent(this, ActivityChangeService.class);
-        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
         Intent intent = getIntent();
 
@@ -177,11 +179,34 @@ public class MultiWaitActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("multiWaitActivity", "onRestart");
+        startIntent = new Intent(this, ActivityChangeService.class);
+        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("multiWaitActivity", "onStart");
+        startIntent = new Intent(this, ActivityChangeService.class);
+        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d("multiWaitActivity", "onResume");
+        super.onResume();
+        startIntent = new Intent(this, ActivityChangeService.class);
+        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
+    }
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Intent startIntent = new Intent(this, ActivityChangeService.class);
-        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
         Set<String> names = sharedPreferences.getStringSet("nameSet", null);
         refreshNames(names);
         setIntent(intent);
@@ -193,18 +218,29 @@ public class MultiWaitActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("multiWaitActivity", "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("multiWaitActivity", "onStop");
+    }
+
+    @Override
     protected void onDestroy() {
+        unbindService(serviceConnection);
         super.onDestroy();
         Log.d("multiWaitActivity", "onDestroy");
-        unbindService(serviceConnection);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         Log.d("multiWaitActivity", "onBackPressed");
-        Intent stopIntent = new Intent(this, ActivityChangeService.class);
-        stopService(stopIntent);
+        stopService(startIntent);
         clearSharedPre();
         startActivity(new Intent(MultiWaitActivity.this, MainActivity.class));
     }

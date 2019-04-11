@@ -179,6 +179,12 @@ public class ActivityChangeService extends Service {
     }
 
     @Override
+    public boolean onUnbind(Intent intent) {
+        System.out.println("=====onUnBind=====");
+        return super.onUnbind(intent);
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         commandTask.closeChannel();

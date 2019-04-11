@@ -49,7 +49,7 @@ public class CustomShowActivity extends AppCompatActivity {
 
         try {
             Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(Uri.parse(imageUri)));
-            Bitmap icon = BitmapFactory.decodeResource(getResources(),R.drawable.screamicon1);
+            Bitmap icon = BitmapFactory.decodeResource(getResources(),R.drawable.screamicon);
 
             bitmap = ImageTools.rotate(bitmap, 90);
 

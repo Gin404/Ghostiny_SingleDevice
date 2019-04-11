@@ -95,14 +95,17 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
     private ArrayList<Integer> rmCol = new ArrayList<>();
     private SharedPreferences sharedPreferences;
 
+    private Intent startIntent;
+
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
+            Log.d("multiCamera", "service 绑定");
             commandBinder = (ActivityChangeService.CommandBinder)service;
             myService = commandBinder.getService();
 
             //成员离开，随机消失一个非倒霉颜色，累计，传递到下一个活动
-            myService.setMemberLeaveCallBack2(new ActivityChangeService.MemberLeaveCallBack2() {
+            /*myService.setMemberLeaveCallBack2(new ActivityChangeService.MemberLeaveCallBack2() {
                 @Override
                 public void memberLeave2(int rmColor, String nickName) {
                     Set<String> names = sharedPreferences.getStringSet("nameSet", null);
@@ -118,20 +121,20 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
                     rmCol.add(rmColor);
                 }
             });
-
-            myService.setNewOwnerCallBack(new ActivityChangeService.NewOwnerCallBack() {
+*/
+            /*myService.setNewOwnerCallBack(new ActivityChangeService.NewOwnerCallBack() {
                 @Override
                 public void asNewOwner() {
                     SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
                     editor.putBoolean("isowner", true);
                     editor.apply();
                 }
-            });
+            });*/
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-
+            Log.d("multiCamera", "service 解除绑定");
         }
     };
 
@@ -141,9 +144,8 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_custom_camera);
 
+        startIntent = new Intent(MultiCustomCameraActivity.this, ActivityChangeService.class);
         sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
-        Intent startIntent = new Intent(MultiCustomCameraActivity.this, ActivityChangeService.class);
-        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
         textureView = (TextureView)findViewById(R.id.texture_view);
         btnTake = (ImageButton)findViewById(R.id.take_btn);
@@ -184,7 +186,6 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
         };
 
         timer = new Timer();
-        timer.schedule(task, 10000);
     }
 
     CameraDevice.StateCallback stateCallBack = new CameraDevice.StateCallback() {
@@ -448,6 +449,15 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("multiCamera", "onStart");
+        startIntent = new Intent(MultiCustomCameraActivity.this, ActivityChangeService.class);
+        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
+        timer.schedule(task, 10000);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         startBackgroundThread();
@@ -477,20 +487,24 @@ public class MultiCustomCameraActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStop() {
+        timer.cancel();
+        super.onStop();
+    }
+
+    @Override
     protected void onDestroy() {
+        unbindService(serviceConnection);
         super.onDestroy();
         Log.d("multiCustomCamera", "onDestroy");
-        timer.cancel();
-        unbindService(serviceConnection);
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         timer.cancel ();
-        Intent stopIntent = new Intent(this, ActivityChangeService.class);
-        stopService(stopIntent);
+        stopService(startIntent);
         clearSharedPre();
+        super.onBackPressed();
         startActivity(new Intent(MultiCustomCameraActivity.this, MainActivity.class));
     }
 

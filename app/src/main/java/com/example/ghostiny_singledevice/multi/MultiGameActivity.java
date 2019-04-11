@@ -57,9 +57,12 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
     private ActivityChangeService myService;
     private ActivityChangeService.CommandBinder commandBinder;
 
+    private Intent startIntent;
+
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
+            Log.d("multiGame", "service 绑定");
             commandBinder = (ActivityChangeService.CommandBinder)service;
             myService = commandBinder.getService();
 
@@ -136,19 +139,20 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
                 }
             });
 
-            myService.setNewOwnerCallBack(new ActivityChangeService.NewOwnerCallBack() {
+            //--------------------------------------
+            /*myService.setNewOwnerCallBack(new ActivityChangeService.NewOwnerCallBack() {
                 @Override
                 public void asNewOwner() {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putBoolean("isowner", true);
                     editor.apply();
                 }
-            });
+            });*/
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-
+            Log.d("multiGame", "service 解除绑定");
         }
     };
 
@@ -164,9 +168,8 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_game);
 
+        startIntent = new Intent(this, ActivityChangeService.class);
         sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
-        Intent startIntent = new Intent(this, ActivityChangeService.class);
-        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
         Intent pIntent = getIntent();
         colorNum = pIntent.getIntExtra("currentNum", 0);
@@ -236,8 +239,8 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        Intent startIntent = new Intent(this, ActivityChangeService.class);
-        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
+        //Intent startIntent = new Intent(this, ActivityChangeService.class);
+        //bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
         setIntent(intent);
         Log.d("newIntent", "游戏继续");
         Bundle newBundle = getIntent().getExtras();
@@ -275,10 +278,28 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("multiGameActivity", "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("multiGameActivity", "onStop");
+    }
+
+    @Override
     protected void onDestroy() {
+        unbindService(serviceConnection);
         super.onDestroy();
         Log.d("multiGameActivity", "onDestroy");
-        unbindService(serviceConnection);
     }
 
     //退成员颜色没变少
@@ -286,8 +307,8 @@ public class MultiGameActivity extends AppCompatActivity implements View.OnClick
     public void onBackPressed() {
         super.onBackPressed();
         Log.d("multiGameActivity", "onBackPressed");
-        Intent stopIntent = new Intent(this, ActivityChangeService.class);
-        stopService(stopIntent);
+        unbindService(serviceConnection);
+        stopService(startIntent);
         clearSharedPre();
         startActivity(new Intent(MultiGameActivity.this, MainActivity.class));
     }

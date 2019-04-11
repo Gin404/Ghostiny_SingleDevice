@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -48,10 +49,13 @@ public class MultiCustomShowActivity extends AppCompatActivity {
     private ArrayList<Integer> rmCol;//可能会消失的颜色
     private SharedPreferences sharedPreferences;
 
+    private Intent startIntent;
+
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
+            Log.d("multiShow", "service 绑定");
             commandBinder = (ActivityChangeService.CommandBinder) service;
             myService = commandBinder.getService();
 
@@ -59,9 +63,9 @@ public class MultiCustomShowActivity extends AppCompatActivity {
                 @Override
                 public void contGame() {
                     Intent intent = new Intent(MultiCustomShowActivity.this, MultiGameActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("rmColor", rmCol);
-                    intent.putExtras(bundle);
+                    //Bundle bundle = new Bundle();
+                    //bundle.putSerializable("rmColor", rmCol);
+                    //intent.putExtras(bundle);
                     startActivity(intent);
                 }
             });
@@ -79,7 +83,7 @@ public class MultiCustomShowActivity extends AppCompatActivity {
                 }
             });
 
-            myService.setMemberLeaveCallBack2(new ActivityChangeService.MemberLeaveCallBack2() {
+            /*myService.setMemberLeaveCallBack2(new ActivityChangeService.MemberLeaveCallBack2() {
                 @Override
                 public void memberLeave2(int rmColor, String nickName) {
                     Set<String> names = sharedPreferences.getStringSet("nameSet", null);
@@ -94,20 +98,20 @@ public class MultiCustomShowActivity extends AppCompatActivity {
                     rmCol.add(rmColor);
                 }
             });
-
-            myService.setNewOwnerCallBack(new ActivityChangeService.NewOwnerCallBack() {
+*/
+            /*myService.setNewOwnerCallBack(new ActivityChangeService.NewOwnerCallBack() {
                 @Override
                 public void asNewOwner() {
                     SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
                     editor.putBoolean("isowner", true);
                     editor.apply();
                 }
-            });
+            });*/
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-
+            Log.d("multiShow", "service 解除绑定");
         }
     };
 
@@ -116,9 +120,8 @@ public class MultiCustomShowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_custom_show);
 
+        startIntent = new Intent(this, ActivityChangeService.class);
         sharedPreferences = getSharedPreferences("data", MODE_PRIVATE);
-        Intent startIntent = new Intent(this, ActivityChangeService.class);
-        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
         photo = (ImageView)findViewById(R.id.custom_photo);
         cont = (Button)findViewById(R.id.cont);
@@ -195,17 +198,29 @@ public class MultiCustomShowActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        startIntent = new Intent(this, ActivityChangeService.class);
+        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
     protected void onDestroy() {
+        //unbindService(serviceConnection);
         super.onDestroy();
-        unbindService(serviceConnection);
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        Intent stopIntent = new Intent(this, ActivityChangeService.class);
-        stopService(stopIntent);
+        unbindService(serviceConnection);
+        stopService(startIntent);
         clearSharedPre();
+        super.onBackPressed();
         startActivity(new Intent(MultiCustomShowActivity.this, MainActivity.class));
     }
 

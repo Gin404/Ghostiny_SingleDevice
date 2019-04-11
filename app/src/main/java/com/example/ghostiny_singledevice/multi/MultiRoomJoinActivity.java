@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,10 +37,12 @@ public class MultiRoomJoinActivity extends Activity {
     private ActivityChangeService myService;
     private ActivityChangeService.CommandBinder commandBinder;
     private SharedPreferences sharedPreferences;
+    private Intent startIntent;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
+            Log.d("multiJoin", "service 绑定");
             commandBinder = (ActivityChangeService.CommandBinder)service;
             myService = commandBinder.getService();
 
@@ -85,7 +88,7 @@ public class MultiRoomJoinActivity extends Activity {
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-
+            Log.d("multiJoin", "service 解除绑定");
         }
     };
 
@@ -95,10 +98,8 @@ public class MultiRoomJoinActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi_room_join);
-        Intent startIntent = new Intent(this, ActivityChangeService.class);
-        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
 
-
+        startIntent = new Intent(this, ActivityChangeService.class);
         join=(Button)findViewById(R.id.join_btn);
         roomId=(EditText) findViewById(R.id.room_id);
         enter=(TextView)findViewById ( R.id.textView11 );
@@ -134,16 +135,35 @@ public class MultiRoomJoinActivity extends Activity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("multiJoin", "onStart");
+        startIntent = new Intent(this, ActivityChangeService.class);
+        bindService(startIntent, serviceConnection, BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("multiJoin", "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("multiJoin", "onStop");
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent stopIntent = new Intent(this, ActivityChangeService.class);
-        stopService(stopIntent);
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+        Log.d("multiJoin", "onDestroy");
         unbindService(serviceConnection);
+        super.onDestroy();
     }
 
     // TODO: 06/04/2019 这里请加一个返回键

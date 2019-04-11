@@ -74,7 +74,7 @@ public class CommandTask extends AsyncTask<Void, String, Integer> {
      *      选中安全色：51
      * 锁屏：60
      * 解锁，游戏继续：61
-     * 解锁，游戏结束：62 <玩家类型(房主/成员)> <当前房间人数>
+     * 解锁，游戏结束：62 <当前房间人数>
      * @param values
      */
     @Override
