@@ -104,4 +104,8 @@ public class CustomShowActivity extends AppCompatActivity {
             }
         });
     }
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(CustomShowActivity.this, MainActivity.class));
+    }
 }
